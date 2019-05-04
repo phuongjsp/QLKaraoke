@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" class="fontawesome-i2svg-active fontawesome-i2svg-complete">
+<head th:fragment="headerfragment">
+    <meta charset="ISO-8859-1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link th:href="@{'/webjars/bootstrap/4.0.0/css/bootstrap.min.css'}" rel="stylesheet">
+    <link href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/mediafont.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <title th:text="${title}">Zera</title>
+    <script th:src="@{'/webjars/jquery/3.3.1/jquery.js'}"></script>
+    <script th:src="@{'/webjars/bootstrap/4.0.0/js/bootstrap.js'}"></script>
+    <script th:src="@{'/js/main.js'}"></script>
+</head>
+
+<body >
+    <style type="text/css">
+         </style>
+<div  class="wrapper">
+
+    <!-- Sidebar  -->
+    <div th:replace="default/sidebar :: sidebar">
+        content
+    </div>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div th:replace="default/navbar_top :: navbar_top">
+                Footer
+            </div>
+        </nav>
+
+        <div th:replace="${view}">
+            content
+        </div>
+    </div>
+</div>
+<div th:replace="default/footer :: footer">
+    Footer
+</div>
+
+</body>
+</html>
