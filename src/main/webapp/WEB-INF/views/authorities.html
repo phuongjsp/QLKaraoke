@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<body>
+<div class="alert alert-danger alert-dismissible fade show" >
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <span th:text="${messages}"></span>
+</div>
+<form method="post">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>ADMIN</th>
+        <th>Chuc nang 1</th>
+        <th>Chuc nang 2</th>
+        <th>Chuc nang 3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${auths}">
+        <td th:text="${user.key}">John</td>
+        <td >
+            <input type="checkbox" th:name="${user.key}" value="ADMIN" th:checked="${user.value.contains('ADMIN')}">
+        </td>
+        <td>
+            <input type="checkbox" th:name="${user.key}" value="chucnang1" th:checked="${user.value.contains('chucnang1')}">
+        </td>
+        <td>
+            <input type="checkbox" th:name="${user.key}" value="chucnang2" th:checked="${user.value.contains('chucnang2')}">
+        </td>
+        <td>
+            <input type="checkbox" th:name="${user.key}" value="chucnang3" th:checked="${user.value.contains('chucnang3')}">
+        </td>
+    </tr>
+    </tbody>
+</table>
+    <div class="container row">
+        <input type="submit" class="btn btn-outline-success col-sm-6 w-100" value="Save"/>
+        <input type="reset" class="btn btn-outline-danger col-sm-6 w-100" value="Reset"/>
+    </div>
+</form>
+</body>
+</html>

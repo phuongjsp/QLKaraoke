@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<form action="" method="post">
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Admin</th>
+        <th>QL Sinh viên</th>
+        <th>QL Giảng viên</th>
+        <th>QL Khóa học</th>
+        <th>QL Kỳ học</th>
+        <th>QL Khoa</th>
+        <th>QL Ngành học</th>
+        <th>QL Môn học</th>
+        <th>QL Thời khóa biểu</th>
+        <th>QL Điểm số</th>
+        <th>QL môn học giảng dạy</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="auth : ${authority}">
+        <td th:text="${auth.key}">John</td>
+        <td >
+            <input th:if="${auth.value.contains('ADMIN')}" type="checkbox"  th:name="${auth.key}" value="ADMIN" checked/>
+            <input th:if="${!auth.value.contains('ADMIN')}" type="checkbox" th:name="${auth.key}"   value="ADMIN" />
+        </td>
+        <td >
+            <input th:if="${auth.value.contains('QLSV')}" type="checkbox"  th:name="${auth.key}" value="QLSV" checked/>
+            <input th:if="${!auth.value.contains('QLSV')}" type="checkbox" th:name="${auth.key}"   value="QLSV" />
+        </td>
+        <td >
+            <input th:if="${auth.value.contains('QLGV')}" type="checkbox"  th:name="${auth.key}" value="QLGV" checked/>
+            <input th:if="${!auth.value.contains('QLGV')}" type="checkbox" th:name="${auth.key}"   value="QLGV" />
+        </td>
+        <td >
+            <input th:if="${auth.value.contains('QLKH')}" type="checkbox"  th:name="${auth.key}" value="QLKH" checked/>
+            <input th:if="${!auth.value.contains('QLKH')}" type="checkbox" th:name="${auth.key}"   value="QLKH" />
+        </td>
+        <td >
+            <input th:if="${auth.value.contains('QLKYH')}" type="checkbox"  th:name="${auth.key}" value="QLKYH" checked/>
+            <input th:if="${!auth.value.contains('QLKYH')}" type="checkbox" th:name="${auth.key}"   value="QLKYH" />
+        </td>
+        <td >
+            <input th:if="${auth.value.contains('QLK')}" type="checkbox"  th:name="${auth.key}" value="QLK" checked/>
+            <input th:if="${!auth.value.contains('QLK')}" type="checkbox" th:name="${auth.key}"   value="QLK" />
+        </td>
+        <td >
+            <input th:if="${auth.value.contains('QLNH')}" type="checkbox"  th:name="${auth.key}" value="QLNH" checked />
+            <input th:if="${!auth.value.contains('QLNH')}" type="checkbox" th:name="${auth.key}"   value="QLNH" />
+        </td>
+        <td >
+            <input th:if="${auth.value.contains('QLMH')}" type="checkbox"  th:name="${auth.key}" value="QLMH" checked/>
+            <input th:if="${!auth.value.contains('QLMH')}" type="checkbox" th:name="${auth.key}"   value="QLMH" />
+        </td>
+        <td >
+            <input th:if="${auth.value.contains('QLTKB')}" type="checkbox"  th:name="${auth.key}" value="QLTKB" checked />
+            <input th:if="${!auth.value.contains('QLTKB')}" type="checkbox" th:name="${auth.key}"   value="QLTKB" />
+        </td>
+        <td >
+            <input th:if="${auth.value.contains('QLDS')}" type="checkbox"  th:name="${auth.key}" value="QLDS" checked />
+            <input th:if="${!auth.value.contains('QLDS')}" type="checkbox" th:name="${auth.key}"   value="QLDS" />
+        </td>
+        <td >
+            <input th:if="${auth.value.contains('DSMH')}" type="checkbox"  th:name="${auth.key}" value="DSMH" checked />
+            <input th:if="${!auth.value.contains('DSMH')}" type="checkbox" th:name="${auth.key}"   value="DSMH" />
+        </td>
+    </tr>
+
+    </tbody>
+
+</table>
+    <div class="row">
+        <input class="col-sm-6 btn btn-outline-info" type="reset" value="Reset"/>
+        <input class="col-sm-6 btn btn-outline-success" type="submit" value="Lưu"/>
+    </div>
+</form>
+</body>
+</html>
