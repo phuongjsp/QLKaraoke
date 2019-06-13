@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .vattu .list-group {
+            max-height: 25em;
+            margin-bottom: 10px;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-9">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-6">
+                            <a class="btn btn-primary alert alert-primary alert-link w-100" href="/phong-hat">
+                                <strong>Danh sasch phong hat</strong>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <div class="alert alert-success alert-link w-100">
+                                <strong>Them moi phong hat</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Loai Phong</span>
+                        </div>
+                        <select aria-describedby="basic-addon1" id="select-loai-phong"
+                                name="as">
+                            <option disabled selected value="null"> Chon loai phong</option>
+
+                        </select>
+                    </div>
+                    <ul class=" list-group">
+                        <div id="danh-sach-vat-tu">
+
+                        </div>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <a class="col-6 btn btn-danger w-100" href="/phong-hat"> Huy</a>
+                        <button class="col -6 btn btn-success" onclick="onSaveToServer()"> Them</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" col-3" id="show-loai-phong">
+            <div class="card">
+                <div class="card-header">
+                    <div class="alert alert-primary text-center" role="alert">
+                        <strong>Danh sách vật tư </strong>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group" id="group-vat-tu">
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div id="pagination-danh-sach-vat-tu"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card" id="modal-them-vat-tu-vao-phong">
+                <div class="card-header">
+                    <div class="alert alert-primary text-center" role="alert">
+                        <strong id="strong-nha-so-luong-vat-tu"></strong>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <input id="input-so-luong-vat-tu" max="5" min="1" type="number" value="1" onkeyup="setminAndMaxVal()" onkeypress="setminAndMaxVal()"
+                    onchange="setminAndMaxVal()" onkeydown="setminAndMaxVal()"/>
+                    <button class="btn btn-success w-25" data-dismiss="modal" onclick="onSavevatTuInPhong()"> Save
+                    </button>
+                    <button class="btn btn-danger w-25" data-dismiss="modal"> Huy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModalHuyVatTu">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card" id="modal-huy-vat-tu-vao-phong">
+                <div class="card-header">
+                    <div class="alert alert-primary text-center" role="alert">
+                        <strong> Huy Vat tu</strong>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <input id="input-huy-so-luong-vat-tu" max="5" min="1" type="number" value="1"/>
+                    <button class="btn btn-success w-25" data-dismiss="modal" onclick="onCancelVatTu()"> Save
+                    </button>
+                    <button class="btn btn-danger w-25" data-dismiss="modal"> Huy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    let vattu = [];
+    let vatTuInPhong = [];
+    let vatTuSelect = {};
+
+    function setminAndMaxVal() {
+        if (parseInt($('#input-so-luong-vat-tu').val()) >= vatTuSelect.soLuongVatTuCon) {
+            $('#input-so-luong-vat-tu').val(vatTuSelect.soLuongVatTuCon);
+        }
+        if (parseInt($('#input-so-luong-vat-tu').val()) < 1) {
+            $('#input-so-luong-vat-tu').val(1);
+        }
+    }
+    function addVatTuToList(_vatT) {
+        return `<li class="list-group-item " id="vat-tu-in-phong-${_vatT.id}">
+                         <div class="row">
+                         <div class="col-sm-9">
+                                <div class="row">
+                                <div class="col-9">
+                                    ${_vatT.tenVatTu}
+                                </div>
+                                <div class="col-2">
+                                    <span class="badge badge-primary badge-pill" id="so-luong-vat-tu-${_vatT.id}">${_vatT.soLuongVatTuCon}</span>
+                                </div>
+                                </div>
+
+                         </div>
+                         <div class="col-sm-2">
+                            <button class="btn btn-success" onclick="setVatTuSelect(${_vatT.id})" data-target="#myModal" data-toggle="modal"><i class="fa fa-arrow-left"></i></button>
+                        </div>
+                    </div>
+                </li>`;
+    }
+
+    let htmlModalOld = $(`#modal-them-vat-tu-vao-phong`).html();
+
+    function setVatTuSelect(id) {
+        vatTuSelect = vattu.filter(value => value.id === parseInt(id));
+        vatTuSelect = vatTuSelect[0];
+        if (vatTuSelect.soLuongVatTuCon <= 0) {
+            $(`#modal-them-vat-tu-vao-phong`).html(`
+            <div class="alert alert-primary text-center" role="alert">
+            <strong> Hien tai vat tu nay da het trog kho</strong>
+        </div>
+            `);
+        } else if (vatTuSelect.soLuongVatTuCon === 1) {
+            $(`#modal-them-vat-tu-vao-phong`).html(htmlModalOld);
+            $('#strong-nha-so-luong-vat-tu').text(`Vat tu con 1 san pham`);
+        } else {
+            $(`#modal-them-vat-tu-vao-phong`).html(htmlModalOld);
+            $('#strong-nha-so-luong-vat-tu').text(`Nhập số lượng vật tư (1 den ${vatTuSelect.soLuongVatTuCon})`);
+        }
+        $("#input-so-luong-vat-tu").attr("max", vatTuSelect.soLuongVatTuCon);
+        $("#input-so-luong-vat-tu").val(1);
+
+    }
+
+    function onSavevatTuInPhong() {
+        let isHave = false;
+        vatTuInPhong.forEach(value => {
+            if (value.vattu.id === vatTuSelect.id) {
+                value.sl += parseInt($(`#input-so-luong-vat-tu`).val());
+                $(`#so-luong-vat-tu-trong-phong-${vatTuSelect.id}`).text(value.sl);
+                isHave = true;
+            }
+        });
+        if (!isHave) {
+            addVatTuInPhong(vatTuSelect, $(`#input-so-luong-vat-tu`).val());
+            vatTuInPhong.push({vattu: vatTuSelect, sl: parseInt($(`#input-so-luong-vat-tu`).val())});
+        }
+        $(`#so-luong-vat-tu-${vatTuSelect.id}`).text(parseInt($(`#so-luong-vat-tu-${vatTuSelect.id}`).text())
+            - parseInt($(`#input-so-luong-vat-tu`).val()));
+        vattu.forEach(value => {
+            if (value.id === vatTuSelect.id) {
+                value.soLuongVatTuCon = parseInt($(`#so-luong-vat-tu-${vatTuSelect.id}`).text());
+            }
+        });
+        vatTuSelect = null;
+    }
+
+</script>
+<script>
+
+    $('#pagination-danh-sach-vat-tu').pagination({
+        dataSource: `${apiResource}vat-tu`,// url?pageNumber=?&pageSize=?
+        locator: 'content',
+        totalNumberLocator: res => res.totalElements,
+        pageSize: 4,
+        callback: function (data, pagination) {
+            // data.forEach(data => {
+            //     vatTuInPhong.forEach(vtip => {
+            //         if (data.id === vtip.vattu.id) {
+            //             data.soLuongVatTuCon -= vtip.sl;
+            //         }
+            //     })
+            // });
+            vattu = data;
+            $('#group-vat-tu').html('');
+            $.each(data, (index, vatTu) => $('#group-vat-tu').append(addVatTuToList(vatTu))
+            )
+        }
+    });
+    let vatTuHuy;
+    function setVatTuHuy(id) {
+        vatTuHuy = vatTuInPhong.filter(value => value.vattu.id === parseInt(id));
+        vatTuHuy = vatTuHuy[0];
+        $('#input-huy-so-luong-vat-tu').val(1);
+    }
+    $(document).ready(function () {
+        $('#input-huy-so-luong-vat-tu').on('keydown keyup change', () => {
+            if ($('#input-huy-so-luong-vat-tu').val() > vatTuHuy.sl) {
+                $('#input-huy-so-luong-vat-tu').val(vatTuHuy.sl);
+            }
+            if ($('#input-huy-so-luong-vat-tu').val() < 1) {
+                $('#input-huy-so-luong-vat-tu').val(1);
+            }
+        })
+    });
+    function onCancelVatTu() {
+        let isRemove = false;
+        let idRemove = null;
+        let slCon = null;
+
+        const slhvt = parseInt($(`#input-huy-so-luong-vat-tu`).val());
+        vattu.forEach(value => {
+            if (value.id === vatTuHuy.vattu.id) {
+                value.soLuongVatTuCon += slhvt;
+            }
+        });
+        vatTuInPhong.forEach(value => {
+            if (value.vattu.id === vatTuHuy.vattu.id) {
+                value.sl -= slhvt;
+                slCon = value.sl;
+
+                if (value.sl === 0) {
+                    isRemove = true;
+                    idRemove = value.vattu.id;
+                }
+            }
+        });
+
+        if (isRemove){
+            vatTuInPhong = vatTuInPhong.filter(value => value.vattu.id !== idRemove);
+            $(`#vat-tu-in-phong-${idRemove}`).remove();
+        }
+        $(`#so-luong-vat-tu-trong-phong-${vatTuHuy.vattu.id}`).text(slCon);
+        $(`#so-luong-vat-tu-${vatTuHuy.vattu.id}`).text(parseInt($(`#so-luong-vat-tu-${vatTuHuy.vattu.id}`).text())
+            + parseInt($(`#input-huy-so-luong-vat-tu`).val()))
+        vatTuHuy = null;
+    }
+    function addVatTuInPhong(_vatT, sl) {
+        $(`#danh-sach-vat-tu`).append(`
+        <li class="list-group-item d-flex justify-content-between align-items-center" id="vat-tu-in-phong-${_vatT.id}">
+                                ${_vatT.tenVatTu}
+        <div>
+        <span class="badge badge-danger  badge-pill" id="so-luong-vat-tu-trong-phong-${_vatT.id}">${sl}</span>
+        <button class="btn btn-info" onclick="setVatTuHuy(${_vatT.id})" data-target="#myModalHuyVatTu" data-toggle="modal"><i class="fa fa-arrow-right"></i></button>
+</div>
+        </li>
+        `);
+    }
+</script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let phong = /*[[${phong}]]*/ 'Sebastian';
+
+    $.get(`${apiResource}loai-phong`,(res, status) => {
+        $('#select-loai-phong').html('');
+        loaiPhong = res;
+        $.each(res,(index, loaiPhong) => {
+            let selected = loaiPhong.id === phong.idLoaiPhong ? 'selected' : '';
+            $('#select-loai-phong').append(`<option value="${loaiPhong.id}" ${selected}>${loaiPhong.loaiPhong}</option>  `);
+        })
+    });
+    $.each(phong.vatTus, (index, vt) => {
+        addVatTuInPhong(vt.vatTu, vt.soLuongVatTu);
+        vatTuInPhong.push({vattu: vt.vatTu, sl: vt.soLuongVatTu});
+    });
+    /*]]>*/
+</script>
+
+<script>
+    function onSaveToServer() {
+        $.ajax({
+            type: "POST",
+            url: `${apiResource}phong-hat/get/${phong.id}/${$('#select-loai-phong').find(":selected").val()}`,
+            data: JSON.stringify(vatTuInPhong),
+            success: res => {
+                console.log(res);
+            },
+            dataType: "json",
+            contentType:'application/json'
+        });
+        console.log(vatTuInPhong);
+    }
+</script>
+</body>
+</html>

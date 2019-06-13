@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+
+<div class="content">
+    <div class="container-fluid">
+       <div class="row">
+           <div class="col-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-6">
+                                    <select class="alert alert-success alert-link text-center w-100" name="danh-sach-loai-phong-hat" id="danh-sach-loai-phong-hat">
+                                        <option value="0" onclick="setSort(null, 0)">All</option>
+                                        <option value="1" onclick="setSort(null, 1)">Phong trong</option>
+                                        <option value="2" onclick="setSort(null, 2)">Phong da dat</option>
+                                        <option value="3" onclick="setSort(null, 3)">Phong dang bao hanh</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <a href="/phong-hat/new" class="btn btn-primary alert alert-primary alert-link w-100">
+                                        <strong >Them moi phong hat</strong>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body" style="height: 25em">
+                            <div class="data-container" id="data-container"></div>
+                        </div>
+                        <div class="card-footer">
+                            <div id="pagination-demo1"></div>
+                        </div>
+                    </div>
+           </div>
+           <div class=" col-3" id="show-loai-phong">
+               <div class="card">
+                   <div class="card-header">
+                       <div class="alert alert-primary text-center">
+                           <strong >Loại Phòng</strong>
+                       </div>
+                   </div>
+                   <div class="card-body">
+                       <ul class="list-group" >
+                           <li class="list-group-item row">
+                               <button class="col-12 btn btn-success w-100"  onclick=" setSort(0, null);">ALl</button>
+                           </li>
+                       </ul>
+                       <ul class="list-group" id="danh-sach-loai-phong">
+
+                       </ul>
+                   </div>
+                   <div class="card-footer">
+                       <button type="button" onclick="newLoaiPhong()" class="btn btn-primary w-100" data-toggle="modal" data-target="#update-loai-vip">
+                           Thêm Vip
+                       </button>
+                   </div>
+               </div>
+           </div>
+
+           <div class="col-3 d-none" id="show-detail-room">
+               <div class="card">
+                   <div class="card-header">
+                       <div class="alert alert-primary text-center ">
+                           <span id="ten-phong"></span>
+                       </div>
+                   </div>
+                   <div class="card-body">
+                        <div class="text-center mb-3 row">
+                            <a class="col-5 btn btn-info pr-2 w-100 mr-3 ml-3 " id="link-update-phong-hat">UPDATE</a>
+                            <button class="col-5 btn btn-danger w-100 ">DELETE</button>
+                        </div>
+                       <table class="table table-sm">
+                           <theader>
+                               <th>STT</th>
+                               <th>Tên vật tư</th>
+                               <th>Số lượng</th>
+                           </theader>
+                           <tbody id="danh-sach-chi-tiet-vat-tu-by-phong">
+
+                           </tbody>
+                       </table>
+                   </div>
+                   <div class="card-footer">
+                       <button class="btn btn-dark" onclick="showLoaiPhong()">
+                           <i class="fa fa-backward"></i>
+                           Close
+                       </button>
+                   </div>
+               </div>
+           </div>
+           <div class="d-none col-3">
+               <div class="card">
+                   <div class="card-header">
+
+                   </div>
+                   <div class="card-body">
+
+                   </div>
+                   <div class="card-footer">
+                       <button class="btn btn-dark">Dong</button>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+</div>
+<!-- Them loai vip -->
+<div class="modal" id="update-loai-vip">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Them moi loai vip</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label for="ten-loai-phong" class="input-group-text" >Ten Loai Phong</label>
+                    </div>
+                    <input type="hidden" id="id-loai-phong">
+                    <input type="text" class="form-control" placeholder="Username" id="ten-loai-phong">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">Gia phong tren gio</label>
+                    </div>
+                    <input class="input-group-append" type="number" id="gia-loai-phong">
+                        <span class="input-group-text"> vnd</span>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button class="btn btn-danger w-25" data-dismiss="modal"> Huy</button>
+                <button class="btn btn-success w-25 d-none" data-dismiss="modal" onclick="onUpdateLoaiPhong()" id="btn-update-loai-phong"> update</button>
+                <button class="btn btn-success w-25 d-none" data-dismiss="modal" onclick="pushNewLoaiPhong()" id="btn-new-loai-phong"> new</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--<script th:src="@{'/js/loaiPhong.js'}"></script>-->
+
+<script>
+    let loaiPhong = [];
+    let vip = 0;
+    let status = 0;
+    setSort(0   , 0);
+
+    function getSort() {
+        $('#pagination-demo1').pagination({
+            dataSource: `${apiResource}phong-hat/getAll/${vip}/${status}`,// url?pageNumber=?&pageSize=?
+            locator: 'content',
+            totalNumberLocator: res =>  res.totalElements,
+            pageSize: 6,
+            callback: function(data, pagination) {
+                printPhong(data);
+            }
+        });
+    }
+    function setSort(_vip, _status) {
+        vip = _vip || _vip === 0? _vip : vip;
+        status = _status || _status === 0 ? _status : status;
+        getSort();
+    }
+    const iapResource = 'http://localhost:8080/api/';
+    $.get(`${iapResource}loai-phong`,(res, status) => {
+        $('#danh-sach-loai-phong').html('');
+        loaiPhong = res;
+        $.each(res,(index, loaiPhong) => {
+            $('#danh-sach-loai-phong').append(createLoaiPhong(loaiPhong.id, loaiPhong.loaiPhong));
+        })
+    });
+    function createLoaiPhong(id, loaiPhong) {
+        return `<li class="list-group-item row" id="loai-phong-${id}">
+                               <button class="col-6 btn btn-success"  onclick=" setSort(${id}, null);">${loaiPhong}</button>
+                               <button class="col-3 btn btn-info"  onclick="setUpdateLoaiPhong(${id})"
+                                data-toggle="modal" data-target="#update-loai-vip">
+                                   <i class="fa fa-edit"></i>
+                               </button>
+                                <button class="col-2 btn btn-danger" onclick="xoaLoaiPhong(${id})"><i class="fa fa-trash"></i></button>
+                                    </li>`;
+    }
+    function setUpdateLoaiPhong(id) {
+        let loaiPhongUpdate = loaiPhong.filter(lp => lp.id === id);
+        $('#id-loai-phong').val(id);
+        $('#ten-loai-phong').val(loaiPhongUpdate[0].loaiPhong);
+        $('#gia-loai-phong').val(loaiPhongUpdate[0].tienPhongTrenGio);
+        showAndHide('btn-update-loai-phong', 'btn-new-loai-phong');
+
+    }
+
+    function onUpdateLoaiPhong() {
+        let data = {id: parseInt($('#id-loai-phong').val()), loaiPhong:  $('#ten-loai-phong').val(), tienPhongTrenGio: parseInt($('#gia-loai-phong').val())};
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: `${iapResource}update-loai-phong`,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            timeout: 600000,
+            success: function (data) {
+                $.each(loaiPhong, (index, value) => loaiPhong[index] = value.id === data.id ? data : loaiPhong[index]);
+                $(`#loai-phong-${data.id}`).html(`<button class="col-6 btn btn-success" >${data.loaiPhong}</button>
+                               <button class="col-3 btn btn-info"  onclick="setUpdateLoaiPhong(${data.id})"
+                                data-toggle="modal" data-target="#update-loai-vip">
+                                   <i class="fa fa-edit"></i>
+                               </button>
+                                <button class="col-2 btn btn-danger" onclick="xoaLoaiPhong(${data.id})"><i class="fa fa-trash"></i></button>`);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+    function newLoaiPhong() {
+        showAndHide('btn-new-loai-phong', 'btn-update-loai-phong');
+        $('#id-loai-phong').val(null);
+        $('#ten-loai-phong').val('');
+        $('#gia-loai-phong').val('');
+    }
+
+    function pushNewLoaiPhong() {
+        let data = {id: 0, loaiPhong:  $('#ten-loai-phong').val(), tienPhongTrenGio: parseInt($('#gia-loai-phong').val())};
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: `${iapResource}loai-phong`,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            timeout: 600000,
+            success: data => {
+                $('#danh-sach-loai-phong').append(createLoaiPhong(data.id, data.loaiPhong));
+                loaiPhong.push(data);
+            }
+        });
+    }
+    function xoaLoaiPhong(id) {
+        $.get(`${iapResource}xoa-loai-phong/${id}`,(res, status) => {
+            $(`#loai-phong-${id}`).remove();
+        });
+    }
+
+</script>
+
+
+<script>
+//Lấy dữ liệu và phân trang
+
+
+
+    function printPhong(data) {
+        var dataHtml = '<div class="col-12 row">';
+        $.each(data, function (index, item) {
+            let imgUri = parseInt(item.tinhTrangPhong) === 1 ? '/img/roomBusy.png' : '/img/roomfree.png';
+            dataHtml += `<div class="col-4 text-center" id="${item.id}">
+                            <span  onclick="showDetailRoom(${item.id})">
+                                <img src="${imgUri}" alt="">
+                                <p style="color: black">${item.maPhong} -- ${item.tinhTrangPhong}</p>
+                            </span>
+                        </div>`;
+        });
+        dataHtml += '</div>';
+        $('#data-container').html(dataHtml);
+    }
+</script>
+
+<script>
+    function showDetailRoom(id) {
+        showAndHide('show-detail-room', 'show-loai-phong');
+        $.get(`${apiResource}phong-hat/get/${id}`, res => {
+            setChiTietPhong(res);
+        });
+    }
+
+    function setChiTietPhong(data) {
+        $('#ten-phong').text('Chi tiết vật tư phòng ' + data.maPhong);
+        let htmlVatTu = '';
+        $.each(data.vatTus, (index, vatTu) => {
+            htmlVatTu += taoChiTietVatTu(index, vatTu);
+        });
+        $('#danh-sach-chi-tiet-vat-tu-by-phong').html(htmlVatTu);
+        $('#link-update-phong-hat').attr("href", `/phong-hat/update/${data.id}`);
+    }
+
+    function taoChiTietVatTu(index, vatTu) {
+        return `<tr><td>${index+1}</td><td>${vatTu.vatTu.tenVatTu}</td><td class="text-center">${vatTu.soLuongVatTu}</td></tr>`;
+    }
+
+    function showLoaiPhong() {
+        showAndHide('show-loai-phong', 'show-detail-room');
+    }
+
+
+
+    // $(document).ready(function () {
+    //     $('#gia-loai-phong').on('keydown keyup change', () => {
+    //         if ($('#input-huy-so-luong-vat-tu').val() > vatTuHuy.sl) {
+    //             $('#input-huy-so-luong-vat-tu').val(vatTuHuy.sl);
+    //         }
+    //         if ($('#input-huy-so-luong-vat-tu').val() < 1) {
+    //             $('#input-huy-so-luong-vat-tu').val(1);
+    //         }
+    //     })
+    // });
+</script>
+</body>
+</html>

@@ -16,15 +16,18 @@
     <script th:src="@{'/webjars/jquery/3.3.1/jquery.js'}"></script>
     <script th:src="@{'/webjars/bootstrap/4.0.0/js/bootstrap.js'}"></script>
     <script th:src="@{'/js/main.js'}"></script>
+    <!-- Scrollbar Custom CSS -->
+    <script th:src="@{'/js/pagination.js'}"></script>
+    <link th:href="@{'/css/pagination.css'}" rel="stylesheet">
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
 </head>
 
 <body >
-    <style type="text/css">
-         </style>
+
 <div  class="wrapper">
 
     <!-- Sidebar  -->
-    <div th:replace="default/sidebar :: sidebar">
+    <div th:replace="default/sidebar :: sidebar" >
         content
     </div>
 
@@ -45,6 +48,14 @@
 <div th:replace="default/footer :: footer">
     Footer
 </div>
+<script >
+    $(document).ready(function () {
 
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+
+    });
+</script>
 </body>
 </html>

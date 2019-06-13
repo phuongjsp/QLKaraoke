@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8">
+            <div class="alert alert-success">
+                <strong> <button type="button" onclick="insertNewKh()" class="btn btn-success">Thêm Mới</button></strong>
+            </div>
+            <table class="table table-sm table-bordered table-striped">
+                <theader>
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã KH</th>
+                        <th>Tên KH</th>
+                        <th>Sdt</th>
+                        <th>CMND</th>
+                        <th>Giới Tính</th>
+                        <th>Options</th>
+                    </tr>
+                </theader>
+                <tbody  id="data-container">
+                </tbody>
+            </table>
+            <div id="pagination-khach-hang"></div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="alert alert-primary text-center card-header">
+                    <span id="thongtin-nhan-vien">Thêm Khách Hàng </span>
+                </div>
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" >Tên Khách Hàng</span>
+                        </div>
+                        <input type="text" class="form-control" id="ten-khach-hang" placeholder="h h h " aria-label="Username" aria-describedby="basic-addon2">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" >SĐT</span>
+                        </div>
+                        <input type="text" class="form-control" id="sdt-khach-hang" placeholder="0121" aria-label="Username" aria-describedby="basic-addon2">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" >CMND</span>
+                        </div>
+                        <input type="text" class="form-control" id="cmnd-khach-hang" placeholder="0121" aria-label="Username" aria-describedby="basic-addon2">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon2">Giớii Tính</span>
+                        </div>
+                        <select name="gioi-tinh-khach-hang" id="gioi-tinh-khach-hang">
+                            <option value="nam">nam</option>
+                            <option value="nu">nữ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" onclick="sendDataToserve()" id="update-kh" class="btn btn-primary w-100">
+                        Thêm khách hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    getKhachHang();
+   function getKhachHang() {
+        $('#pagination-khach-hang').pagination({
+            dataSource: `${apiResource}khach-hang`,
+            locator: 'content',
+            totalNumberLocator: res =>  res.totalElements,
+            pageSize: 5,
+            callback: function(data, pagination) {
+                $('#data-container').html('');
+                $.each(data, (index, kh) =>
+                    insertKhachHang((pagination.pageSize) * (pagination.pageNumber -1) + index +1, kh.maKhachhang, kh.tenKhachHang, kh.soDienThoai, kh.cmnd, kh.gioiTinh ? 'nam' : 'nu')
+                )
+            }
+        });
+    }
+   function insertKhachHang(stt, makh, tenkh, sdt, cmnd, gioiTinh) {
+$('#data-container').html($('#data-container').html() +`
+                    <tr >
+                        <td>${stt}</td>
+                        <td>${makh}</td>
+                        <td>${tenkh}</td>
+                        <td>${sdt}</td>
+                        <td>${cmnd}</td>
+                        <td>${gioiTinh}</td>
+                        <td>
+                            <button type="button" class="btn btn-info" onclick="updateTTKH('${makh}', '${tenkh}', '${sdt}', '${cmnd}', '${gioiTinh}')">Edit</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+            `);
+   }
+   function updateTTKH(maKh, tenKh, sdt,cmnd, gioiTinh) {
+       $('#thongtin-nhan-vien').text(`Thông Tin Khách Hàng ${maKh}`);
+        $('#ten-khach-hang').val(tenKh);
+        $('#sdt-khach-hang').val(sdt);
+        $('#cmnd-khach-hang').val(cmnd);
+       $("#gioi-tinh-khach-hang").val(gioiTinh).change();
+       $('#update-kh').text("Cập Nhật Khách Hàng");
+   }
+   function insertNewKh() {
+       $('#thongtin-nhan-vien').text(`Thêm Mới Khách Hàng`);
+       $('#ten-khach-hang').val('');
+       $('#sdt-khach-hang').val('');
+       $('#cmnd-khach-hang').val('');
+       $("#gioi-tinh-khach-hang").val('nam').change();
+       $('#update-kh').text(" Thêm Khách Hàng");
+       $('#update-kh').click(sendDataToserve());
+   }
+
+   function sendDataToserve() {
+       let data = {
+           tenKhachHang : $('#ten-khach-hang').val(),
+           soDienThoai: $('#sdt-khach-hang').val(),
+           gioiTinh: $("#gioi-tinh-khach-hang").val() === 'nam',
+           cmnd : $('#cmnd-khach-hang').val()
+       };
+       $.ajax({
+           type: "POST",
+           contentType: "application/json",
+           url: `${apiResource}khach-hang`,
+           data: JSON.stringify(data),
+           dataType: 'json',
+           timeout: 600000,
+           success: function (data) {
+               console.log(data);
+              },
+           error: function (e) {
+               console.log(e);
+           }
+       });
+   }
+</script>
+</body>
+</html>
+
