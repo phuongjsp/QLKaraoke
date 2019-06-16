@@ -1,5 +1,6 @@
 package levantuan.quanlykaraoke.repositories;
 
+import levantuan.quanlykaraoke.entities.LoaiPhong;
 import levantuan.quanlykaraoke.entities.Phong;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface PhongRepository extends JpaRepository<Phong,Long> {
+@Transactional
+public interface PhongRepository extends JpaRepository<Phong, Long> {
 
     @Modifying //chỉ dùng khi update và delete
     @Query(nativeQuery = true, value = "delete from phong where id = :id")
@@ -22,13 +24,17 @@ public interface PhongRepository extends JpaRepository<Phong,Long> {
     Page<Phong> findAllByVipLoaiPhong(Integer vip, Pageable pageable);
 
     @Query(value = "select p.* from phong p where p.tinh_trang_phong = ?1 ", nativeQuery = true)
-    Page<Phong> findAllByStatusLoaiPhong(Integer status, Pageable pageable);
+    Page<Phong> findAllByStatusPhong(Integer status, Pageable pageable);
 
     @Query(value = "select p.* from phong p where p.loai_phong = ?1 and p.tinh_trang_phong = ?2 ", nativeQuery = true)
     Page<Phong> findAllByIdAndStatusLoaiPhong(Integer id, Integer status, Pageable pageable);
 
     @Modifying
     @Query(nativeQuery = true, value = "update phong set loai_phong = ?1 where id = ?2")
-    @Transactional
     void updateType(Long idType, Long idPhong);
+    @Query(nativeQuery = true, value = "select k.ma_phong  from phong k order by id desc limit 0, 1")
+    String getLastMaPhong();
+
+    Page<Phong> findAllByLoaiPhong(LoaiPhong loaiPhong, Pageable pageable);
+    Page<Phong> findAllByTinhTrangPhong(Integer loaiPhong, Pageable pageable);
 }

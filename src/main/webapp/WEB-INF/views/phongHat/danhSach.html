@@ -10,11 +10,12 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-6">
-                                    <select class="alert alert-success alert-link text-center w-100" name="danh-sach-loai-phong-hat" id="danh-sach-loai-phong-hat">
-                                        <option value="0" onclick="setSort(null, 0)">All</option>
-                                        <option value="1" onclick="setSort(null, 1)">Phong trong</option>
-                                        <option value="2" onclick="setSort(null, 2)">Phong da dat</option>
-                                        <option value="3" onclick="setSort(null, 3)">Phong dang bao hanh</option>
+                                    <select class="alert alert-success alert-link text-center w-100" name="danh-sach-loai-phong-hat" id="danh-sach-loai-phong-hat"
+                                        onchange="setSort(null, this.options[this.selectedIndex].value)">
+                                        <option value="0" >All</option>
+                                        <option value="1">Phong trong</option>
+                                        <option value="2" >Phong da dat</option>
+                                        <option value="3">Phong dang bao hanh</option>
                                     </select>
                                 </div>
                                 <div class="col-6">

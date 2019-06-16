@@ -73,13 +73,12 @@ public class PhongHatServiceImpl implements PhongHatService {
         if (vip == 0 && status == 0) {
             return phongRepository.findAll(PageRequest.of(page, size));
         } else if (vip == 0 && status != 0) {
-            return phongRepository.findAllByStatusLoaiPhong(status, PageRequest.of(page, size));
+            return phongRepository.findAllByTinhTrangPhong(status, PageRequest.of(page, size));
         } else if ( status == 0 && vip != 0) {
-            return phongRepository.findAllByVipLoaiPhong(vip, PageRequest.of(page, size));
+            return phongRepository.findAllByLoaiPhong(loaiPhongRepository.getOne(Long.valueOf(vip)), PageRequest.of(page, size));
         } else {
             return phongRepository.findAllByIdAndStatusLoaiPhong(vip, status, PageRequest.of(page, size));
         }
-
     }
 
     @Override
@@ -90,8 +89,22 @@ public class PhongHatServiceImpl implements PhongHatService {
     }
 
     @Override
-    public Phong newPhong(PhongDTO phong) {
-        return savePhong(new Phong(), phong);
+    public PhongDTO newPhong(PhongDTO phong) {
+        String lastMaPhong = phongRepository.getLastMaPhong();
+        Integer maP = 1;
+        //format MP0x
+        if (lastMaPhong != null) {
+            maP = Integer.valueOf(lastMaPhong.substring(2));
+            maP++;
+        }
+        Phong p = new Phong();
+        p.setMaPhong("MP0" + maP);
+        p.setTinhTrangPhong(1);
+        p.setLoaiPhong(loaiPhongRepository.getOne(phong.getIdLoaiPhong()));
+        phongRepository.save(p);
+        phong.getUpdatePhongDTOS().forEach(dto -> chiTietVatTuRepository.insertNewVatTu(p.getId(), dto.getVattu().getId(), dto.getSl()));
+        phong.setPhong(p);
+        return phong;
     }
 
     @Override
@@ -118,7 +131,7 @@ public class PhongHatServiceImpl implements PhongHatService {
             listVatTuDelete.forEach(aLong -> chiTietVatTuRepository.deleteByIdPhongAndIdVatTu(idPhong, aLong));
 
             List<Long> listIdVatTuNew = phong.stream().map(dto -> dto.getVattu().getId()).collect(Collectors.toList());
-            listIdVatTuNew.removeAll(vatTus.stream().map(ChiTietVatTu::getId).collect(Collectors.toList()));
+            listIdVatTuNew.removeAll(vatTus.stream().map(chiTietVatTu -> chiTietVatTu.getVatTu().getId()).collect(Collectors.toList()));
             listIdVatTuNew.forEach(aLong -> phong.forEach(dto -> {
                 if (aLong == dto.getVattu().getId()) {
                     chiTietVatTuRepository.insertNewVatTu(idPhong, aLong, dto.getSl());
@@ -132,12 +145,7 @@ public class PhongHatServiceImpl implements PhongHatService {
         return true;
     }
 
-    private Phong savePhong(Phong p, PhongDTO phong) {
-        p.setMaPhong(phong.getMaPhong());
-        p.setTinhTrangPhong(phong.getTinhTrangPhong());
-        p.setLoaiPhong(loaiPhongRepository.getOne(phong.getIdLoaiPhong()));
-        return phongRepository.save(p);
-    }
+
     @Override
     public boolean deletePhong(Long idPhong) {
          Integer xxx = phongRepository.deletePhongById(idPhong);
