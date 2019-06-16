@@ -27,21 +27,28 @@
                         </div>
                         <div class="col-6">
                             <div class="alert alert-success alert-link w-100">
-                                <strong>Them moi phong hat</strong>
+                                <strong id="strong_them_moi__0">Them moi phong hat</strong>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Loai Phong</span>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Ma Phong</span>
+                            </div>
+                            <input type="text" disabled class="form-control w-100" id="ma_phong__0" value=""/>
                         </div>
-                        <select aria-describedby="basic-addon1" id="select-loai-phong"
-                                name="as">
-                            <option disabled selected value="null"> Chon loai phong</option>
-
-                        </select>
+                        <div class="col-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Loai Phong</span>
+                            </div>
+                            <select aria-describedby="basic-addon1" id="select-loai-phong" class="form-control w-100"
+                                    name="as">
+                                <option disabled selected value="null"> Chon loai phong</option>
+                            </select>
+                        </div>
                     </div>
                     <ul class=" list-group">
                         <div id="danh-sach-vat-tu">
@@ -51,18 +58,44 @@
                 </div>
                 <div class="card-footer">
                     <div class="row">
-                        <a class="col-6 btn btn-danger w-100" href="/phong-hat"> Huy</a>
-                        <button class="col -6 btn btn-success" onclick="onSaveToServer()"> Them</button>
+                        <a class="col-6 btn btn-dark w-100" href="/phong-hat"> <i class="fa fa-backward"></i>  Back</a>
+                        <button class="col-6 btn btn-success d-none" onclick="newPhongHat_0()" id="btn_new_phong_hat_0"> Them</button>
+                        <button class="col-6 btn btn-success" onclick="onSaveToServer()" id="btn_update_phong_hat_0"> Update</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class=" col-3" id="show-loai-phong">
-            <div class="card">
+            <div class="card d-none" id="form_update_vat_tu_01_">
+                <div class="card-header">
+                    <div class="alert alert-primary text-center card-header">
+                        <strong >Danh sách vật tư</strong>
+                    </div>
+                    <div class="row">
+                        <button class="col-sm-6 btn btn-dark w-100" onclick="setFormShowVatTu()">
+                            <i class="fa fa-backward"></i>  Back
+                        </button>
+                        <button class="col-sm-6 btn btn-success"  data-toggle="modal" data-target="#modal_update_vat_tu_01_" onclick="newVatTu()">Thêm mới vật tư</button>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <ul class="list-group" id="group-vat-tu_01">
+
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div id="pagination-danh-sach-vat-tu_01_"></div>
+                </div>
+            </div>
+            <div class="card" id="form_update_phong_00_">
                 <div class="card-header">
                     <div class="alert alert-primary text-center" role="alert">
                         <strong>Danh sách vật tư </strong>
                     </div>
+                    <button class="btn btn-outline-info w-100" onclick="setFormNewVatTu()">
+                        Cap nhat vật tư
+                    </button>
                 </div>
                 <div class="card-body">
                     <ul class="list-group" id="group-vat-tu">
@@ -284,22 +317,31 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
     let phong = /*[[${phong}]]*/ 'Sebastian';
-
-    $.get(`${apiResource}loai-phong`,(res, status) => {
-        $('#select-loai-phong').html('');
-        loaiPhong = res;
-        $.each(res,(index, loaiPhong) => {
-            let selected = loaiPhong.id === phong.idLoaiPhong ? 'selected' : '';
-            $('#select-loai-phong').append(`<option value="${loaiPhong.id}" ${selected}>${loaiPhong.loaiPhong}</option>  `);
-        })
-    });
-    $.each(phong.vatTus, (index, vt) => {
-        addVatTuInPhong(vt.vatTu, vt.soLuongVatTu);
-        vatTuInPhong.push({vattu: vt.vatTu, sl: vt.soLuongVatTu});
-    });
+    setPhong();
+    function setPhong() {
+        if (phong.id === 0) {
+            showAndHide('btn_new_phong_hat_0', 'btn_update_phong_hat_0');
+        } else {
+            $('#strong_them_moi__0').text('Cap nhat phong hat');
+        }
+        $('#ma_phong__0').val(phong.maPhong);
+        $.get(`${apiResource}loai-phong`,(res, status) => {
+            $('#select-loai-phong').html('');
+            loaiPhong = res;
+            $.each(res,(index, loaiPhong) => {
+                let selected = loaiPhong.id === phong.idLoaiPhong ? 'selected' : '';
+                $('#select-loai-phong').append(`<option value="${loaiPhong.id}" ${selected}>${loaiPhong.loaiPhong}</option>  `);
+            })
+        });
+        if (phong && phong.vatTus){
+            $.each(phong.vatTus, (index, vt) => {
+                addVatTuInPhong(vt.vatTu, vt.soLuongVatTu);
+                vatTuInPhong.push({vattu: vt.vatTu, sl: vt.soLuongVatTu});
+            });
+        }
+    }
     /*]]>*/
 </script>
-
 <script>
     function onSaveToServer() {
         $.ajax({
@@ -307,13 +349,179 @@
             url: `${apiResource}phong-hat/get/${phong.id}/${$('#select-loai-phong').find(":selected").val()}`,
             data: JSON.stringify(vatTuInPhong),
             success: res => {
-                console.log(res);
+                $.notify("Cập nhật thông tin phòng thành công", "success");
             },
             dataType: "json",
             contentType:'application/json'
         });
-        console.log(vatTuInPhong);
     }
 </script>
+<script>
+    function setFormNewVatTu() {
+        showAndHide('form_update_vat_tu_01_', 'form_update_phong_00_');
+    }
+    function setFormShowVatTu() {
+        showAndHide('form_update_phong_00_', 'form_update_vat_tu_01_');
+    }
+    function newPhongHat_0() {
+        $.ajax({
+            type: "POST",
+            url: `${apiResource}phong-hat/new`,
+            data: JSON.stringify({idLoaiPhong: $('#select-loai-phong').find(":selected").val(),updatePhongDTOS: vatTuInPhong}),
+            success: res => {
+                window.location.href = `${window.location.origin}/phong-hat/update/${res.id}`;
+                $.notify("Tạo thành công phòng mã Phòng là : " + res.maPhong, "success");
+            },
+            dataType: "json",
+            contentType:'application/json'
+        });
+    }
+
+
+</script>
+<script>
+    let vattu_01_ = [];
+
+    const ipaResource = 'http://localhost:8080/api/';
+
+    $('#pagination-danh-sach-vat-tu_01_').pagination({
+        dataSource: `${apiResource}vat-tu`,// url?pageNumber=?&pageSize=?
+        locator: 'content',
+        totalNumberLocator: res => res.totalElements,
+        pageSize: 2,
+        callback: function (data, pagination) {
+            vattu_01_ = data;
+            $('#group-vat-tu_01').html('');
+            $.each(data, (index, vatTu_01_) => $('#group-vat-tu_01').append(addVatTuToList_01(vatTu_01_))
+            )
+        }
+    });
+
+    function addVatTuToList_01(_vatT) {
+        return `<li class="list-group-item" id="li-vat-tu-_01_01-${_vatT.id}">
+                        <input type="hidden" id="vat-tu-_01_${_vatT.id}" name="vattu_01_">
+                        <div class="input-group row">
+                            <span class="col-6 alert alert-light h-100">${_vatT.tenVatTu}</span>
+                            <span class="col-2">${_vatT.soLuongVatTuCon}</span>
+                            <button class="col-2 alert alert-warning h-100"  data-toggle="modal" data-target="#modal_update_vat_tu_01_" onclick="modalEditVatTu_01_(${_vatT.id})">
+                            <i class="fa fa-edit"></i>
+                            </button>
+                            <button onclick="xoaVatTu_01(${_vatT.id})" class="col-2 alert alert-danger h-100"" >
+                            <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </li>`;
+    }
+    function newVatTu() {
+        $('#ten_vat_tu_01').val('');
+        $('#ma_vat_tu_01').val('');
+        $('#so_luong_vat_tu_01').val('');
+    }
+    function themMoiVatTu_01_() {
+        const data = {tenVatTu: $('#ten_vat_tu_01').val(), maVatTu: $('#ma_vat_tu_01').val(), soLuongVatTuCon: parseInt($('#so_luong_vat_tu_01').val())};
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: `${ipaResource}vat-tu`,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: res => $('#group-vat-tu_01').append(addVatTuToList_01(res))});
+    }
+    function modalEditVatTu_01_(id) {
+        let vattuUpdate = vattu_01_.filter(vt => vt.id === id);
+        $('#id_vat_tu_01_').val(id);
+        $('#ten_vat_tu_01').val(vattuUpdate[0].tenVatTu);
+        $('#ma_vat_tu_01').val(vattuUpdate[0].maVatTu);
+        $('#so_luong_vat_tu_01').val(vattuUpdate[0].soLuongVatTuCon);
+        showAndHide('btn-update-vat-tu_01_', 'btn-new-vat-tu_01_');
+    }
+    function editVatTu_01_() {
+        let data = {id: parseInt($('#id_vat_tu_01_').val()),maVatTu:  $('#ma_vat_tu_01').val(), tenVatTu:  $('#ten_vat_tu_01').val(),  soLuongVatTuCon: parseInt($('#so_luong_vat_tu_01').val())};
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: `${ipaResource}update-vat-tu`,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            timeout: 600000,
+            success: function (data) {
+                $.each(vattu_01_, (index, value) => vattu_01_[index] = value.id === data.id ? data : vattu_01_[index]);
+                $(`#li-vat-tu-_01_01-${data.id}`).html(`
+                        <input type="hidden" id="vat-tu-_01_${data.id}" name="vattu_01_">
+                        <div class="input-group row">
+                            <span class="col-6 alert alert-light h-100"">${data.tenVatTu}</span>
+                             <span class="col-2">${data.soLuongVatTuCon}</span>
+                            <button class="col-2 alert alert-warning h-100"  data-toggle="modal" data-target="#modal_update_vat_tu_01_" onclick="modalEditVatTu_01_(${data.id})">
+                            <i class="fa fa-edit"></i>
+                            </button>
+                            <button onclick="xoaVatTu_01(${data.id})" class="col-2 alert alert-danger h-100"" >
+                            <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                `)
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+
+    function xoaVatTu_01(id) {
+        $.get(`${ipaResource}xoa-vat-tu/${id}`,(res, status) => {
+            if (res == true) {
+                $(`#li-vat-tu-_01_01-${id}`).remove();
+            } else {
+                $.notify("Xóa vật tư thất bại,Hãy đảm bảo không có phòng nào không sử dụng vật tư này !", "danger");
+            }
+        });
+    }
+</script>
+
+<div class="modal fade" id="modal_update_vat_tu_01_">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Danh sách vật tư</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body vattu_01_" >
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label for="ma_vat_tu_01"  class="input-group-text" >Mã Vật Tư</label>
+                    </div>
+                    <input type="hidden" id="id_vat_tu_01_">
+                    <input type="text" class="form-control" id="ma_vat_tu_01">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label for="ten_vat_tu_01" class="input-group-text" >Tên Vật Tư</label>
+                    </div>
+                    <input type="text" class="form-control"  id="ten_vat_tu_01">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label for="so_luong_vat_tu_01" class="input-group-text" >Số lượng</label>
+                    </div>
+                    <input type="number" class="form-control" id="so_luong_vat_tu_01">
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <div class="form-inline">
+                    <button type="button" class="btn btn-success ml-2" onclick="editVatTu_01_()" data-dismiss="modal" id="btn-update-vat-tu_01_">Save</button>
+                    <button type="button" class="btn btn-success ml-2" onclick="themMoiVatTu_01_()" data-dismiss="modal" id="btn-new-vat-tu_01_">Thêm</button>
+                    <button type="button" class="btn btn-danger ml-2 " data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>

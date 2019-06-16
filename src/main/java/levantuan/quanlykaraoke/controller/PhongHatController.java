@@ -1,6 +1,7 @@
 package levantuan.quanlykaraoke.controller;
 
 import levantuan.quanlykaraoke.config.Layout;
+import levantuan.quanlykaraoke.entities.Phong;
 import levantuan.quanlykaraoke.service.PhongHatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +22,8 @@ public class PhongHatController {
 
     @Layout(value = "default", title = "Phong hat")
     @GetMapping("phong-hat/new")
-    public String newPhongHat() {
-
+    public String newPhongHat(Model model) {
+        model.addAttribute("phong", new Phong());
         return "phongHat/update";
     }
 

@@ -36,4 +36,9 @@ public class PhongHatResource {
                                    @RequestBody List<UpdatePhongDTO> dto) {
         return phongHatService.updatePhong(dto, type, id);
     }
+
+    @PostMapping("phong-hat/new")
+    public PhongDTO newPhongHat(@RequestBody PhongDTO phongDTO) {
+        return phongHatService.newPhong(phongDTO);
+    }
 }

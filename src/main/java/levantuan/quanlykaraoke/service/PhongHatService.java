@@ -22,7 +22,7 @@ public interface PhongHatService {
 
     PhongDTO getById(Long idPhong);
 
-    Phong newPhong(PhongDTO phong);
+    PhongDTO newPhong(PhongDTO phong);
 
     boolean updatePhong(List<UpdatePhongDTO> phong,Long type, Long idPhong);
 

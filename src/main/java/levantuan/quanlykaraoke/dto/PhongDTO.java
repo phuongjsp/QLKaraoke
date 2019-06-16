@@ -26,5 +26,13 @@ public class PhongDTO {
         this.tenLoaiPhong = phong.getLoaiPhong().getLoaiPhong();
     }
 
+    public void setPhong(Phong phong) {
+        this.id = phong.getId();
+        this.maPhong = phong.getMaPhong();
+        this.tinhTrangPhong = phong.getTinhTrangPhong();
+        this.idLoaiPhong = phong.getLoaiPhong().getId();
+        this.tenLoaiPhong = phong.getLoaiPhong().getLoaiPhong();
+    }
     List<ChiTietVatTu> vatTus;
+    List<UpdatePhongDTO> updatePhongDTOS;
 }
