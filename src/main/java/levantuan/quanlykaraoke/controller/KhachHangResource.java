@@ -37,18 +37,4 @@ public class KhachHangResource {
         return khachHangService.xoaKhachHang(id);
     }
 
-
-
 }
-/*
-
-
-
-
-
-
-
-
-
-}
-*/

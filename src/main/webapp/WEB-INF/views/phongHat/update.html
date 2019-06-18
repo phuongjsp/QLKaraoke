@@ -382,7 +382,6 @@
 <script>
     let vattu_01_ = [];
 
-    const ipaResource = 'http://localhost:8080/api/';
 
     $('#pagination-danh-sach-vat-tu_01_').pagination({
         dataSource: `${apiResource}vat-tu`,// url?pageNumber=?&pageSize=?
@@ -422,7 +421,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: `${ipaResource}vat-tu`,
+            url: `${apiResource}vat-tu`,
             data: JSON.stringify(data),
             dataType: 'json',
             success: res => $('#group-vat-tu_01').append(addVatTuToList_01(res))});
@@ -440,7 +439,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: `${ipaResource}update-vat-tu`,
+            url: `${apiResource}update-vat-tu`,
             data: JSON.stringify(data),
             dataType: 'json',
             timeout: 600000,
@@ -467,7 +466,7 @@
     }
 
     function xoaVatTu_01(id) {
-        $.get(`${ipaResource}xoa-vat-tu/${id}`,(res, status) => {
+        $.get(`${apiResource}xoa-vat-tu/${id}`,(res, status) => {
             if (res == true) {
                 $(`#li-vat-tu-_01_01-${id}`).remove();
             } else {

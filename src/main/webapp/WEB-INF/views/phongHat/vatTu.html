@@ -6,10 +6,152 @@
 </head>
 <body>
 <div class="row">
+    <div class="card col-4">
+        <div class="card-header">
+            <div class="alert alert-primary text-center card-header">
+                <strong >Danh sách vật tư</strong>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-success mr-3"  data-toggle="modal" data-target="#myModal">Thêm mới vật tư</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <ul class="list-group" id="group-vat-tu">
 
+            </ul>
+        </div>
+    </div>
 </div>
 
 
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Danh sách vật tư</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body vattu" >
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label for="ma_vat_tu"  class="input-group-text" >Mã Vật Tư</label>
+                    </div>
+                    <input type="hidden" id="id_vat_tu">
+                    <input type="text" class="form-control" id="ma_vat_tu">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label for="ten_vat_tu" class="input-group-text" >Tên Vật Tư</label>
+                    </div>
+                    <input type="text" class="form-control"  id="ten_vat_tu">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label for="so_luong_vat_tu" class="input-group-text" >Số lượng</label>
+                    </div>
+                    <input type="number" class="form-control" id="so_luong_vat_tu">
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <div class="form-inline">
+                    <button type="button" class="btn btn-success ml-2" onclick="editVatTu()" data-dismiss="modal" id="btn-update-vat-tu">Save</button>
+                    <button type="button" class="btn btn-success ml-2" onclick="themMoiVatTu()" data-dismiss="modal" id="btn-new-vat-tu">Thêm</button>
+                    <button type="button" class="btn btn-danger ml-2 " data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    let vattu = [];
+
+    $.get(`${apiResource}vat-tu`,(res, status) => {
+        $('#group-vat-tu').html('');
+        vattu = res;
+        $.each(res, (index, vatTu) => $('#group-vat-tu').append(addVatTuToList(vatTu.id, vatTu.tenVatTu))   );
+    });
+
+    function addVatTuToList(id, tenVatTu) {
+        return `<li class="list-group-item" id="li-vat-tu-${id}">
+                        <div class="input-group mb-3">
+                            <input type="hidden" id="vat-tu-${id}" name="vattu">
+                            <label for="vattu3" class="form-control">${tenVatTu}</label>
+                            <button class="btn btn-info mr-3"  data-toggle="modal" data-target="#myModal" onclick="modalEditVatTu(${id})">
+                            <i class="fa fa-edit"></i>
+                            </button>
+                            <button onclick="xoaVatTu(${id})" class="btn btn-danger" >
+                            <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </li>`;
+    }
+
+    function themMoiVatTu() {
+        const data = {tenVatTu: $('#ten_vat_tu').val(), maVatTu: $('#ma_vat_tu').val(), soLuongVatTuCon: parseInt($('#so_luong_vat_tu').val())};
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: `${apiResource}vat-tu`,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: res => $('#group-vat-tu').append(addVatTuToList(res.id, res.tenVatTu))});
+    }
+    function modalEditVatTu(id) {
+        let vattuUpdate = vattu.filter(vt => vt.id === id);
+        $('#id_vat_tu').val(id)
+        $('#ten_vat_tu').val(vattuUpdate[0].tenVatTu);
+        $('#ma_vat_tu').val(vattuUpdate[0].maVatTu);
+        $('#so_luong_vat_tu').val(vattuUpdate[0].soLuongVatTuCon);
+
+        $('#btn-update-vat-tu').removeClass('d-none');
+        $('#btn-new-vat-tu').addClass('d-none');
+    }
+    function editVatTu() {
+        let data = {id: parseInt($('#id_vat_tu').val()),maVatTu:  $('#ma_vat_tu').val(), tenVatTu:  $('#ten_vat_tu').val(),  soLuongVatTuCon: parseInt($('#so_luong_vat_tu').val())};
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: `${apiResource}update-vat-tu`,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            timeout: 600000,
+            success: function (data) {
+                $.each(vattu, (index, value) => vattu[index] = value.id === data.id ? data : vattu[index]);
+                $(`#li-vat-tu-${data.id}`).html(`<div class="input-group mb-3">
+                            <label for="vattu3" class="form-control">${data.tenVatTu}</label>
+                            <button class="btn btn-info mr-3"  data-toggle="modal" data-target="#myModal" onclick="modalEditVatTu(${data.id})">
+                            <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger">
+                            <i class="fa fa-trash"></i>
+                            </button>
+                        </div>`)
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+
+
+
+    }
+
+    function xoaVatTu(id) {
+        $.get(`${apiResource}xoa-vat-tu/${id}`,(res, status) => {
+            $(`#li-vat-tu-${id}`).remove();
+
+        });
+    }
+
+
+</script>
 </body>
 </html>

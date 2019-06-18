@@ -169,8 +169,7 @@
         status = _status || _status === 0 ? _status : status;
         getSort();
     }
-    const iapResource = 'http://localhost:8080/api/';
-    $.get(`${iapResource}loai-phong`,(res, status) => {
+    $.get(`${apiResource}loai-phong`,(res, status) => {
         $('#danh-sach-loai-phong').html('');
         loaiPhong = res;
         $.each(res,(index, loaiPhong) => {
@@ -201,7 +200,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: `${iapResource}update-loai-phong`,
+            url: `${apiResource}update-loai-phong`,
             data: JSON.stringify(data),
             dataType: 'json',
             timeout: 600000,
@@ -231,7 +230,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: `${iapResource}loai-phong`,
+            url: `${apiResource}loai-phong`,
             data: JSON.stringify(data),
             dataType: 'json',
             timeout: 600000,
@@ -242,7 +241,7 @@
         });
     }
     function xoaLoaiPhong(id) {
-        $.get(`${iapResource}xoa-loai-phong/${id}`,(res, status) => {
+        $.get(`${apiResource}xoa-loai-phong/${id}`,(res, status) => {
             $(`#loai-phong-${id}`).remove();
         });
     }
@@ -297,18 +296,6 @@
         showAndHide('show-loai-phong', 'show-detail-room');
     }
 
-
-
-    // $(document).ready(function () {
-    //     $('#gia-loai-phong').on('keydown keyup change', () => {
-    //         if ($('#input-huy-so-luong-vat-tu').val() > vatTuHuy.sl) {
-    //             $('#input-huy-so-luong-vat-tu').val(vatTuHuy.sl);
-    //         }
-    //         if ($('#input-huy-so-luong-vat-tu').val() < 1) {
-    //             $('#input-huy-so-luong-vat-tu').val(1);
-    //         }
-    //     })
-    // });
 </script>
 </body>
 </html>
