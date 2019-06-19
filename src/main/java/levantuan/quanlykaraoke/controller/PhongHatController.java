@@ -1,7 +1,9 @@
 package levantuan.quanlykaraoke.controller;
 
 import levantuan.quanlykaraoke.config.Layout;
+import levantuan.quanlykaraoke.entities.HoaDon;
 import levantuan.quanlykaraoke.entities.Phong;
+import levantuan.quanlykaraoke.service.HoaDonService;
 import levantuan.quanlykaraoke.service.PhongHatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,10 @@ public class PhongHatController {
 
     @Autowired
     private PhongHatService phongHatService;
+
+        @Autowired
+        private HoaDonService hoaDonService;
+
     @Layout(value = "default", title = "Phong hat")
     @GetMapping("phong-hat")
     public String list() {
@@ -53,6 +59,26 @@ public class PhongHatController {
 
     @Layout(value = "default", title = "Phong hat")
     @GetMapping("dich-vu")
-    public String dichVuView() { return "phongHat/dichvu"; }
+    public String dichVuView() {
+        return "phongHat/dichvu";
+    }
+
+
+    @Layout(value = "default", title = "Phong hat")
+    @GetMapping("dat-phong/{id}")
+    public String datPhong(@PathVariable Long id,
+                           Model model) {
+        model.addAttribute("phong", phongHatService.getById(id));
+        return "phongHat/dat-phong";
+    }
+
+    @Layout(value = "default", title = "Phong hat")
+    @GetMapping("hoa-don/{id}")
+    public String showHoaDonPhong(@PathVariable Long id,
+                                  Model model) {
+        model.addAttribute("hoadon", hoaDonService.getHoaDonByPhongAndStatus(id, 2));
+        model.addAttribute("chiTietHoaDon", hoaDonService.getChiTietHoaDon(id));
+        return "phongHat/hoa-don";
+    }
 
 }

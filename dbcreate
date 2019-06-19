@@ -1,0 +1,237 @@
+-- we don't know how to generate root <with-no-name> (class Root) :(
+create table authority
+(
+	authority varchar(10) charset latin1 null,
+	username varchar(50) charset latin1 null,
+	id int auto_increment
+		primary key
+)
+collate=utf8_vietnamese_ci;
+
+create table dich_vu
+(
+	Id int auto_increment
+		primary key,
+	ten_dich_vu varchar(50) not null,
+	gia int not null,
+	don_vi_do varchar(50) not null
+)
+collate=utf8_vietnamese_ci;
+
+create table khach_hang
+(
+	id int auto_increment
+		primary key,
+	ten_khach_hang varchar(50) not null,
+	ma_khach_hang varchar(20) null,
+	so_dien_thoai int(12) not null,
+	gioi_tinh tinyint(1) not null,
+	cmnd varchar(20) not null,
+	vip_count int default 0 null
+)
+collate=utf8_vietnamese_ci;
+
+create table loai_phong
+(
+	Id int auto_increment
+		primary key,
+	loai_phong varchar(20) not null,
+	tien_phong_tren_gio int not null
+)
+collate=utf8_vietnamese_ci;
+
+create table nhan_vien
+(
+	Id int auto_increment
+		primary key,
+	ma_nhan_vien varchar(20) not null,
+	so_dien_thoai varchar(12) not null,
+	dia_chi varchar(255) not null,
+	ten_nhan_vien varchar(250) not null,
+	cmnd varchar(20) not null,
+	ngay_sinh date not null,
+	gioi_tinh tinyint(1) not null,
+	tinh_trang tinyint(1) not null,
+	constraint nhan_vien_ma_nhan_vien_uindex
+		unique (ma_nhan_vien)
+)
+collate=utf8_vietnamese_ci;
+
+create table lich_su
+(
+	id int auto_increment
+		primary key,
+	ma_nhan_vien int null,
+	ngay_gio_dang_nhap datetime not null,
+	constraint lich_su_nhan_vien_Id_fk
+		foreign key (ma_nhan_vien) references nhan_vien (Id)
+)
+collate=utf8_vietnamese_ci;
+
+create table persistent_logins
+(
+	username varchar(100) not null,
+	series varchar(64) not null
+		primary key,
+	token varchar(64) not null,
+	last_used timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP
+);
+
+create table phieu_nhap_hang
+(
+	id int auto_increment
+		primary key,
+	thoi_gian_nhap datetime not null,
+	nhan_vien_nhap int not null,
+	ma_phieu_nhap varchar(20) charset latin1 not null,
+	constraint ngay_nhap_hang_ma_phieu_nhap_uindex
+		unique (ma_phieu_nhap),
+	constraint ngay_nhap_hang_nhan_vien_Id_fk
+		foreign key (nhan_vien_nhap) references nhan_vien (Id)
+)
+collate=utf8_vietnamese_ci;
+
+create table chi_tiet_phieu_nhap_hang
+(
+	id int auto_increment
+		primary key,
+	ten_dich_vu int not null,
+	so_luong int not null,
+	don_gia int not null,
+	phieu_nhap_hang int not null,
+	constraint kho_dich_vu_dich_vu_Id_fk
+		foreign key (ten_dich_vu) references dich_vu (Id),
+	constraint kho_dich_vu_ngay_nhap_hang_id_fk
+		foreign key (phieu_nhap_hang) references phieu_nhap_hang (id)
+)
+collate=utf8_vietnamese_ci;
+
+create table phong
+(
+	id int auto_increment
+		primary key,
+	loai_phong int not null,
+	ma_phong varchar(20) charset latin1 null,
+	tinh_trang_phong int default 1 not null,
+	constraint phong_ma_phong_uindex
+		unique (ma_phong),
+	constraint phong_loai_phong_Id_fk
+		foreign key (loai_phong) references loai_phong (Id)
+)
+collate=utf8_vietnamese_ci;
+
+create table dat_phong
+(
+	id int auto_increment
+		primary key,
+	ma_phieu_dat varchar(20) charset latin1 not null,
+	ma_khach_hang int null,
+	ngay_gio_dat datetime not null,
+	tien_coc int not null,
+	ma_nhan_vien int null,
+	ngay_tao_phieu_dat datetime not null,
+	phong int not null,
+	constraint dat_phong_ma_phieu_dat_uindex
+		unique (ma_phieu_dat),
+	constraint dat_phong_khach_hang_id_fk
+		foreign key (ma_khach_hang) references khach_hang (id),
+	constraint dat_phong_nhan_vien_Id_fk
+		foreign key (ma_nhan_vien) references nhan_vien (Id),
+	constraint dat_phong_phong_id_fk
+		foreign key (phong) references phong (id)
+)
+collate=utf8_vietnamese_ci;
+
+create table hoa_don
+(
+	Id int auto_increment
+		primary key,
+	ma_hoa_don varchar(20) not null,
+	tien_coc int default 0 null,
+	thoi_gian_tao datetime null,
+	phong int null,
+	khach_hang int null,
+	gio_vao datetime null,
+	gio_ra datetime null,
+	nguoi_lap_hoa_don int null,
+	tinh_trang_phong int null,
+	constraint hoa_don_ma_hoa_don_uindex
+		unique (ma_hoa_don),
+	constraint hoa_don_khach_hang_id_fk
+		foreign key (khach_hang) references khach_hang (id),
+	constraint hoa_don_nhan_vien_Id_fk
+		foreign key (nguoi_lap_hoa_don) references nhan_vien (Id),
+	constraint hoa_don_phong_id_fk
+		foreign key (phong) references phong (id)
+)
+collate=utf8_vietnamese_ci;
+
+create table chi_tiet_hoa_don
+(
+	id int auto_increment
+		primary key,
+	so_luong_dich_vu int not null,
+	hoa_don int null,
+	dich_vu int not null,
+	constraint chi_tiet_hoa_don_dich_vu_Id_fk
+		foreign key (dich_vu) references dich_vu (Id),
+	constraint chi_tiet_hoa_don_hoa_don_Id_fk
+		foreign key (hoa_don) references hoa_don (Id)
+)
+collate=utf8_vietnamese_ci;
+
+create table phieu_nhan_phong
+(
+	id int auto_increment
+		primary key,
+	ma_phieu_dat int not null,
+	ma_nhan_vien int not null,
+	khach_hang int null,
+	constraint phieu_nhan_phong_dat_phong_id_fk
+		foreign key (ma_phieu_dat) references dat_phong (id),
+	constraint phieu_nhan_phong_khach_hang_id_fk
+		foreign key (khach_hang) references khach_hang (id),
+	constraint phieu_nhan_phong_nhan_vien_Id_fk
+		foreign key (ma_nhan_vien) references nhan_vien (Id)
+)
+collate=utf8_vietnamese_ci;
+
+create table user
+(
+	id int auto_increment
+		primary key,
+	username varchar(50) charset latin1 null,
+	password varchar(120) charset latin1 null,
+	enabled tinyint(1) default 1 null,
+	nhan_vien_id int null,
+	constraint user_nhan_vien_Id_fk
+		foreign key (nhan_vien_id) references nhan_vien (Id)
+)
+collate=utf8_vietnamese_ci;
+
+create table vat_tu
+(
+	id int auto_increment
+		primary key,
+	ma_vat_tu varchar(20) collate utf8_unicode_ci not null,
+	ten_vat_tu varchar(50) collate utf8_unicode_ci null,
+	so_luong_con int not null,
+	constraint vat_tu_ma_vat_tu_uindex
+		unique (ma_vat_tu)
+)
+collate=utf8_vietnamese_ci;
+
+create table chi_tiet_vat_tu
+(
+	id int auto_increment
+		primary key,
+	so_luong_vat_tu int not null,
+	phong int not null,
+	vat_tu int not null,
+	constraint chi_tiet_vat_tu_phong_id_fk
+		foreign key (phong) references phong (id),
+	constraint chi_tiet_vat_tu_vat_tu_id_fk
+		foreign key (vat_tu) references vat_tu (id)
+)
+collate=utf8_vietnamese_ci;
+

@@ -19,6 +19,11 @@ public class KhachHangResource {
         return khachHangService.getALlKhachHang(pageNumber -1, pageSize);
     }
 
+    @GetMapping("khach-hang/{id}")
+    public KhachHang getKhachHang(@PathVariable Long id) {
+        return khachHangService.getOne(id);
+    }
+
     @PostMapping("update-khach-hang")
     @ResponseBody
     public KhachHang updateKhachHang(@RequestBody KhachHang khachHang){

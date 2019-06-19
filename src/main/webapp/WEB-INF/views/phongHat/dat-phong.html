@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12" id="_form_full_phong_hat">
+            <div class="card w-100">
+                <div class="card-header">
+                    <div class="alert alert-info text-center">
+                        thêm
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <ul class="col-sm-6 list-group" id="_ul_thong_tin_phong_hat_03_01">
+                            <button class="btn btn-outline-info text-center" onclick="onBackToListPhong()">
+                                <i class="fa fa-chevron-left"></i> Thông tin Phòng hát
+                            </button>
+                            <li class="list-group-item">
+                                <table class="table table-sm">
+                                    <tr>
+                                        <td>Mã Phòng hát</td>
+                                        <td id="_table_ma_ph_03_0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Loại phòng</td>
+                                        <td id="_table_loai_phong_03_0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Giá trên giờ</td>
+                                        <td id="_table_gia_tren_gio_03_0"></td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                        <ul class="col-sm-6 list-group" id="_ul_thong_tin_khach_hang_03_01">
+                            <button class="btn btn-outline-success text-center" id="_btn_show_them_kh_03_01" onclick="showThemKhachHang()">
+                                khách hàng <i class="fa fa-chevron-right"></i>
+                            </button>
+
+                            <li class="list-group-item">
+                                <input type="hidden" id="_id_khach_hang_03_0">
+                                <table class="table table-sm">
+                                    <tr>
+                                        <td>Mã KH</td>
+                                        <td id="_table_ma_kh_03_0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Họ tên</td>
+                                        <td id="_table_ho_ten_kh_03_0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>SDT</td>
+                                        <td id="_table_sdt_kh_03_0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tích lũy Vip</td>
+                                        <td id="_table_vip_kh_03_0"></td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="list-group" id="_ul_thong_tin_dat_phong_03_01">
+
+                            <li class="list-group-item">
+                                <table class="table table-sm">
+                                    <tr>
+                                        <td>Thời gian dự kiến đến</td>
+                                        <td >
+                                            <input type='text' class="form-control" id='datetimepicker4' />
+                                            <input type="hidden" id="_input_save_time">
+                                        </td>
+                                    </tr><tr>
+                                        <td>Tiền đặt cọc</td>
+                                        <td >
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control" pattern="[0-9]{4,10}" id='_tien_dat_coc'>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">vnđ</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class=" btn btn-dark w-100 ml-2 mr-2" id="_btn_back_03_0" onclick="onBackToListPhong()">
+                                            <i class="fa fa-chevron-left"></i> Back
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class=" btn btn-success w-100 ml-2 mr-2" id="_btn_dat_phong" onclick="datPhong()">
+                                            <i class="fa fa-plus-circle"></i> Dat Phong Hat
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7 d-none" id="_form_khach_hang_02_01">
+            <div id="form_danh_sach_khach_hang_02_0">
+                <div class="alert alert-success">
+                    <div class="row">
+                        <button type="button" onclick="showFullTHemPhong()" class="col-5 btn btn-dark w-100">
+                            <i class="fa fa-chevron-left"></i>Back
+                        </button>
+                        <div class="col-2"></div>
+                        <button type="button" onclick="insertNewKh_02_0()" class="col-5 btn btn-success w-100">
+                            <i class="fa fa-plus"></i>Thêm Mới
+                        </button>
+                    </div>
+                </div>
+                <table class="table table-sm table-bordered table-striped">
+                    <theader>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã KH</th>
+                            <th>Tên KH</th>
+                            <th>Sdt</th>
+                            <th>CMND</th>
+                            <th>Giới Tính</th>
+                            <th>Options</th>
+                        </tr>
+                    </theader>
+                    <tbody  id="data-container_02_0">
+                    </tbody>
+                </table>
+                <div id="pagination-khach-hang_02_0"></div>
+            </div>
+
+            <div id="form_edit_update_02_0" class="d-none">
+                <div class="card">
+                    <div class="alert alert-primary text-center card-header">
+                        <span id="thongtin-nhan-vien_02_0">Thêm Khách Hàng </span>
+                    </div>
+                    <div class="card-body">
+                        <input type="hidden" id="id-khach-hang_02_0">
+                        <input type="hidden" id="ma-khach-hang_02_0">
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label for="ten-khach-hang_02_0" class="input-group-text" >Tên Khách Hàng</label>
+                            </div>
+                            <input type="text" class="form-control" required="required" pattern="[A-Za-z\sÀ-ỹ]{1,30}" id="ten-khach-hang_02_0" value="Lê Văn Tuấn " aria-label="Username" aria-describedby="basic-addon2">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label for="sdt-khach-hang_02_0" class="input-group-text" >SĐT</label>
+                            </div>
+                            <input type='tel' pattern='[0-9\s.-]{9,13}' required="required"  class="form-control" id="sdt-khach-hang_02_0" placeholder="0986488737" aria-label="Username" aria-describedby="basic-addon2">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="cmnd-khach-hang_02_0">CMND</label>
+                            </div>
+                            <input type="text" pattern="[0-9\s.-]{9,13}" required="required" class="form-control" id="cmnd-khach-hang_02_0" placeholder="18771684" aria-label="Username" aria-describedby="basic-addon2">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="gioi-tinh-khach-hang_02_0">Giới Tính</label>
+                            </div>
+                            <select name="gioi-tinh-khach-hang_02_0" id="gioi-tinh-khach-hang_02_0">
+                                <option value="nam">nam</option>
+                                <option value="nu">nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-5">
+                                <button class="btn btn-dark w-100" onclick="onBackFun()">
+                                    <i class="fa fa-backward"></i>Back
+                                </button>
+                            </div>
+                            <div class="col-7">
+                                <button type="button" onclick="sendDataToserve_02_0()" id="new-kh_02_0" class="btn btn-primary w-100">
+                                    Thêm khách hàng
+                                </button>
+                                <button type="button" onclick="updateDataToserve_02_0()" id="update-kh_02_0" class="btn btn-primary w-100 d-none">
+                                    Cập nhật khách hàng
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{'/js/moment.js'}"></script>
+<script th:src="@{'/js/bootstrap-datetimepicker.min.js'}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let phong = /*[[${phong}]]*/ 'Sebastian';
+
+    $('#_table_ma_ph_03_0').text(phong.maPhong);
+    $('#_table_loai_phong_03_0').text(phong.tenLoaiPhong);
+    $('#_table_gia_tren_gio_03_0').text(phong.giaTrenGio + ' vnđ');
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            locale: 'vn',
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down",
+                left: 'fa fa-arrow-left',
+                right: 'fa fa-arrow-right'
+            }
+        });
+        $('#datetimepicker4').datetimepicker({
+            // useCurrent: false //Important! See issue #1075
+        });
+
+        $('#datetimepicker4').data("DateTimePicker").minDate(moment(new Date()));
+        $("#datetimepicker4").on("dp.change", function (e) {
+            $('#_input_save_time').val(e.timeStamp);
+        });
+    });
+
+    function datPhong() {
+        let timeStamp = $("#_input_save_time").val() !== '' ? $("#_input_save_time").val() : new Date().getTime();
+        let tienCoc = $('#_tien_dat_coc').val() !== '' ? $('#_tien_dat_coc').val() : 0;
+        let idPhong = window.location.pathname.split('/');
+        $('#_btn_back_03_0').attr('disable', true);
+        $('#_btn_dat_phong').attr('disable', true);
+        $.get(`${apiResource}dat-phong?idPhong=${idPhong[2]}&idKhachHang=${$('#_id_khach_hang_03_0').val()}&timeStamp=${timeStamp}&tienCoc=${tienCoc}`, (res, status) => {
+            onBackToListPhong()});
+    }
+
+    function onBackToListPhong() {
+        window.location.href = `${window.location.origin}/phong-hat`;
+    }
+
+    function showFullTHemPhong() {
+        $('#_form_full_phong_hat').removeClass('col-sm-5');
+        $('#_form_full_phong_hat').addClass('col-sm-12');
+        $('#_form_khach_hang_02_01').addClass('d-none');
+        $('#_ul_thong_tin_phong_hat_03_01').addClass('col-sm-6');
+        $('#_ul_thong_tin_phong_hat_03_01').removeClass('col-sm-12');
+        $('#_ul_thong_tin_khach_hang_03_01').addClass('col-sm-6');
+        $('#_ul_thong_tin_khach_hang_03_01').removeClass('col-sm-12');
+        $('#_btn_show_them_kh_03_01').attr('disabled', false);
+    }
+
+    function showThemKhachHang() {
+        $('#_form_full_phong_hat').removeClass('col-sm-12');
+        $('#_form_full_phong_hat').addClass('col-sm-5');
+        $('#_form_khach_hang_02_01').removeClass('d-none');
+        $('#_ul_thong_tin_phong_hat_03_01').removeClass('col-sm-6');
+        $('#_ul_thong_tin_phong_hat_03_01').addClass('col-sm-12');
+        $('#_ul_thong_tin_khach_hang_03_01').removeClass('col-sm-6');
+        $('#_ul_thong_tin_khach_hang_03_01').addClass('col-sm-12');
+        $('#_btn_show_them_kh_03_01').attr('disabled', true);
+    }
+    getKhachHang_02_0();
+    function getKhachHang_02_0() {
+        $('#pagination-khach-hang_02_0').pagination({
+            dataSource: `${apiResource}khach-hang`,
+            locator: 'content',
+            totalNumberLocator: res =>  res.totalElements,
+            pageSize: 5,
+            callback: function(data, pagination) {
+                $('#data-container_02_0').html('');
+                $.each(data, (index, kh) =>
+                    insertKhachHang((pagination.pageSize) * (pagination.pageNumber -1) + index +1, kh.id, kh.maKhachhang, kh.tenKhachHang, kh.soDienThoai, kh.cmnd, kh.gioiTinh ? 'nam' : 'nu')
+                )
+            }
+        });
+    }
+    function insertKhachHang( stt, id, makh, tenkh, sdt, cmnd, gioiTinh) {
+        $('#data-container_02_0').html($('#data-container_02_0').html() +`
+                    <tr >
+                        <td>${stt}</td>
+                        <td>${makh}</td>
+                        <td>${tenkh}</td>
+                        <td>${sdt}</td>
+                        <td>${cmnd}</td>
+                        <td>${gioiTinh}</td>
+                        <td class="row">
+                            <button type="button" class="col-4 btn btn-info w-100" onclick="updateTTKH_02_0(${id}, '${makh}', '${tenkh}', '${sdt}', '${cmnd}', '${gioiTinh}')">Edit</button>
+                            <button type="button" class="col-4 btn btn-danger w-100" onclick="xoaKhachHang_02_0(${id})">Delete</button>
+                            <button type="button" class="col-4 btn btn-warning w-100" onclick="onSetKhachHang_02_0(${id})"><i class="fa fa-angle-left"></i></button>
+                        </td>
+                    </tr>
+            `);
+    }
+    function onBackFun() {
+        showAndHide('form_danh_sach_khach_hang_02_0', 'form_edit_update_02_0');
+    }
+    function onSetKhachHang_02_0(id) {
+        $('#_id_khach_hang_03_0').val(id);
+            $.get(`${apiResource}khach-hang/${id}`, (res, status) => {
+                $('#_table_ma_kh_03_0').text(res.maKhachhang);
+                $('#_table_ho_ten_kh_03_0').text(res.tenKhachHang);
+                $('#_table_sdt_kh_03_0').text(res.soDienThoai);
+                $('#_table_vip_kh_03_0').text(res.vipCount);
+            });
+        showFullTHemPhong();
+    }
+
+    function updateTTKH_02_0(id, maKh, tenKh, sdt,cmnd, gioiTinh) {
+        showAndHide('form_edit_update_02_0', 'form_danh_sach_khach_hang_02_0');
+        $('#thongtin-nhan-vien_02_0').text(`Thông Tin Khách Hàng ${maKh}`);
+        $('#id-khach-hang_02_0').val(id);
+        $('#ma-khach-hang_02_0').val(maKh);
+        $('#ten-khach-hang_02_0').val(tenKh);
+        $('#sdt-khach-hang_02_0').val(sdt);
+        $('#cmnd-khach-hang_02_0').val(cmnd);
+        $("#gioi-tinh-khach-hang_02_0").val(gioiTinh).change();
+        showAndHide('update-kh_02_0', 'new-kh_02_0');
+    }
+    function insertNewKh_02_0() {
+        showAndHide('form_edit_update_02_0', 'form_danh_sach_khach_hang_02_0');
+        $('#thongtin-nhan-vien_02_0').text(`Thêm Mới Khách Hàng`);
+        $('#ten-khach-hang_02_0').val('');
+        $('#sdt-khach-hang_02_0').val('');
+        $('#cmnd-khach-hang_02_0').val('');
+        $("#gioi-tinh-khach-hang_02_0").val('nam').change();
+        showAndHide('new-kh_02_0', 'update-kh_02_0');
+    }
+
+    $(document).ready(function(){
+        $("#ten-khach-hang_02_0").on(' keyup keypress change', () => checkValueInsert());
+        $("#cmnd-khach-hang_02_0").on(' keyup keypress change', () => checkValueInsert());
+        $("#sdt-khach-hang_02_0").on(' keyup keypress change', () => checkValueInsert());
+        $("#gioi-tinh-khach-hang_02_0").on('change', () => checkValueInsert());
+    });
+    $('#update-kh_02_0').attr('disabled', true);
+    $('#new-kh_02_0').attr('disabled', true);
+    function checkValueInsert() {
+        if (document.getElementById('ten-khach-hang_02_0').checkValidity() && document.getElementById('sdt-khach-hang_02_0').checkValidity()
+            && document.getElementById('cmnd-khach-hang_02_0').checkValidity()) {
+            $('#update-kh_02_0').attr('disabled', false);
+            $('#new-kh_02_0').attr('disabled', false);
+        } else {
+            $('#update-kh_02_0').attr('disabled', true);
+            $('#new-kh_02_0').attr('disabled', true);
+        }
+    }
+
+    function sendDataToserve_02_0() {
+        onBackFun();
+        let data = {
+            idKhachHang: $('#id-khach-hang_02_0').val(),
+            tenKhachHang : $('#ten-khach-hang_02_0').val(),
+            soDienThoai: $('#sdt-khach-hang_02_0').val(),
+            gioiTinh: $("#gioi-tinh-khach-hang_02_0").val() === 'nam',
+            cmnd : $('#cmnd-khach-hang_02_0').val()
+        };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: `${apiResource}khach-hang`,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            timeout: 600000,
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }
+    function updateDataToserve_02_0() {
+    onBackFun();
+        let data = {
+            id: parseInt($('#id-khach-hang_02_0').val()),
+            maKhachHang : $('#ma-khach-hang_02_0').val(),
+            tenKhachHang : $('#ten-khach-hang_02_0').val(),
+            soDienThoai: $('#sdt-khach-hang_02_0').val(),
+            gioiTinh: $("#gioi-tinh-khach-hang_02_0").val() === 'nam',
+            cmnd : $('#cmnd-khach-hang_02_0').val()
+        };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: `${apiResource}update-khach-hang`,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            timeout: 600000,
+            success: function (data) {
+                getKhachHang_02_0();
+            },
+            error: function (e) {
+            }
+        });
+    }
+
+    function xoaKhachHang_02_0(id) {
+        $.get(`${apiResource}xoa-khach-hang/${id}`,(res, status) => {
+            $(`#id-khach-hang_02_0`).remove();
+            getKhachHang_02_0();
+
+        });
+    }
+    /*]]>*/
+</script>
+
+<script>
+
+</script>
+</body>
+</html>

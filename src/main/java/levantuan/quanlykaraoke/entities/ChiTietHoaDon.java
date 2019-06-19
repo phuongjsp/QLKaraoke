@@ -17,9 +17,8 @@ public class ChiTietHoaDon implements Serializable {
     @Column(name = "so_luong_dich_vu", nullable = false, length = 32)
     private int  soLuongDichVu ;
 
-    @ManyToOne
-    @JoinColumn(name = "hoa_don", referencedColumnName = "id")
-    private HoaDon hoaDon;
+    @Column(name = "hoa_don", nullable = false, length = 32)
+    private Integer hoaDon;
 
     @ManyToOne
     @JoinColumn(name = "dich_vu", referencedColumnName = "id")

@@ -13,4 +13,6 @@ public interface KhachHangService {
     KhachHang newKhachHang(KhachHang vatTu);
 
     boolean xoaKhachHang(Long id);
+
+    KhachHang getOne(Long id);
 }

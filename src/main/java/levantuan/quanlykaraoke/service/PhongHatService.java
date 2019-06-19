@@ -27,4 +27,6 @@ public interface PhongHatService {
     boolean updatePhong(List<UpdatePhongDTO> phong,Long type, Long idPhong);
 
     boolean deletePhong(Long idPhong);
+
+    boolean datPhong(Long idPhong, Long idKhachHang, Long timeStamp, String user, int tienCoc);
 }

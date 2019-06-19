@@ -2,14 +2,8 @@ package levantuan.quanlykaraoke.service.Impl;
 
 import levantuan.quanlykaraoke.dto.PhongDTO;
 import levantuan.quanlykaraoke.dto.UpdatePhongDTO;
-import levantuan.quanlykaraoke.entities.ChiTietVatTu;
-import levantuan.quanlykaraoke.entities.LoaiPhong;
-import levantuan.quanlykaraoke.entities.Phong;
-import levantuan.quanlykaraoke.entities.VatTu;
-import levantuan.quanlykaraoke.repositories.ChiTietVatTuRepository;
-import levantuan.quanlykaraoke.repositories.LoaiPhongRepository;
-import levantuan.quanlykaraoke.repositories.PhongRepository;
-import levantuan.quanlykaraoke.repositories.VatTuRepository;
+import levantuan.quanlykaraoke.entities.*;
+import levantuan.quanlykaraoke.repositories.*;
 import levantuan.quanlykaraoke.service.PhongHatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -36,6 +31,15 @@ public class PhongHatServiceImpl implements PhongHatService {
 
     @Autowired
     private PhongRepository phongRepository;
+
+    @Autowired
+    private KhachHangRepository khachHangRepository;
+
+    @Autowired
+    private HoaDonRepository hoaDonRepository;
+
+    @Autowired
+    private UserRepository userRepository;
     @Override
     public List<LoaiPhong> getAllLoaiPhong() {
         return loaiPhongRepository.findAll();
@@ -151,5 +155,32 @@ public class PhongHatServiceImpl implements PhongHatService {
          Integer xxx = phongRepository.deletePhongById(idPhong);
         System.out.println(xxx);
         return xxx == 0;
+    }
+
+    @Override
+    public boolean datPhong(Long idPhong, Long idKhachHang, Long timeStamp, String user, int tienCoc) {
+        try {
+            Phong phong = phongRepository.getOne(idPhong);
+            phong.setTinhTrangPhong(2);//da dat phong
+            HoaDon hoaDon = new HoaDon();
+            String lastMaHD = hoaDonRepository.getLastMaHoaDOn();
+            Integer maP = 1;
+            //format ZHD00x
+            if (lastMaHD != null) {
+                maP = Integer.valueOf(lastMaHD.substring(3));
+                maP++;
+            }
+            hoaDon.setPhong(phong);
+            hoaDon.setMaHoaDon("ZHD0" + maP);
+            hoaDon.setThoiGianTao(new Date(timeStamp));
+            hoaDon.setKhachHang(khachHangRepository.getOne(idKhachHang));
+            hoaDon.setNhanVien(userRepository.findByUsername(user).getNhanVien());
+            hoaDon.setTienCoc(tienCoc);
+            hoaDon.setTinhTrangHoaDon(1);
+            hoaDonRepository.save(hoaDon);
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
     }
 }

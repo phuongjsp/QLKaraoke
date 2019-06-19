@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -40,5 +42,14 @@ public class PhongHatResource {
     @PostMapping("phong-hat/new")
     public PhongDTO newPhongHat(@RequestBody PhongDTO phongDTO) {
         return phongHatService.newPhong(phongDTO);
+    }
+
+    @GetMapping("dat-phong")
+    public boolean datPhongHat(@RequestParam Long idPhong,
+                               @RequestParam Long idKhachHang,
+                               @RequestParam Long timeStamp,
+                               @RequestParam int tienCoc,
+                               Principal principal) {
+        return phongHatService.datPhong(idPhong, idKhachHang, timeStamp, principal.getName(), tienCoc);
     }
 }

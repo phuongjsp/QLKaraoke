@@ -17,13 +17,16 @@ public class PhongDTO {
     private int tinhTrangPhong;
     private Long idLoaiPhong;
     private String tenLoaiPhong;
+    private int giaTrenGio;
 
     public PhongDTO(Phong phong) {
         this.id = phong.getId();
         this.maPhong = phong.getMaPhong();
+        this.giaTrenGio = phong.getLoaiPhong().getTienPhongTrenGio();
         this.tinhTrangPhong = phong.getTinhTrangPhong();
         this.idLoaiPhong = phong.getLoaiPhong().getId();
         this.tenLoaiPhong = phong.getLoaiPhong().getLoaiPhong();
+
     }
 
     public void setPhong(Phong phong) {

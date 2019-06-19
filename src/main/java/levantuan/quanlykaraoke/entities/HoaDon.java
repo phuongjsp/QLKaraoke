@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "hoa_don")
@@ -16,14 +17,14 @@ public class HoaDon implements Serializable {
     private long id;
 
 
-    @Column(name = "ma_hoa_don", unique = true, nullable = false, length = 32)
+    @Column(name = "ma_hoa_don", unique = true, length = 32)
     private String maHoaDon;
 
-    @Column(name = "tien_coc", nullable = false)
+    @Column(name = "tien_coc")
     private int tienCoc;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "thoi_gian_tao", nullable = false)
+    @Column(name = "thoi_gian_tao")
     private Date thoiGianTao;
 
     @ManyToOne
@@ -35,15 +36,20 @@ public class HoaDon implements Serializable {
     private KhachHang khachHang;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "gio_vao", nullable = false)
+    @Column(name = "gio_vao")
     private Date gioVao;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "gio_ra", nullable = false)
+    @Column(name = "gio_ra")
     private Date gioRa;
 
     @ManyToOne
     @JoinColumn(name = "nguoi_lap_hoa_don", referencedColumnName = "id")
     private NhanVien nhanVien;
+
+    @Column(name = "tinh_trang_phong")
+    private Integer tinhTrangHoaDon; // 1. đang đặt phòng, 2 đã vào phòng, 3.đã trả phòng, 4.đã hủy hóa đơn
+
+
 
 }

@@ -56,4 +56,9 @@ public class KhachHangServiceImpl implements KhachHangService {
             return false;
         }
     }
+
+    @Override
+    public KhachHang getOne(Long id) {
+        return khachHangRepository.getOne(id);
+    }
 }

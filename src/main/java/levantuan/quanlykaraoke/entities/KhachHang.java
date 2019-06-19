@@ -1,5 +1,6 @@
 package levantuan.quanlykaraoke.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
 @Table(name = "khach_hang")
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class KhachHang implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,5 +32,8 @@ public class KhachHang implements Serializable {
 
     @Column(name = "cmnd", nullable = false, length = 20)
     private String cmnd;
+
+    @Column(name = "vip_count")
+    private int vipCount; //
 
 }

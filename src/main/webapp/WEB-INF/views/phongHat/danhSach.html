@@ -12,8 +12,8 @@
                                 <div class="col-6">
                                     <select class="alert alert-success alert-link text-center w-100" name="danh-sach-loai-phong-hat" id="danh-sach-loai-phong-hat"
                                         onchange="setSort(null, this.options[this.selectedIndex].value)">
-                                        <option value="0" >All</option>
-                                        <option value="1">Phong trong</option>
+                                        <option value="0" selected>All</option>
+                                        <option value="1" >Phong trong</option>
                                         <option value="2" >Phong da dat</option>
                                         <option value="3">Phong dang bao hanh</option>
                                     </select>
@@ -67,19 +67,33 @@
                    </div>
                    <div class="card-body">
                         <div class="text-center mb-3 row">
-                            <a class="col-5 btn btn-info pr-2 w-100 mr-3 ml-3 " id="link-update-phong-hat">UPDATE</a>
-                            <button class="col-5 btn btn-danger w-100 ">DELETE</button>
+                            <a href="#" id="_a_link_to_dat_phong" class="col-md-4 btn btn-success w-100">Dat phong</a>
+                            <a class="col-md-4 btn btn-info pr-2 w-100 " id="link-update-phong-hat">UPDATE</a>
+                            <button class="col-md-4 btn btn-danger w-100 ">DELETE</button>
                         </div>
-                       <table class="table table-sm">
-                           <theader>
-                               <th>STT</th>
-                               <th>Tên vật tư</th>
-                               <th>Số lượng</th>
-                           </theader>
-                           <tbody id="danh-sach-chi-tiet-vat-tu-by-phong">
+                       <ul class="list-group" >
+                           <li class="list-group-item active" >
+                               Thông tin phòng
+                           </li>
+                           <li class="list-group-item text-center" id="_show_hoa_don_phong">
+                               <a href="#" class="btn bg-warning btn-outline-danger w-100" id="_link_show_hoa_don_phong">
+                                   hóa đơn phòng
+                               </a>
+                           </li>
+                           <li class="list-group-item">
+                               <table class="table table-sm ">
+                                   <theader>
+                                       <th>STT</th>
+                                       <th>Tên vật tư</th>
+                                       <th>Số lượng</th>
+                                   </theader>
+                                   <tbody id="danh-sach-chi-tiet-vat-tu-by-phong">
 
-                           </tbody>
-                       </table>
+                                   </tbody>
+                               </table>
+                           </li>
+                       </ul>
+
                    </div>
                    <div class="card-footer">
                        <button class="btn btn-dark" onclick="showLoaiPhong()">
@@ -151,7 +165,7 @@
     let loaiPhong = [];
     let vip = 0;
     let status = 0;
-    setSort(0   , 0);
+    setSort(0, 0);
 
     function getSort() {
         $('#pagination-demo1').pagination({
@@ -178,8 +192,8 @@
     });
     function createLoaiPhong(id, loaiPhong) {
         return `<li class="list-group-item row" id="loai-phong-${id}">
-                               <button class="col-6 btn btn-success"  onclick=" setSort(${id}, null);">${loaiPhong}</button>
-                               <button class="col-3 btn btn-info"  onclick="setUpdateLoaiPhong(${id})"
+                               <button class="col-6 btn btn-success" onclick=" setSort(${id}, null);">${loaiPhong}</button>
+                               <button class="col-3 btn btn-info" onclick="setUpdateLoaiPhong(${id})"
                                 data-toggle="modal" data-target="#update-loai-vip">
                                    <i class="fa fa-edit"></i>
                                </button>
@@ -272,14 +286,20 @@
 
 <script>
     function showDetailRoom(id) {
+        $('#_show_hoa_don_phong').addClass('d-none');
         showAndHide('show-detail-room', 'show-loai-phong');
         $.get(`${apiResource}phong-hat/get/${id}`, res => {
+            if (res.tinhTrangPhong === 2) {
+                $('#_show_hoa_don_phong').removeClass('d-none');
+                $('#_link_show_hoa_don_phong').attr('href', `/hoa-don/${id}`);
+            }
             setChiTietPhong(res);
         });
     }
 
     function setChiTietPhong(data) {
         $('#ten-phong').text('Chi tiết vật tư phòng ' + data.maPhong);
+        $('#_a_link_to_dat_phong').attr('href', `/dat-phong/${data.id}`);
         let htmlVatTu = '';
         $.each(data.vatTus, (index, vatTu) => {
             htmlVatTu += taoChiTietVatTu(index, vatTu);
@@ -293,6 +313,7 @@
     }
 
     function showLoaiPhong() {
+        $('#_show_hoa_don_phong').addClass('d-none');
         showAndHide('show-loai-phong', 'show-detail-room');
     }
 

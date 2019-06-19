@@ -74,7 +74,7 @@
     let vip = [];
 
 
-    $.get(`${ipaResource}vip`,(res, status) => {
+    $.get(`${apiResource}vip`,(res, status) => {
         $('#group-vip').html('');
         vip = res;
         $.each(res, (index, vip) => $('#group-vip').append(addVipToList(vip.id, vip.tenLoaiVip))   );
@@ -100,7 +100,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: `${ipaResource}vip`,
+            url: `${apiResource}vip`,
             data: JSON.stringify(data),
             dataType: 'json',
             success: res => $('#group-vip').append(addVipToList(res.id, res.tenLoaiVip))});
@@ -120,7 +120,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: `${ipaResource}update-vip`,
+            url: `${apiResource}update-vip`,
             data: JSON.stringify(data),
             dataType: 'json',
             timeout: 600000,
@@ -144,7 +144,7 @@
     }
 
     function xoaVip(id) {
-        $.get(`${ipaResource}xoa-vip/${id}`,(res, status) => {
+        $.get(`${apiResource}xoa-vip/${id}`,(res, status) => {
             $(`#lli-vip-${id}`).remove();
 
         });
