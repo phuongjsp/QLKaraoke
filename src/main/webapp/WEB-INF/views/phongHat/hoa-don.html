@@ -170,6 +170,8 @@
 
     }
     if (hoadon.tinhTrangHoaDon === 3) {
+        let gioVao__ = hoadon.gioVao ? formatTime(new Date(hoadon.gioVao)) : '';
+        $('#_gio_vao_phong_03_').text(`${gioVao__}`);
         let gioRa__ = hoadon.gioRa ? formatTime(new Date(hoadon.gioRa)) : '';
         $('#_gio_ra_phong_03_').text(`${gioRa__}`);
         tinhTienPhong();
@@ -179,7 +181,6 @@
         $('#_btn_in_hoa_don_03_0').removeClass('d-none');
     }
     function tinhGio() {
-        if (hoadon.gioVao || hoadon.gioRa) return ;
         var diff = Math.abs(new Date(hoadon.gioVao) - new Date(hoadon.gioRa));
         let m =  ((diff/1000) / 60);
         if (m < 60) {
@@ -218,9 +219,7 @@
         return [day, month, year].join('-');
     }
     function formatTime(val) {
-        let d;
-        if (d) d = new Date(val);
-        else d = new Date();
+        let d = new Date(val);
         let phut = d.getMinutes();
         if (d .getMinutes() < 10) phut = `0${d.getMinutes()}`;
         return d.getHours() + ' H : ' + phut;
