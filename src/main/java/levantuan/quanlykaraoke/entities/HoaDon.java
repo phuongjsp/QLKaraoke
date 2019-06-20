@@ -44,12 +44,10 @@ public class HoaDon implements Serializable {
     private Date gioRa;
 
     @ManyToOne
-    @JoinColumn(name = "nguoi_lap_hoa_don", referencedColumnName = "id")
+    @JoinColumn(name = "nguoi_lap_hoa_don")
     private NhanVien nhanVien;
 
     @Column(name = "tinh_trang_phong")
     private Integer tinhTrangHoaDon; // 1. đang đặt phòng, 2 đã vào phòng, 3.đã trả phòng, 4.đã hủy hóa đơn
-
-
 
 }

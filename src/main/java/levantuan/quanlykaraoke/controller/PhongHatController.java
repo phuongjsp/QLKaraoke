@@ -76,9 +76,11 @@ public class PhongHatController {
     @GetMapping("hoa-don/{id}")
     public String showHoaDonPhong(@PathVariable Long id,
                                   Model model) {
-        model.addAttribute("hoadon", hoaDonService.getHoaDonByPhongAndStatus(id, 2));
+        model.addAttribute("hoadon", hoaDonService.getLastHoaDonOfPhong(id));
         model.addAttribute("chiTietHoaDon", hoaDonService.getChiTietHoaDon(id));
         return "phongHat/hoa-don";
     }
+
+
 
 }

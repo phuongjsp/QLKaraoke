@@ -5,21 +5,234 @@
     <title>Title</title>
 </head>
 <body>
+<div class="container-fluid">
+    <div class="text-center d-none">
+        <p>KARAOKE IONE</p>
+        <p>Địa chỉ : 180 Nguyễn Tuân - Quận Thanh Xuân - Hà Nội</p>
+        <p>Hotline : 0978785678</p>
 
+    </div>
+    <div class="alert alert-success text-center">
+        <strong style="font-size: 1.5em">HÓA ĐƠN BÁN HÀNG</strong>
+        <p id="_date_now_03_"></p>
+        <p id="_ma_hoa_don_03_"></p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button id="_btn_vao_phong_03_0" class="btn btn-success ml-2 mr-2 d-none" onclick="vaoPhong()">Vào Phòng</button>
+        <button id="_btn_ra_phong_03_0" class="btn btn-info  ml-2 mr-2 d-none" onclick="raPhong()">Ra Phòng</button>
+        <button id="_btn_huy_phong_03_0" class="btn btn-danger  ml-2 mr-2 d-none" onclick="huyPhong()">Hủy Phòng</button>
+        <button id="_btn_in_hoa_don_03_0" class="btn btn-danger  ml-2 mr-2 d-none" onclick="inHoaDon()">In Hóa đơn</button>
+    </div>
+    <div class="mt-2 row">
+        <div class="col-6 text-left">
+            <span id="_thong_tin_nhan_vien_03_"></span>
+        </div>
+        <div class="col-6 text-right">
+            <span id="_thoi_gian_hien_tai">
+
+            </span>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <theader>
+            <th class="text-left" width="14%"> Giờ đặt</th>
+            <th class="text-left" width="14%"> Giờ vào</th>
+            <th class="text-left" width="14%"> Giờ ra</th>
+            <th class="text-left" width="14%"> Tổng giờ</th>
+            <th class="text-left" width="14%"> Loại phòng</th>
+            <th class="text-left" width="14%"> Đơn giá</th>
+            <th class="text-left" width="14%"> Thành tiền</th>
+        </theader>
+        <tbody>
+        <tr>
+            <td>
+                <span id="_gio_dat_phong_03_"></span>
+            </td>
+            <td>
+                <span id="_gio_vao_phong_03_"></span>
+            </td>
+            <td>
+                <span id="_gio_ra_phong_03_"></span>
+            </td>
+            <td>
+                <span id="_tong_gio_03_"></span>
+            </td>
+            <td>
+                <span id="_loai_phong_03_"></span>
+            </td>
+            <td>
+                <span id="_don_gia_03_"></span> vnđ
+            </td>
+            <td>
+                <span id="_thanh_tien_03_"></span> vnđ
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="table table-bordered mt-4">
+        <theader>
+            <th class="text-center" width="50%"> Mặt hàng</th>
+            <th class="text-center" width="5%">SL</th>
+            <th class="text-center" width="15%">ĐVT</th>
+            <th class="text-center" width="15%">Đơn giá</th>
+            <th class="text-center" width="15%">Thành tiền</th>
+        </theader>
+        <tbody>
+        <tr class="text-center"><td>Không có dịch vụ nào</td></tr>
+        </tbody>
+    </table>
+    <style>
+
+    </style>
+    <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6 text-leftt">Tiền phòng</div>
+                        <div class="col-6 text-right">
+                            <span></span> vnđ
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6 text-leftt">Tiền dịch vụ</div>
+                        <div class="col-6 text-right">
+                            <span></span> vnđ
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6 text-leftt">Tổng tiền</div>
+                        <div class="col-6 text-right">
+                            <span></span> vnđ
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 
 
 <script th:inline="javascript">
     /*<![CDATA[*/
     let hoadon = /*[[${hoadon}]]*/ 'Sebastian';
-
-    let chiTietHoaDon = /*[[${chiTietHoaDon}]]*/
     console.log(hoadon);
-    console.log(chiTietHoaDon);
-    // $('#_table_ma_ph_03_0').text(phong.maPhong);
-    // $('#_table_loai_phong_03_0').text(phong.tenLoaiPhong);
-    // $('#_table_gia_tren_gio_03_0').text(phong.giaTrenGio + ' vnđ');
+    let chiTietHoaDon = /*[[${chiTietHoaDon}]]*/
+    $('#_header_hoa_don_03_0').text(`Thông tin hóa đơn phòng ${hoadon.phong.maPhong}`);
+    $('#_date_now_03_').text(` Ngày ${formatDate()}`);
+    $('#_ma_hoa_don_03_').text(` Mã hóa đơn : ${hoadon.maHoaDon}`);
+    $('#_thong_tin_nhan_vien_03_').text(` Nhân viên tạo : ${hoadon.nhanVien.username}`);
+    $('#_thoi_gian_hien_tai').text(` Thời gian tạo : ${formatTime()}`);
+    $('#_gio_dat_phong_03_').text(`${formatDateTime(hoadon.thoiGianTao)}`);
+    $('#_loai_phong_03_').text(`${hoadon.phong.loaiPhong.loaiPhong}`);
+    $('#_don_gia_03_').text(`${hoadon.phong.loaiPhong.tienPhongTrenGio}`);
 
+    function vaoPhong() {
+        $.get(`${apiResource}hoa-don/vao-phong/${hoadon.id}`,(res, status) => {
+        location.reload();
+        });
+    }
+
+    function huyPhong() {
+        $.get(`${apiResource}hoa-don/huy-phong/${hoadon.id}`,(res, status) => {
+            location.reload();
+        });
+    }
+
+    function raPhong() {
+        $.get(`${apiResource}hoa-don/ra-phong/${hoadon.id}`,(res, status) => {
+            location.reload();
+        });
+    }
+    
+    function inHoaDon() {
+        
+    }
+    // function disableAll() {
+    //     $('#_btn_vao_phong_03_0').addClass('d-none');
+    //     $('#_btn_ra_phong_03_0').addClass('d-none');
+    //     $('#_btn_huy_phong_03_0').addClass('d-none');
+    // }
+    if (hoadon.tinhTrangHoaDon === 1) {
+        $('#_btn_vao_phong_03_0').removeClass('d-none');
+        $('#_btn_huy_phong_03_0').removeClass('d-none');
+    }
+    if (hoadon.tinhTrangHoaDon === 2) {
+        $('#_btn_ra_phong_03_0').removeClass('d-none');
+        let gioVao__ = hoadon.gioVao ? formatTime(new Date(hoadon.gioVao)) : '';
+        $('#_gio_vao_phong_03_').text(`${gioVao__}`);
+
+    }
+    if (hoadon.tinhTrangHoaDon === 3) {
+        let gioRa__ = hoadon.gioRa ? formatTime(new Date(hoadon.gioRa)) : '';
+        $('#_gio_ra_phong_03_').text(`${gioRa__}`);
+        tinhTienPhong();
+    }
+
+    if (hoadon.tinhTrangHoaDon === 3) {
+        $('#_btn_in_hoa_don_03_0').removeClass('d-none');
+    }
+    function tinhGio() {
+        if (hoadon.gioVao || hoadon.gioRa) return ;
+        var diff = Math.abs(new Date(hoadon.gioVao) - new Date(hoadon.gioRa));
+        let m =  ((diff/1000) / 60);
+        if (m < 60) {
+            $('#_tong_gio_03_').text(`${parseInt(m)}'`);
+            return {p: parseInt(m)}
+        } else {
+            let h = parseInt(m) / 60;
+            let p = parseInt(m) - parseInt(h) * 60;
+            let tinhGio = parseInt(p) < 10 ? `0${parseInt(p)}` : parseInt(p);
+            $('#_tong_gio_03_').text(`${parseInt(h)} H : ${tinhGio}'`);
+            return {h: parseInt(h), p: parseInt(p)}
+        }
+    }
+
+    function tinhTienPhong() {
+        let jsonTien = tinhGio();
+        if (!jsonTien) return;
+        if (jsonTien.h) {
+            // Tính tiền . giờ
+            let donGia = hoadon.phong.loaiPhong.tienPhongTrenGio * jsonTien.h;
+            donGia += parseInt((hoadon.phong.loaiPhong.tienPhongTrenGio/60) * jsonTien.p);
+            $('#_thanh_tien_03_').text(donGia);
+        } else {
+            $('#_thanh tien_03_').text((hoadon.phong.loaiPhong.tienPhongTrenGio/60) * jsonTien.p);
+        }
+    }
+    function formatDate() {
+        var d = new Date(),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [day, month, year].join('-');
+    }
+    function formatTime(val) {
+        let d;
+        if (d) d = new Date(val);
+        else d = new Date();
+        let phut = d.getMinutes();
+        if (d .getMinutes() < 10) phut = `0${d.getMinutes()}`;
+        return d.getHours() + ' H : ' + phut;
+    }
+    function formatDateTime(date) {
+        let d = new Date(date);
+        let month = '' + (d.getMonth() + 1);
+        let   day = '' + d.getDate();
+        let hours = d.getHours();
+        let minutes = d.getMinutes();
+        return `${hours} H : ${minutes} - ${day}/${month}`;
+    }
     /*]]>*/
 </script>
 </body>

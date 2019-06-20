@@ -7,58 +7,58 @@
     <div class="row">
         <div class="col-8">
             <div class="alert alert-success">
-                <strong> <button type="button" onclick="insertNewDv()" class="btn btn-success">Thêm Mới</button></strong>
+                <strong> <button type="button" onclick="insertNewDv_03_01()" class="btn btn-success">Thêm M?i</button></strong>
             </div>
             <table class="table table-sm table-bordered table-striped">
                 <theader>
                     <tr>
                         <th>STT</th>
-                        <th>Tên Dich Vụ</th>
-                        <th>Đơn Vị ĐO</th>
+                        <th>Tên Dich V?</th>
                         <th>Giá</th>
+                        <th>Ðon V? Ðo</th>
                         <th>Options</th>
                     </tr>
                 </theader>
-                <tbody  id="data-container">
+                <tbody  id="data-container_03_01">
                 </tbody>
             </table>
-            <div id="pagination-dich-vu"></div>
+            <div id="pagination-dich-vu_03_01"></div>
         </div>
         <div class="col-4">
             <div class="card">
                 <div class="alert alert-primary text-center card-header">
-                    <span id="thongtin-dich-vu">Thêm Khách Hàng </span>
+                    <span id="thongtin-dich-vu_03_01">Thêm D?ch V? </span>
                 </div>
                 <div class="card-body">
-                    <input type="hidden" id="id-dich-vu">
+                    <input type="hidden" id="id-dich-vu_03_01">
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" >Tên Dịch Vụ</span>
+                            <span class="input-group-text" >Tên D?ch V?</span>
                         </div>
-                        <input type="text" class="form-control" id="ten-dich-vu" placeholder="Lê Văn Tuấn " aria-label="Username" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control" id="ten-dich-vu_03_01"  aria-label="Username" aria-describedby="basic-addon2">
                     </div>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" >Giá Dịch Vụ</span>
+                            <span class="input-group-text" >Giá D?ch V?</span>
                         </div>
-                        <input type="text" class="form-control" id="gia-dich-vu" placeholder="0986488737" aria-label="Username" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control" id="gia-dich-vu_03_01" aria-label="Username" aria-describedby="basic-addon2">
                     </div>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" >Đơn Vị Đo</span>
+                            <span class="input-group-text" >Ðon V? Ðo</span>
                         </div>
-                        <input type="text" class="form-control" id="don-vi-do" placeholder="18771684" aria-label="Username" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control" id="don-vi-do_03_01" aria-label="Username" aria-describedby="basic-addon2">
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="button" onclick="sendDataToserve()" id="new-kh" class="btn btn-primary w-100">
-                        Thêm Dịch Vụ
+                    <button type="button" onclick="sendDataToserve_03_01()" id="new-kh_03_01" class="btn btn-primary w-100">
+                        Thêm D?ch V?
                     </button>
-                    <button type="button"   onclick="updateDataToserve()" id="update-kh" class="btn btn-primary w-100 d-none">
-                        Cập nhật Dịch Vụ
+                    <button type="button"   onclick="updateDataToserve_03_01()" id="update-kh_03_01" class="btn btn-primary w-100 d-none">
+                        C?p nh?t D?ch V?
                     </button>
 
                 </div>
@@ -67,24 +67,23 @@
     </div>
 </div>
 <script>
-    let dichVu = []
-    getDichVu();
-    function getDichVu() {
-        $('#pagination-dich-vu').pagination({
+    getDichVu_03_01();
+    function getDichVu_03_01() {
+        $('#pagination-dich-vu_03_01').pagination({
             dataSource: `${apiResource}dich-vu`,
             locator: 'content',
             totalNumberLocator: res =>  res.totalElements,
             pageSize: 5,
             callback: function(data, pagination) {
-                $('#data-container').html('');
+                $('#data-container_03_01').html('');
                 $.each(data, (index, kh) =>
-                    insertDichVu((pagination.pageSize) * (pagination.pageNumber -1) + index +1, kh.id, kh.tenDichVu, kh.gia, kh.donViDo)
+                    insertDichVu_03_01((pagination.pageSize) * (pagination.pageNumber -1) + index +1, kh.id, kh.tenDichVu, kh.gia, kh.donViDo)
                 )
             }
         });
     }
-    function insertDichVu( stt, id, tenDichVu, gia, donViDo, gioiTinh) {
-        $('#data-container').html($('#data-container').html() +`
+    function insertDichVu_03_01( stt, id, tenDichVu, gia, donViDo, gioiTinh) {
+        $('#data-container_03_01').html($('#data-container_03_01').html() +`
                     <tr >
 
                         <td>${stt}</td>
@@ -92,38 +91,36 @@
                         <td>${gia}</td>
                         <td>${donViDo}</td>
                         <td>
-                            <button type="button" class="btn btn-info" onclick="updateTTDV(${id}, '${tenDichVu}', ${gia}, '${donViDo}'">Edit</button>
-                            <button type="button" class="btn btn-danger" onclick="xoaKhachHang(${id})">Delete</button>
+                            <button type="button" class="btn btn-info" onclick="updateTTDV_03_01(${id}, '${tenDichVu}', ${gia}, '${donViDo}')">Edit</button>
+                            <button type="button" class="btn btn-danger" onclick="xoaKhachHang_03_01(${id})">Delete</button>
                         </td>
                     </tr>
             `);
     }
-    function updateTTDV(id, tenDichVu, gia,donViDo) {
-        $('#id-dich-vu').val(id);
-        $('#ten-dich-vu').val(tenDichVu);
-        $('#gia-dich-vu').val(gia);
-        $('#don-vi-do').val(donViDo);
-        showAndHide('update-kh', 'new-kh');
+    function updateTTDV_03_01(id, tenDichVu, gia,donViDo) {
+        $('#id-dich-vu_03_01').val(id);
+        $('#ten-dich-vu_03_01').val(tenDichVu);
+        $('#gia-dich-vu_03_01').val(gia);
+        $('#don-vi-do_03_01').val(donViDo);
+        showAndHide('update-kh_03_01', 'new-kh_03_01');
 
 
     }
-    function insertNewDv() {
-        $('#thongtin-dich-vu').text(`Thêm Mới Dịch Vụ`);
-        $('#ten-dich-vu').val('');
-        $('#gia-dich-vu').val('');
-        $('#don-vi-do').val('');
-        $('#update-kh').text(" Thêm Khách Hàng");
-        $('#update-kh').click(sendDataToserve());
+    function insertNewDv_03_01() {
+        $('#thongtin-dich-vu_03_01').text(`Thêm M?i D?ch V?`);
+        $('#ten-dich-vu_03_01').val('');
+        $('#gia-dich-vu_03_01').val('');
+        $('#don-vi-do_03_01').val('');
+        showAndHide('new-kh_03_01','update-kh_03_01' )
     }
 
-    function sendDataToserve() {
+    function sendDataToserve_03_01() {
         let data = {
-            idDichVu: $('#id-dich-vu').val(),
-            tenDichVu : $('#ten-dich-vu').val(),
-            gia: $('#gia-dich-vu').val(),
-            donViDo : $('#don-vi-do').val()
+            idDichVu: $('#id-dich-vu_03_01').val(),
+            tenDichVu : $('#ten-dich-vu_03_01').val(),
+            gia: $('#gia-dich-vu_03_01').val(),
+            donViDo : $('#don-vi-do_03_01').val()
         };
-        console.log(data, '000000000');
         $.ajax({
             type: "POST",
             contentType: "application/json",
@@ -132,22 +129,21 @@
             dataType: 'json',
             timeout: 600000,
             success: function (data) {
-                console.log(data);
+                location.reload();
             },
             error: function (e) {
                 console.log(e);
             }
         });
     }
-    function updateDataToserve() {
+    function updateDataToserve_03_01() {
 
         let data = {
-            id: parseInt($('#id-dich-vu').val()),
-            tenDichVu : $('#ten-dich-vu').val(),
-            gia: $('#gia-dich-vu').val(),
-            donViDo : $('#don-vi-do').val()
+            id: parseInt($('#id-dich-vu_03_01').val()),
+            tenDichVu : $('#ten-dich-vu_03_01').val(),
+            gia: $('#gia-dich-vu_03_01').val(),
+            donViDo : $('#don-vi-do_03_01').val()
         };
-        console.log('duoc ko?', data)
         $.ajax({
             type: "POST",
             contentType: "application/json",
@@ -156,7 +152,7 @@
             dataType: 'json',
             timeout: 600000,
             success: function (data) {
-                getKhachHang();
+                getDichVu_03_01();
                 console.log(data);
             },
             error: function (e) {
@@ -165,10 +161,10 @@
         });
     }
 
-    function xoaKhachHang(id) {
+    function xoaKhachHang_03_01(id) {
         $.get(`${apiResource}xoa-dich-vu/${id}`,(res, status) => {
-            $(`#id-dich-vu`).remove();
-            getDichVu();
+            $(`#id-dich-vu_03_01`).remove();
+            getDichVu_03_01();
 
         });
     }
