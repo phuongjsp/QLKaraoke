@@ -23,8 +23,7 @@ public class Phong implements Serializable {
 //     1.đang trống
 ////            2. đã được đặt
 ////    3. đang dọn
-////            4 . đang có khách
-////    5 bảo trì
+
 
     @ManyToOne
     @JoinColumn(name = "loai_phong", referencedColumnName = "id")

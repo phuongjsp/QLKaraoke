@@ -50,4 +50,10 @@ public class HoaDon implements Serializable {
     @Column(name = "tinh_trang_phong")
     private Integer tinhTrangHoaDon; // 1. đang đặt phòng, 2 đã vào phòng, 3.đã trả phòng, 4.đã hủy hóa đơn
 
+    @Column(name = "tien_phong")
+    private int tienPhong;
+
+    @Column(name = "tien_dich_vu")
+    private int tienDichVu;
+
 }

@@ -76,11 +76,20 @@ public class PhongHatController {
     @GetMapping("hoa-don/{id}")
     public String showHoaDonPhong(@PathVariable Long id,
                                   Model model) {
-        model.addAttribute("hoadon", hoaDonService.getLastHoaDonOfPhong(id));
-        model.addAttribute("chiTietHoaDon", hoaDonService.getChiTietHoaDon(id));
+        HoaDon hoaDon = hoaDonService.getLastHoaDonOfPhong(id);
+        model.addAttribute("hoadon", hoaDon);
+        model.addAttribute("chiTietHoaDon", hoaDonService.getChiTietHoaDon(hoaDon.getId()));
         return "phongHat/hoa-don";
     }
 
-
+    @Layout(value = "default", title = "Phong hat")
+    @GetMapping("show-hoa-don/{id}")
+    public String showHoaDon(@PathVariable Long id,
+                                  Model model) {
+        HoaDon hoaDon = hoaDonService.getbyId(id);
+        model.addAttribute("hoadon", hoaDon);
+        model.addAttribute("chiTietHoaDon", hoaDonService.getChiTietHoaDon(hoaDon.getId()));
+        return "phongHat/hoa-don";
+    }
 
 }

@@ -1,5 +1,5 @@
 function showAndHide(show, hidden) {
-    $(`#${show}`).removeClass('d-none');
-    $(`#${hidden}`).addClass('d-none');
+   if (show !== null) $(`#${show}`).removeClass('d-none');
+    if (hidden !== null)  $(`#${hidden}`).addClass('d-none');
 }
 const apiResource = 'http://localhost:80/api/';

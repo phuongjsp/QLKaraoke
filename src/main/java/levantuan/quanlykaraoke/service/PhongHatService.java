@@ -29,4 +29,6 @@ public interface PhongHatService {
     boolean deletePhong(Long idPhong);
 
     boolean datPhong(Long idPhong, Long idKhachHang, Long timeStamp, String user, int tienCoc);
+
+    void donPhongHat(Long id);
 }

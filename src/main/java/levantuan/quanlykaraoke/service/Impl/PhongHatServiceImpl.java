@@ -183,4 +183,11 @@ public class PhongHatServiceImpl implements PhongHatService {
             return false;
         }
     }
+
+    @Override
+    public void donPhongHat(Long id) {
+        Phong phong = phongRepository.getOne(id);
+        phong.setTinhTrangPhong(1);
+        phongRepository.save(phong);
+    }
 }

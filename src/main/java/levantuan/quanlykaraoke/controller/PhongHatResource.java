@@ -39,6 +39,11 @@ public class PhongHatResource {
         return phongHatService.updatePhong(dto, type, id);
     }
 
+    @GetMapping("phong-hat/don/{id}")
+    public void donPhongHatById(@PathVariable Long id) {
+         phongHatService.donPhongHat(id);
+    }
+
     @PostMapping("phong-hat/new")
     public PhongDTO newPhongHat(@RequestBody PhongDTO phongDTO) {
         return phongHatService.newPhong(phongDTO);

@@ -33,8 +33,7 @@ public class UserController {
     @GetMapping("/")
     @Layout(value = "default", title = "trang chu")
     public String indexPage(){
-        User user = new User();
-        return "index";
+        return "phongHat/thong-ke";
     }
     @Layout(value = "default", title = "Quản lý")
     @GetMapping("/403")

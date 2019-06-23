@@ -17,4 +17,5 @@ public interface HoaDonRepository extends JpaRepository<HoaDon,Long> {
     @Query(value = "select * from hoa_don where hoa_don.phong = ?1 order by id desc limit 0,1", nativeQuery = true)
     HoaDon getLastHoaDonOfPhong(Long idPhong);
 
+
 }

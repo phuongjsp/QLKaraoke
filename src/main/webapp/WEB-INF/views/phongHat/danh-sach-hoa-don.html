@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card">
+    <div class="card-header">
+        Danh sách hóa đơn
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-3">
+                <label for="_from_date_05_0">Tu ngay</label>
+                <button class="btn btn-outline-danger" onclick="$('#_from_date_05_0').val('')">
+                    <i class="fa fa-close"></i>
+                </button>
+                <input type='text' class="form-control" id='_from_date_05_0' />
+            </div>
+
+            <div class="col-3">
+                <label for="_to_date_05_0">den ngay</label>
+                <button class="btn btn-outline-danger" onclick="$('#_to_date_05_0').val('')" >
+                    <i class="fa fa-close"></i>
+                </button>
+                <input type='text' class="form-control" id='_to_date_05_0' />
+
+            </div>
+            <div class="col-3">
+                <label for="_loai_phong_05_01">Loai phong</label>
+                <select class="form-control" name="_loai_phong_05_01" id="_loai_phong_05_01" onchange="loadPhong_05_0(this.options[this.selectedIndex].value)">
+                </select>
+            </div>
+            <div class="col-3">
+                <label for="_phong_05_01">phong</label>
+                <select class="form-control" name="_phong_05_01" id="_phong_05_01">
+                </select>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-center">
+        <button class="btn btn-success" onclick="timKiem_05_0()">
+            <i class="fa fa-search"></i>Tim kiem
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="text-right">
+            Tong :  <span id="_span_total_item_03_0"></span> hoa don
+        </div>
+        <table class="table table-responsive-sm table-bordered table-striped">
+            <theader>
+                <tr>
+                    <th>STT</th>
+                    <th>Ma hoa don</th>
+                    <th>Khach hang</th>
+                    <th>Thoi gian dat</th>
+                    <th>Thoi gian vao</th>
+                    <th>Thoi gian ra</th>
+                    <th>Tong thoi gian</th>
+                    <th>loai phong</th>
+                    <th>Tien dich vu</th>
+                    <th>Xem</th>
+                </tr>
+            </theader>
+            <tbody id="_body_danh_sach_hoa_don_05_0">
+            <tr>
+                <td>STT</td>
+                <td>Khach hang</td>
+                <td>Thoi gian dat</td>
+                <td>Thoi gian vao</td>
+                <td>Thoi gian ra</td>
+                <td>Tong thoi gian</td>
+                <td>loai phong</td>
+                <td>Tien dich vu</td>
+                <td>
+                    <a class="btn btn-success" href="#">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center">
+            <div id="pagination-thong-ke_05_0"></div>
+        </div>
+    </div>
+</div>
+<script th:src="@{'/js/moment.js'}"></script>
+<script th:src="@{'/js/bootstrap-datetimepicker.min.js'}"></script>
+<script>
+    timKiem_05_0();
+
+    function getToDate_05_0(dateId) {
+        return moment($(dateId).val(), 'DD/MM/YYYY HH:mm').format() !== 'Invalid date' ?  moment($(dateId).val(), 'DD/MM/YYYY HH:mm').format('DD-MM-YYYY-HH-mm') : '';
+    }
+    function timKiem_05_0() {
+        let datax = {fromDate: getToDate_05_0('#_from_date_05_0'),
+            toDate: getToDate_05_0('#_to_date_05_0'),
+            typePhong: $('#_loai_phong_05_01 :selected').val() ? $('#_loai_phong_05_01 :selected').val() : '',
+            idPhong: $('#_phong_05_01 :selected').val() ? $('#_phong_05_01 :selected').val() : ''};
+        $('#pagination-thong-ke_05_0').pagination({
+            dataSource: `${apiResource}hoa-don`,// url?pageNumber=?&pageSize=?
+            locator: 'content',
+            totalNumberLocator: res =>  res.totalElements,
+            pageSize: 2,
+            ajax : {
+                data : datax,
+            },
+            className: 'paginationjs-theme-blue paginationjs-small',
+            callback: function(data, pagination) {
+                $('#_span_total_item_03_0').text(pagination.totalNumber);
+                $('#_body_danh_sach_hoa_don_05_0').html('');
+                $.each(data, (index, hd) =>
+                    $('#_body_danh_sach_hoa_don_05_0').append(`
+                <tr>
+                    <td>${(pagination.pageSize) * (pagination.pageNumber -1) + index +1}</td>
+                    <td>${hd.maHoaDon}</td>
+                    <td>${hd.khachHang.tenKhachHang}</td>
+                    <td>${formatDateTime_05_0(hd.thoiGianTao)}</td>
+                    <td>${formatDateTime_05_0(hd.gioVao)}</td>
+                    <td>${formatDateTime_05_0(hd.gioRa)}</td>
+                    <td>${inThoiGian_05_0(hd.gioVao, hd.gioRa)}</td>
+                    <td>${hd.phong.loaiPhong.loaiPhong}</td>
+                    <td>${hd.tienDichVu}</td>
+                    <td>
+                        <a class="btn btn-success" href="/show-hoa-don/${hd.id}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+                `));
+            }
+        });
+    }
+
+
+
+    function tinhGio_05_0(gioVao, gioRa) {
+        let diff = Math.abs(new Date(gioVao) - new Date(gioRa));
+        let m =  ((diff/1000) / 60);
+        if (m < 60) {
+            $('#_tong_gio_03_').text(`${parseInt(m)}'`);
+            return {p: parseInt(m)}
+        } else {
+            let h = parseInt(m) / 60;
+            let p = parseInt(m) - parseInt(h) * 60;
+            return {h: parseInt(h), p: parseInt(p)}
+        }
+    }
+    function inThoiGian_05_0(gioVao, gioRa) {
+        let thoiGian = tinhGio_05_0(gioVao, gioRa);
+        let phut = parseInt(thoiGian.p) < 10 ? `0${parseInt(thoiGian.p)}` : parseInt(thoiGian.p);
+        return `${thoiGian.h} H : ${phut}'`
+    }
+    function formatDateTime_05_0(date) {
+        let d = new Date(date);
+        let month = '' + (d.getMonth() + 1);
+        let   day = '' + d.getDate();
+        let hours = d.getHours();
+        let minutes = d.getMinutes();
+        month = month < 10 ? `0${month}` : month;
+        return `${hours} H : ${minutes} - ${day}/${month}`;
+    }
+    $.get(`${apiResource}loai-phong`,res => {
+        $('#_loai_phong_05_01').html(`<option value="0" selected>ALL</option>`);
+        res.forEach(p => {
+            $('#_loai_phong_05_01').append(`<option value="${p.id}">${p.loaiPhong}</option>`);
+        })
+    });
+
+    loadPhong_05_0(0);
+    function loadPhong_05_0(vip) {
+        $('#_phong_05_01').html(`<option value="0" selected>ALL</option>`);
+        $.get(`${apiResource}phong-hat/getAll/${parseInt(vip)}/0?pageNumber=1&pageSize=9999`, res => {
+            res.content.forEach(p => {
+                $('#_phong_05_01').append(`<option value="${p.id}">${p.maPhong}</option>`);
+            })
+        });
+    }
+
+    $(function () {
+        $('#_from_date_05_0').datetimepicker({
+            locale: 'vn',
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down",
+                left: 'fa fa-arrow-left',
+                right: 'fa fa-arrow-right'
+            },
+            format : 'DD/MM/YYYY HH:mm'
+        });
+
+        $('#_from_date_05_0').datetimepicker({
+            // useCurrent: false //Important! See issue #1075
+        });
+
+        $('#_from_date_05_0').data("DateTimePicker").maxDate(moment(new Date()));
+
+
+        $('#_to_date_05_0').datetimepicker({
+            locale: 'vn',
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down",
+                left: 'fa fa-arrow-left',
+                right: 'fa fa-arrow-right'
+            },
+            format : 'DD/MM/YYYY HH:mm'
+        });
+
+        $('#_to_date_05_0').datetimepicker({
+            // useCurrent: false //Important! See issue #1075
+        });
+
+        $('#_to_date_05_0').data("DateTimePicker").maxDate(moment(new Date()));
+
+        // $("#_to_date_05_0").on("dp.change", () => $('#_from_date_05_0').data('DateTimePicker').maxDate(moment($('#_to_date_05_0').val(), 'DD/MM/YYYY HH:mm')));
+        // $("#_from_date_05_0").on("dp.change", () => $('#_to_date_05_0').data('DateTimePicker').minDate(moment($('#_from_date_05_0').val(), 'DD/MM/YYYY HH:mm')));
+    });
+
+</script>
+</body>
+</html>
