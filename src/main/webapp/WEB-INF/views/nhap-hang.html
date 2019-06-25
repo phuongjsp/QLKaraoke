@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8 card ">
+            <div class="row">
+                <div class="col-12 card-header">
+                    <div class="alert alert-success text-center">
+                        Nhap hang
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card-body">
+                        <div >
+                            <label class="input-group-text" for="don_vi_doi_tac_07_02_">don vi doi tac</label>
+                            <input type="text" id="don_vi_doi_tac_07_02_" class="form-control">
+                        </div>
+
+                        <div class="mt-2">
+                            <label class="input-group-text" for="dia_chi_doi_tac_07_02">dia chi doi tac</label>
+                            <input type="text" id="dia_chi_doi_tac_07_02" class="form-control">
+                        </div>
+
+                        <div class="mt-2">
+                            <label class="input-group-text" for="nguoi_dai_dien_07_02">nguoi dai dien</label>
+                            <input type="text" id="nguoi_dai_dien_07_02" class="form-control">
+                        </div>
+
+                        <div class="mt-2">
+                            <label class="input-group-text" for="thong_tin_ndd_07_02">thong tin nguoi dai dien</label>
+                            <input type="text" id="thong_tin_ndd_07_02" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card-body">
+                        <div class="alert alert-warning text-center">
+                            danh sach dich vu
+                        </div>
+                        <table class="mt-2 table table-sm">
+                            <theader>
+                                <th>Dich vu</th>
+                                <th>don gia</th>
+                                <th>so luong</th>
+                                <th>don vi tinh</th>
+                                <th>thanh tien</th>
+                            </theader>
+                            <tbody id="_danh_sach_dich_vu_da_them_07_02_">
+                            </tbody>
+                        </table>
+                        <div class="mt-3 text-right">
+                            Tong tien : <span id="_tong_rien_07_02_">0</span> vnd
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="/" class="btn btn-dark w-100 ml-2 mr-2">huy</a>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-success w-100  ml-2 mr-2" id="_btn_tao_phieu_nhap_hang_07_02_" onclick="taoPhieuNhapHang_07_02_()">Tao phieu Nhap hang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 card" id="_danh_sach_vat_tu_07_0">
+            <div class="card-header">
+                <div class="alert alert-success text-center alert-link w-100">
+                    <strong >Danh sach dich vu</strong>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <a href="/dich-vu" class="btn btn-danger w-100  ml-2 mr-2"  target="_blank">Them moi dich vu</a>
+                    </div>
+                    <div class="col-6">
+                        <button class=" btn btn-success w-100  ml-2 mr-2" onclick="loadDichVu_07_02_()"> <i class="fa fa-refresh"></i>reload</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="w-100 table table-sm  table-striped" >
+                    <theader>
+                        <th>stt</th>
+                        <th>dich vu</th>
+                        <th>action</th>
+                    </theader>
+                    <tbody id="data_dich_vu_07_02_"></tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <div id="pagination_dich_vu_07_02_"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal_them_dich_vu_04_01">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="card" id="_have_dich_vu">
+                    <div class="card-header">
+                        <div class="alert alert-primary text-center" role="alert">
+                            <strong> So luong nhap</strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <input type="hidden" id="_id_them_dich_vu_07_02">
+                        <input type="hidden" id="_ten_them_dich_vu_07_02">
+                        <input type="hidden" id="_don_vi_tinh_them_dich_vu_07_02">
+                        <div>
+                            <label for="input_so_luong_dich_vu_them_07_02_">So luong</label>
+                            <input id="input_so_luong_dich_vu_them_07_02_" class="form-control"  min="1" type="number" value="1"/>
+                        </div>
+                        <div class="mt-3">
+                            <label for="input_don_gia_dich_vu">don gia</label>
+                            <input id="input_don_gia_dich_vu" class="form-control" pattern="[0-9]+" value="1"/>
+                        </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-success w-25" data-dismiss="modal" onclick="onThemDichVu_07_02()"> Save
+                        </button>
+                        <button class="btn btn-danger w-25" data-dismiss="modal"> Huy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#_date_now_03_').text(` Ngày ${formatDate()}`);
+    function formatDate() {
+        var d = new Date(),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [day, month, year].join('-');
+    }
+    loadDichVu_07_02_();
+    function loadDichVu_07_02_() {
+        $('#pagination_dich_vu_07_02_').pagination({
+            dataSource: `${apiResource}dich-vu`,
+            locator: 'content',
+            totalNumberLocator: res =>  res.totalElements,
+            pageSize: 5,
+            callback: function(data, pagination) {
+                $('#data_dich_vu_07_02_').html('');
+                $.each(data, (index, dv) =>
+                    $('#data_dich_vu_07_02_').html($('#data_dich_vu_07_02_').html() + `
+                        <tr>
+                            <td width="5%">${(pagination.pageSize) * (pagination.pageNumber -1) + index +1}</td>
+                            <td width="40%">
+                                <span class="ml-2">${dv.tenDichVu}</span>
+                            </td>
+                            <td width="20%">
+                                <button class="btn btn-success w-100" data-target="#modal_them_dich_vu_04_01" data-toggle="modal"
+                                onclick="setThemDichVu_07_02_(${dv.id}, '${dv.tenDichVu}', '${dv.donViDo}')"><i class="fa fa-chevron-left"></i></button>
+                            </td>
+                        </tr>
+                    `)
+                )
+            }
+        });
+    }
+    let list_dich_vu_07_02 = [];
+    let tong_tien = 0;
+    function setThemDichVu_07_02_(id, ten, dvt) {
+        $('#_id_them_dich_vu_07_02').val(id);
+        $('#_ten_them_dich_vu_07_02').val(ten);
+        $('#_don_vi_tinh_them_dich_vu_07_02').val(dvt);
+        $('#input_so_luong_dich_vu_them_07_02_').val(1);
+        $('#input_don_gia_dich_vu').val('');
+    }
+    function onThemDichVu_07_02() {
+        let donGia_ = parseInt(parseInt($('#input_don_gia_dich_vu').val()));
+        let sl_ = parseInt($('#input_so_luong_dich_vu_them_07_02_').val());
+        list_dich_vu_07_02.push({
+            dichVuId: $('#_id_them_dich_vu_07_02').val(),
+            sl: sl_,
+            donGia: donGia_
+        });
+        tong_tien +=parseInt(sl_ * donGia_);
+        $('#_tong_rien_07_02_').text(tong_tien);
+    $('#_danh_sach_dich_vu_da_them_07_02_').append(`<tr>
+                                <td>${$('#_ten_them_dich_vu_07_02').val()}</td>
+                                <td>${donGia_}</td>
+                                <td>${sl_}</td>
+                                <td>${$('#_don_vi_tinh_them_dich_vu_07_02').val()}</td>
+                                <td>${parseInt(sl_ * donGia_)}</td>
+                            </tr>`);
+    }
+
+    function taoPhieuNhapHang_07_02_() {
+        $('#_btn_tao_phieu_nhap_hang_07_02_').attr('disabled', true);
+        let data = {
+            donViDoiTac: $('#don_vi_doi_tac_07_02_').val(),
+            diaChiDoiTac: $('#dia_chi_doi_tac_07_02').val(),
+            nguoiDaiDien: $('#nguoi_dai_dien_07_02').val(),
+            thongTinNDD: $('#thong_tin_ndd_07_02').val(),
+            dichVus: list_dich_vu_07_02
+        };
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: `${apiResource}nhap-hang`,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: (res) => {
+                window.location.href = `${window.location.origin}/nhap-hang/${res}`;
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

@@ -5,26 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3317552e-7a4c-4588-ae82-d49295dc7e35" name="Default Changelist" comment="update">
-      <change afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/dto/HoaDonDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/img/roomDon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/danh-sach-hoa-don.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dbUpdate" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/HoaDonResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/HoaDonResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/PhongHatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/PhongHatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/PhongHatResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/PhongHatResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/DichVu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/DichVu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/HoaDon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/HoaDon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/Phong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/Phong.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/ChiTietHoaDonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/ChiTietHoaDonRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/HoaDonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/HoaDonRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/HoaDonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/HoaDonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/HoaDonServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/HoaDonServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/PhongHatServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/PhongHatServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/PhongHatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/PhongHatService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/danhSach.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/danhSach.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/hoa-don.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/hoa-don.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/DichVuResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/DichVuResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/ThongKeResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/ThongKeResource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/DichVuRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/DichVuRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/NhanVienRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/NhanVienRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/DichVuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/DichVuService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/DichVuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/DichVuServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/ThongKeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/ThongKeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/ThongKeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/ThongKeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/thong-ke.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/thong-ke.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -77,57 +68,88 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/ThongKeResource.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/nhap-hang.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="18" column="22" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="22" />
+            <state relative-caret-position="228">
+              <caret line="218" column="81" selection-start-line="218" selection-start-column="81" selection-end-line="218" selection-end-column="81" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#678#679#0" expanded="true" />
-                <element signature="e#732#733#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/ThongKeService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/thong-ke.html">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/default/sidebar.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1150">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="330">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/NhapHangResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="27" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="27" />
               <folding>
-                <element signature="n#style#0;n#html#0;n#!!top" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/danh-sach-hoa-don.html">
+        <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/PhongHatController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-544">
-              <caret line="32" column="156" selection-start-line="32" selection-start-column="118" selection-end-line="32" selection-end-column="156" />
+            <state relative-caret-position="551">
+              <caret line="84" column="21" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/ThongKeServiceImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="106" column="64" lean-forward="true" selection-start-line="106" selection-start-column="64" selection-end-line="106" selection-end-column="64" />
+            <state relative-caret-position="-452">
+              <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+              <folding>
+                <element signature="e#1001#1002#0" expanded="true" />
+                <element signature="e#1043#1044#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/VatTuResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="19" column="66" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/HoaDonResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="50" column="20" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/LoaiPhongResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -137,33 +159,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>huy-phong</find>
-      <find>hoa-don/ra-phong</find>
-      <find>dat-phong/</find>
-      <find>dat-phong</find>
-      <find>datPhong()</find>
-      <find>_tong_tien_hoa_don_03_0</find>
-      <find>_don_gia_phong_03_01_0</find>
-      <find>findAll</find>
-      <find>datetimepicker4</find>
-      <find>foreach</find>
-      <find>phong-hat/getAll</find>
-      <find>glyphicons-</find>
-      <find>danh-sach-loai-phong</find>
-      <find>pagination-demo1</find>
-      <find>pagination</find>
-      <find>page</find>
-      <find>_loai_phong_05_01</find>
-      <find>danh-sach-loai-phong-hat</find>
-      <find>_input_save_to_date_05_0</find>
       <find>min</find>
       <find>minDate</find>
       <find>loadPhong</find>
@@ -175,6 +178,25 @@
       <find>timKiem</find>
       <find>getToDate</find>
       <find>line-chart</find>
+      <find>thong-ke-dich-vu-nam</find>
+      <find>a.data[i]</find>
+      <find>dich-vu</find>
+      <find>hoa-don</find>
+      <find>_date_now_03_</find>
+      <find>Danh sach vat tu</find>
+      <find>pagination-dich-vu_04_01</find>
+      <find>data-dich_vu_04_01</find>
+      <find>formatDate</find>
+      <find>pagination</find>
+      <find>setThemDichVu</find>
+      <find>input_so_luong_dich_vu_them</find>
+      <find>$.ajax</find>
+      <find>don_vi_doi_tac</find>
+      <find>dia_chi_doi_tac</find>
+      <find>nguoi_dai_dien</find>
+      <find>thong_tin_ndd</find>
+      <find>_thoi_gian_hien_tai</find>
+      <find>win</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\phuongjsp\Desktop\DoAnQuanLykaraOke\src\</dir>
@@ -186,24 +208,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/default/sidebar.html" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/ChiTietVatTu.java" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/dto/UpdatePhongDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/VatTuRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/ChiTietVatTuRepository.java" />
-        <option value="$PROJECT_DIR$/dbchangelog/20190616_update_phong" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/PhongRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/DichVuResource.java" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/DichVuService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/DichVuServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/vatTu.html" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/khachhang.html" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/KhachHangService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/KhachHangServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/KhachHangResource.java" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/dto/KhachHangDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/KhachHang.java" />
         <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/dto/PhongDTO.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/default.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/bootstrap-datetimepicker.min.js" />
@@ -226,17 +230,35 @@
         <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/dto/HoaDonDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/HoaDon.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/hoa-don.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/danhSach.html" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/PhongHatController.java" />
         <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/HoaDonResource.java" />
         <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/HoaDonService.java" />
         <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/HoaDonServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/danh-sach-hoa-don.html" />
-        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/ThongKeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/ThongKeResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/ThongKeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/ThongKeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/DichVuResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/DichVuService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/DichVuRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/DichVuServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/thong-ke.html" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/NhanVienRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/NhapHangController.java" />
+        <option value="$PROJECT_DIR$/dbUpdate" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/hoa-don.html" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/dto/NhapHangDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/dto/DichVuDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/NhapHangResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/ChiTietPhieuNhapHangRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/PhieuNhapHang.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/NhapHangSerive.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/NhapHangSeriveImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/PhongHatController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/ChiTietPhieuNhapHang.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hoa-don-nhap-hang.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/nhap-hang.html" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/default/sidebar.html" />
       </list>
     </option>
   </component>
@@ -293,7 +315,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -343,7 +364,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="quanlykaraoke" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DoAnQuanLykaraOke" type="b2602c69:ProjectViewProjectNode" />
@@ -352,8 +373,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="quanlykaraoke" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="Impl" type="462c0819:PsiDirectoryNode" />
+              <item name="entities" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DoAnQuanLykaraOke" type="b2602c69:ProjectViewProjectNode" />
@@ -378,6 +398,16 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DoAnQuanLykaraOke" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DoAnQuanLykaraOke" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="default" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DoAnQuanLykaraOke" type="b2602c69:ProjectViewProjectNode" />
@@ -394,6 +424,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -417,9 +448,12 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="levantuan.quanlykaraoke.service.Impl" />
-      <recent name="levantuan.quanlykaraoke.config" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\phuongjsp\Desktop\DoAnQuanLykaraOke\src\main\webapp\WEB-INF\views\phongHat" />
+      <recent name="C:\Users\phuongjsp\Desktop\DoAnQuanLykaraOke\src\main\resources\static\js" />
+      <recent name="C:\Users\phuongjsp\Desktop\DoAnQuanLykaraOke\src\main\webapp\WEB-INF\views" />
+      <recent name="C:\Users\Anh tuan 37\Desktop\DoAnQuanLykaraOke\web\src\components" />
+      <recent name="C:\Users\Anh tuan 37\Desktop\DoAnQuanLykaraOke\src\main\webapp\WEB-INF\views\phongHat" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\phuongjsp\Desktop\DoAnQuanLykaraOke\src\main\resources\static\img" />
@@ -432,12 +466,10 @@
       <recent name="levantuan.quanlykaraoke.service" />
       <recent name="levantuan.quanlykaraoke.config" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\phuongjsp\Desktop\DoAnQuanLykaraOke\src\main\webapp\WEB-INF\views\phongHat" />
-      <recent name="C:\Users\phuongjsp\Desktop\DoAnQuanLykaraOke\src\main\resources\static\js" />
-      <recent name="C:\Users\phuongjsp\Desktop\DoAnQuanLykaraOke\src\main\webapp\WEB-INF\views" />
-      <recent name="C:\Users\Anh tuan 37\Desktop\DoAnQuanLykaraOke\web\src\components" />
-      <recent name="C:\Users\Anh tuan 37\Desktop\DoAnQuanLykaraOke\src\main\webapp\WEB-INF\views\phongHat" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="levantuan.quanlykaraoke.dto" />
+      <recent name="levantuan.quanlykaraoke.service.Impl" />
+      <recent name="levantuan.quanlykaraoke.config" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -526,7 +558,9 @@
       <workItem from="1560868752103" duration="5982000" />
       <workItem from="1560948848035" duration="17737000" />
       <workItem from="1561048542991" duration="10635000" />
-      <workItem from="1561263778295" duration="33864000" />
+      <workItem from="1561263778295" duration="33905000" />
+      <workItem from="1561440689750" duration="1030000" />
+      <workItem from="1561460615135" duration="21920000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1560184930845</created>
@@ -546,12 +580,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="281003000" />
+    <option name="totallyTimeSpent" value="303994000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49829933" visible="true" weight="0.21002132" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49829933" visible="true" weight="0.21428572" />
       <window_info id="Structure" order="1" sideWeight="0.5017007" side_tool="true" weight="0.18443497" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -563,12 +598,12 @@
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32857144" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.36043957" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.24395604" />
+      <window_info anchor="bottom" id="Debug" order="4" visible="true" weight="0.43516484" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.2912088" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.2912088" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
@@ -644,6 +679,31 @@
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>nhapHangSerive.getChiTiet(id)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>nhapHangSerive.getById(id)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>thongKeService.dichVuThang(thang, nam)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>o2.getValue().values().stream().mapToInt(v -&gt; v).sum()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>o1.getValue().values().stream().mapToInt(v -&gt; v).sum()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>d</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -663,228 +723,13 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>hoaDonService.getHoaDonByPhongAndStatus(id, 2)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>hoaDonRepository.getHoaDonByIdPhongAndStatus(idPhong, status)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>maP</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>phongDTO</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>slvtInP</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/DatPhong.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/DichVuService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/DichVuRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/LoaiPhongRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/PhongRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="37" column="30" lean-forward="true" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/KhachHangResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="21" column="28" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/khachhang.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/DichVuResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" selection-start-line="10" selection-end-line="11" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/AuthorityRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="58" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dbcreate">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4029">
-          <caret line="237" selection-start-line="237" selection-end-line="237" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/NhanVien.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/DichVu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="26" column="26" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/update.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="283" column="20" selection-start-line="283" selection-start-column="8" selection-end-line="283" selection-end-column="20" />
-          <folding>
-            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/dichvu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="79" column="100" selection-start-line="79" selection-start-column="39" selection-end-line="79" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/ChiTietHoaDon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/ChiTietHoaDonRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/HoaDonRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/img/baohanh.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/img/default-avatar.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/img/dangdon.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/img/roomFree.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/img/roomBusy.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/img/roomDon.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/PhongHatService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/PhongHatServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="189" column="35" lean-forward="true" selection-start-line="189" selection-start-column="35" selection-end-line="189" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/LoaiPhongResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
-          <folding>
-            <element signature="e#1001#1002#0" expanded="true" />
-            <element signature="e#1043#1044#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -895,13 +740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/VatTuResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="66" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/dto/HoaDonDTO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -909,38 +747,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/dat-phong.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="205" selection-start-line="205" selection-end-line="205" selection-end-column="45" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/hoa-don.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2616">
-          <caret line="335" column="4" lean-forward="true" selection-start-line="335" selection-start-column="4" selection-end-line="348" selection-end-column="5" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#strong#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/PhongHatController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="85" column="30" lean-forward="true" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -965,34 +771,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/HoaDonResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="57" column="39" lean-forward="true" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/danhSach.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
           <caret line="137" column="36" lean-forward="true" selection-start-line="137" selection-start-column="36" selection-end-line="137" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="7" lean-forward="true" selection-end-line="10" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/default.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -1029,49 +811,344 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/ThongKeServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/Chart.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="106" column="64" lean-forward="true" selection-start-line="106" selection-start-column="64" selection-end-line="106" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/ThongKeResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#678#679#0" expanded="true" />
-            <element signature="e#732#733#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/ThongKeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="1701">
+          <caret line="6" column="156158" selection-start-line="6" selection-start-column="156158" selection-end-line="6" selection-end-column="156158" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/danh-sach-hoa-don.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-544">
+        <state relative-caret-position="544">
           <caret line="32" column="156" selection-start-line="32" selection-start-column="118" selection-end-line="32" selection-end-column="156" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="51" column="12" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/src.zip!/java/lang/Long.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="53" column="23" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/ThongKeServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="89" column="26" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/ThongKeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/DichVuService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/DichVuRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="35" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/DichVuServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="56" column="52" selection-start-line="56" selection-start-column="52" selection-end-line="56" selection-end-column="52" />
+          <folding>
+            <element signature="e#1744#1745#0" expanded="true" />
+            <element signature="e#1771#1772#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/thong-ke.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1150">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        <state relative-caret-position="406">
+          <caret line="104" column="33" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
           <folding>
             <element signature="n#style#0;n#html#0;n#!!top" />
+            <element signature="n#select#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/NhanVienRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/PhongHatServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="165" column="12" lean-forward="true" selection-start-line="165" selection-start-column="12" selection-end-line="173" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/NhanVien.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="43" column="28" selection-start-line="43" selection-start-column="28" selection-end-line="49" selection-end-column="37" />
+          <folding>
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#3;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/dat-phong.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="111" column="64" selection-start-line="111" selection-start-column="64" selection-end-line="111" selection-end-column="64" />
+          <folding>
+            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbUpdate">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/dto/NhapHangDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="25" lean-forward="true" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/dto/DichVuDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/DichVuResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="11" selection-start-line="11" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/repositories/ChiTietPhieuNhapHangRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="53" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="7" lean-forward="true" selection-end-line="10" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/error.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/default.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-329">
+          <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar!/javax/persistence/Column.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/PhieuNhapHang.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/NhapHangSerive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.0.7.RELEASE/spring-data-jpa-2.0.7.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/service/Impl/NhapHangSeriveImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="67" column="45" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
+          <folding>
+            <element signature="e#2763#2764#0" expanded="true" />
+            <element signature="e#2820#2821#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/ThongKeResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="44" column="35" lean-forward="true" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/ChiTietPhieuNhapHang.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="26" column="22" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/entities/DichVu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="26" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hoa-don-nhap-hang.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="37" lean-forward="true" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+          <folding>
+            <element signature="n#style#0;n#strong#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#script#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/phongHat/hoa-don.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="220" column="8" selection-start-line="220" selection-start-column="8" selection-end-line="228" selection-end-column="49" />
+          <folding>
+            <element signature="n#style#0;n#strong#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="e#17864#19252#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-452">
+          <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+          <folding>
+            <element signature="e#1001#1002#0" expanded="true" />
+            <element signature="e#1043#1044#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/VatTuResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="19" column="66" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/HoaDonResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="50" column="20" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/LoaiPhongResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/PhongHatController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="84" column="21" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/levantuan/quanlykaraoke/controller/NhapHangResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/nhap-hang.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="218" column="81" selection-start-line="218" selection-start-column="81" selection-end-line="218" selection-end-column="81" />
+          <folding>
+            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/default/sidebar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>

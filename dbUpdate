@@ -1,0 +1,11 @@
+alter table phieu_nhap_hang
+	add don_vi_doi_tac varchar(32) null;
+
+alter table phieu_nhap_hang
+	add dia_chi_doi_tac varchar(255) null;
+
+alter table phieu_nhap_hang
+	add nguoi_dai_dien varchar(255) null;
+
+alter table phieu_nhap_hang
+	add thong_tin_ndd varchar(255) null;

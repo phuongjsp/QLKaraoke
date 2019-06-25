@@ -1,5 +1,6 @@
 package levantuan.quanlykaraoke.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class ChiTietPhieuNhapHang implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "phieu_nhap_hang", referencedColumnName = "id")
+    @JsonIgnore
     private PhieuNhapHang phieuNhapHang;
 
 }

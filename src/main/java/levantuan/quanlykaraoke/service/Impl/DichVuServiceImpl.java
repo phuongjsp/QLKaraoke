@@ -52,6 +52,11 @@ public class DichVuServiceImpl implements DichVuService {
         }
     }
 
+    @Override
+    public List<DichVu> danhSachDichVuNho() {
+        return dichVuRepository.findAllDichVuSlNho();
+    }
+
 //    @Autowired
 //    private DichVuRepository dichVuRepository;
 //

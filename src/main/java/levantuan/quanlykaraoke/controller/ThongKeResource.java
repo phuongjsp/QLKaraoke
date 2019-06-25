@@ -1,5 +1,6 @@
 package levantuan.quanlykaraoke.controller;
 
+import levantuan.quanlykaraoke.entities.DichVu;
 import levantuan.quanlykaraoke.service.ThongKeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,20 +28,20 @@ public class ThongKeResource {
     }
 
     @GetMapping("thong-ke-dich-vu-nam/{nam}")
-    public Map<Integer, Map<Long, Integer>> thongKeTheoDv(@PathVariable Integer nam) {
+    public Map<DichVu, Map<Integer, Integer>> thongKeTheoDv(@PathVariable Integer nam) {
         return thongKeService.dichVuNam(nam);
     }
 
     @GetMapping("thong-ke-dich-vu-thang/{thang}/{nam}")
-    public Map<Integer, Map<Long, Integer>> thongKeTheoDv(@PathVariable Integer thang,
+    public Map<DichVu, Map<Integer, Integer>> thongKeTheoDv(@PathVariable Integer thang,
                                                           @PathVariable Integer nam) {
         return thongKeService.dichVuThang(thang, nam);
     }
 
     @GetMapping("thong-ke-dich-vu-ngay/{ngay}/{thang}/{nam}")
-    public Map<Integer, Map<Long, Integer>> thongKeTheoDv(@PathVariable Integer ngay,
-                                                          @PathVariable Integer thang,
-                                                          @PathVariable Integer nam) {
+    public Map<DichVu, Map<Integer, Integer>> thongKeTheoDv(@PathVariable Integer ngay,
+                                                            @PathVariable Integer thang,
+                                                            @PathVariable Integer nam) {
         return thongKeService.dichVuNgay(ngay, thang, nam);
     }
 }

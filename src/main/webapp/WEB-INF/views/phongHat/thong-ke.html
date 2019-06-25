@@ -6,7 +6,42 @@
 </style>
 <body>
 <div class="row">
-    <div class="col-8">
+    <div class="col-7">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3 mb-3">
+                        <label for="_select_thang_06_">Thang</label>
+                        <select class="form-control" name="" id="_select_dich_vu_thang_06_" onchange="showCharByThang(this.options[this.selectedIndex].value)">
+                            <option value="0">Chua chon</option>
+                            <option value="1">Thang 1</option>
+                            <option value="2">Thang 2</option>
+                            <option value="3">Thang 3</option>
+                            <option value="4">Thang 4</option>
+                            <option value="5">Thang 5</option>
+                            <option value="6">Thang 6</option>
+                            <option value="7">Thang 7</option>
+                            <option value="8">Thang 8</option>
+                            <option value="9">Thang 9</option>
+                            <option value="10">Thang 10</option>
+                            <option value="11">Thang 11</option>
+                            <option value="12">Thang 12</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label for="_select_dich_vu_nam_06_">Nam</label>
+                        <select class="form-control" name="" id="_select_dich_vu_nam_06_" onchange="showCharByNam(this.options[this.selectedIndex].value)">
+                            <option value="2017" >2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                        </select>
+                    </div>
+                </div>
+                <canvas id="_chart_doanh_thu_dich_vu_07_0" width="800" height="450"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
         <div class="card">
             <div class="card-body row">
                 <div class="col-3">
@@ -27,17 +62,104 @@
                         <option value="12">Thang 12</option>
                     </select>
                 </div>
+
                 <div class="col-3">
-                    <label for="_select_thang_06_">Nam</label>
-                    <button class="form-control" onclick="showCharByNam(2019)">2019</button>
+                    <label for="_select_dich_vu_nam_06_">Nam</label>
+                    <select class="form-control" name="" id="_select_dt_nam_06_" onchange="showCharByNam(this.options[this.selectedIndex].value)">
+                        <option value="2017" >2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019" selected>2019</option>
+                    </select>
                 </div>
             </div>
             <canvas id="_chart_thong_ke_07_0" width="800" height="450"></canvas>
+        </div>
+        <div class="card mt-5">
+            <div class="card-header">
+                <div class="alert alert-primary text-center" role="alert">
+                    <strong>Danh sach dich vu sap het</strong>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <theader>
+                        <th>Dich vu</th>
+                        <th width="20%">sl</th>
+                    </theader>
+                    <tbody id="_danh_sach_0_dich_vu_0_sap_het_">
+
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
 </div>
 
+<script>
+    getDichVuSapHet();
+    function getDichVuSapHet() {
+        $.get(`${apiResource}dich-vu-sap-het`, res => res.forEach(val => $('#_danh_sach_0_dich_vu_0_sap_het_').append(`
+        <tr>
+                        <td>${val.tenDichVu}</td>
+                        <td>${val.soLuongCon}</td>
+                    </tr>
+        `)));
+    }
+
+    showCharDichVu(6);
+    let dichVu = [];
+    function showCharDichVu(thang) {
+        $.get(`${apiResource}dich-vu?pageNumber=1&pageSize=9999`, res => dichVu = res.content);
+        $.get(`${apiResource}thong-ke-dich-vu-thang/${parseInt(thang)}/2019`, res => coverData(res, thang));
+    }
+    function random_rgba() {
+        var o = Math.round, r = Math.random, s = 255;
+        return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+    }
+    function coverData(res, thang) {
+        let dataLabel = [];
+        let day = [1,3,5,7,8,10,11].includes(parseInt(thang)) ? 31 : parseInt(thang) === 2 ? 29 : 30;
+        for (let i = 1; i <= day ; i++) {
+            dataLabel.push(i);
+        };
+        let _data_color = ['rgb(0,3,255)', 'rgb(255,0,0)', 'rgb(26,255,1)', 'rgb(249,0,255)', 'rgba(1,1,1)',
+            'rgb(149,132,255)', 'rgb(255,240,0)', 'rgb(75,0,117)', 'rgb(71,0,6)', 'rgba(1,1,1)',
+            'rgb(2,56,83)', 'rgba(160,85,0,0.56)', 'rgb(3,132,38)', 'rgb(0,115,95)', 'rgba(1,1,1)'];
+        let data = [];
+        let _i = 0;
+        Object.keys(res).forEach(value => {
+            let _name = value.slice(value.lastIndexOf("tenDichVu=") + 10, value.lastIndexOf(", gia"));
+            let _data_val = [];
+            for (let i = 1; i <= day ; i++) {
+                _data_val.push(res[value][i]);
+            };
+            data.push({
+                data: _data_val,
+                label: _name,
+                borderColor: _data_color[_i++],
+                fill: false
+            });
+        });
+        printChartDicVu(dataLabel, data, "thong ke dich vu")
+    }
+    let chart_dich_vu_07_;
+    function printChartDicVu(dataLabel, data, title) {
+        chart_dich_vu_07_ =  new Chart(document.getElementById("_chart_doanh_thu_dich_vu_07_0"), {
+            type: 'line',
+            data: {
+                labels: dataLabel,
+                datasets: data
+            },
+            options: {
+                // title: {
+                //     display: true,
+                //     text: 'World population per region (in millions)'
+                // }
+            }
+        });
+    }
+</script>
 
 <script>
     showCharByThang(new Date().getMonth() + 1);
@@ -72,57 +194,26 @@
     }
     let chart_thong_ke_0_;
     function veChart(dataLabel, data, title) {
-        chart_thong_ke_0_ =  new Chart($("#_chart_thong_ke_07_0"), {
+        chart_thong_ke_0_ =  new Chart(document.getElementById("_chart_thong_ke_07_0"), {
             type: 'line',
             data: {
                 labels: dataLabel,
                 datasets: [{
-                    label: '',
                     data: data,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            scales: {
-                xAxes: [{
-                    type: 'time',
-                    position: 'bottom',
-                    time: {
-                        displayFormats: {
-                            'day': 'MM/YY'
-                        },
-                        tooltipFormat: 'DD/MM/YY',
-                        unit: 'day',
-                    },
-                    // leave only one label per month
-                    afterTickToLabelConversion: function (data) {
-                        var xLabels = data.ticks;
-                        var oldLabel = "";
-                        xLabels.forEach(function (labels, i) {
-                            if(xLabels[i] == oldLabel){
-                                xLabels[i] = "";
-                            } else {
-                                oldLabel = xLabels[i];
-                            }
-                        });
-                    }
-                }]
+                    label: title,
+                    borderColor: "#cd0007",
+                    fill: false
+                }
+                ]
             },
             options: {
-                title: {
-                    display: true,
-                    text: title
-                }
+                // title: {
+                //     display: true,
+                //     text: 'World population per region (in millions)'
+                // }
             }
         });
+
     }
 </script>
 </body>

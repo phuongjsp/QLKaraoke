@@ -204,7 +204,6 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
     let hoadon = /*[[${hoadon}]]*/ 'Sebastian';
-    console.log(hoadon);
     let chiTietHoaDon = /*[[${chiTietHoaDon}]]*/
     $('#_header_hoa_don_03_0').text(`Thông tin hóa đơn phòng ${hoadon.phong.maPhong}`);
     $('#_date_now_03_').text(` Ngày ${formatDate()}`);
@@ -224,9 +223,7 @@
         let printContents = document.getElementById('_bang_hoa_don_04_0').innerHTML;
         let originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;
-
         window.print();
-
         document.body.innerHTML = originalContents;
         $('#_btn_in_hoa_don_03_0').removeClass('d-none');
         $('._huy_dich_vu').removeClass('d-none');

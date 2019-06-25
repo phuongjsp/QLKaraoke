@@ -20,6 +20,11 @@ public class DichVuResource {
         return dichVuService.getAllDichVu(pageNumber -1, pageSize);
     }
 
+    @GetMapping("dich-vu-sap-het")
+    public List<DichVu> danhSachDichVuNhoHon10() {
+        return dichVuService.danhSachDichVuNho();
+    }
+
     @PostMapping("update-dich-vu")
     @ResponseBody
     public DichVu updateKhachHang(@RequestBody DichVu dichVu){

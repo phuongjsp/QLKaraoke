@@ -20,5 +20,7 @@ public interface DichVuService {
     DichVu newDichVu(DichVu dichVu);
 
     boolean xoaDichVu(Long id);
+
+    List<DichVu> danhSachDichVuNho();
 }
 

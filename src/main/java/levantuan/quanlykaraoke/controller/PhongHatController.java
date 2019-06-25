@@ -4,6 +4,7 @@ import levantuan.quanlykaraoke.config.Layout;
 import levantuan.quanlykaraoke.entities.HoaDon;
 import levantuan.quanlykaraoke.entities.Phong;
 import levantuan.quanlykaraoke.service.HoaDonService;
+import levantuan.quanlykaraoke.service.NhapHangSerive;
 import levantuan.quanlykaraoke.service.PhongHatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,8 @@ public class PhongHatController {
 
         @Autowired
         private HoaDonService hoaDonService;
+        @Autowired
+        private NhapHangSerive nhapHangSerive;
 
     @Layout(value = "default", title = "Phong hat")
     @GetMapping("phong-hat")
@@ -92,4 +95,17 @@ public class PhongHatController {
         return "phongHat/hoa-don";
     }
 
+    @Layout(value = "default", title = "Phong hat")
+    @GetMapping("nhap-hang")
+    public String nhapHang() {
+        return "nhap-hang";
+    }
+
+    @Layout(value = "default", title = "Phong hat")
+    @GetMapping("nhap-hang/{id}")
+    public String hoaDonNhapHang(@PathVariable Long id, Model model) {
+        model.addAttribute("hoadon", nhapHangSerive.getById(id));
+        model.addAttribute("chitiet", nhapHangSerive.getChiTiet(id));
+        return "hoa-don-nhap-hang";
+    }
 }
