@@ -1,5 +1,6 @@
 package levantuan.quanlykaraoke.service;
 
+import levantuan.quanlykaraoke.entities.NhanVien;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -17,4 +18,12 @@ public interface MyUserDetailsService extends UserDetailsService {
     boolean updateRole(String username, List<String> roles);
 
     boolean updatePassword(String username, String oldPassword, String newPassword);
+
+    Long newNhanVien(String username, String password, String fullname, String sdt, String cmnd, String ngaySinh, String gioiTinh);
+
+    boolean updateNhanVien(Long id, String password, String fullname, String sdt, String cmnd, String ngaySinh, String gioiTinh);
+
+    NhanVien getNhanVien(Long id);
+
+    Long getIdByUserName(String username);
 }

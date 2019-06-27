@@ -11,10 +11,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class UserController {
@@ -30,11 +27,21 @@ public class UserController {
         return "login";
     }
 
+    @PostMapping("login")
+    public String loginPageF(@RequestParam Optional<String> error,
+                             Model model){
+        System.out.println(error);
+        model.addAttribute("error", error.isPresent());
+        return "login";
+    }
+
     @GetMapping("/")
     @Layout(value = "default", title = "trang chu")
     public String indexPage(){
         return "phongHat/thong-ke";
     }
+
+
     @Layout(value = "default", title = "Quản lý")
     @GetMapping("/403")
     public String accessDeniedPage() {
@@ -83,4 +90,16 @@ public class UserController {
         return "user/authorization";
     }
 
+    @Layout(value = "default", title = "Thêm mới nhân viên")
+    @GetMapping("new-nhan-vien")
+    public String newNhanVien(){
+        return "new-nhan-vien";
+    }
+
+    @Layout(value = "default", title = "Cập nhât  nhân viên")
+    @GetMapping("update-nv/{name}")
+    public String updateNhanVien(@PathVariable String name, Model model){
+        model.addAttribute("isUpdate", myUserDetailsService.getIdByUserName(name));
+        return "new-nhan-vien";
+    }
 }

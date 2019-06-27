@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <span class="alert alert-info w-100">Thêm mới nhân viên</span>
+        </div>
+        <form >
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="_input_username">Mã nhân viên
+                        <span style="font-size: 0.75rem" class="text-info">
+                        tên đăng nhập của nhân viên (không được trùng với các nhân viên khác)
+                    </span>
+                    </label>
+                    <input name="username"
+                           class="form-control" id="_input_username"
+                           type="text" placeholder="tuanbv" value="" pattern="[a-zA-Z0-9]{5,12}"/>
+                </div>
+                <div class="form-group">
+                    <label for="_input_password">Mật khẩu</label>
+                    <input name="password"
+                           class="form-control" id="_input_password"
+                           type="password" placeholder="Password" value=""/>
+                </div>
+
+                <div class="form-group">
+                    <label for="_input_fullname">Họ tên nhân viên</label>
+                    <input name="_input_fullname"
+                           class="form-control" id="_input_fullname"
+                           type="text" placeholder="Nguyễn Văn A" value=""/>
+                </div>
+                <div class="form-group">
+                    <label for="_input_sdt">Số điện thoại</label>
+                    <input name="_input_sdt"
+                           class="form-control" id="_input_sdt" pattern="[0-9]+"
+                           type="text" placeholder="0989000345" value=""/>
+                </div>
+
+                <div class="form-group">
+                    <label for="_input_cmnd">CMND/CCCD</label>
+                    <input name="_input_cmnd"
+                           class="form-control" id="_input_cmnd" pattern="[0-9]+"
+                           type="text" placeholder="095333222" value=""/>
+                </div>
+
+                <div class="form-group">
+                    <label >Ngày sinh</label>
+                    <input name="_input_ngay_sinh"
+                           class="form-control" id="_input_ngay_sinh" pattern="[0-9]+"
+                           type="date" value=""/>
+                </div>
+
+                <div class="form-group">
+                    <label for="_input_ngay_sinh">Giới tính</label>
+                    <div class="form-inline">
+                        <input name="_radio_gioi_tinh"
+                               class="form-control ml-2 mr-2" id="_input_gioi_tinh_nam"
+                               type="radio" value="nam" checked>  <label for="_input_gioi_tinh_nam">Nam</label>
+
+                        <input name="_radio_gioi_tinh"
+                               class="form-control mr-2 ml-5" id="_input_gioi_tinh_nu"
+                               type="radio" value="nu">  <label for="_input_gioi_tinh_nu">Nu</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-6">
+                    <button class="btn btn-dark w-100" onclick=" window.history.back();"><i class="fa fa-backward mr-4"></i>Hủy</button>
+                </div>
+                <div class="col-6">
+                    <button  class="btn btn-success w-100"  id="_btn_them_00" onclick="themUser()"> <i class="fa fa-save mr-4"></i>Thêm</button>
+                    <button  class="btn btn-success w-100 d-none" id="_btn_update_00" onclick="updateUser()"> <i class="fa fa-save mr-4"></i>Thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    let reUN = /^[a-zA-Z0-9_]+$/;
+    let reNumber = /^[0-9]{7,15}$/;
+
+    function themUser() {
+        if ( !reUN.test($('#_input_username').val())) {
+            $.notify("Mã nhân viên phải viết liền không dấu ", "danger");
+            return;
+        }
+
+        if ( !reNumber.test($('#_input_sdt').val())) {
+            $.notify("SDT không đúng định dạng ", "danger");
+            return;
+        }
+        if ( !reNumber.test($('#_input_cmnd').val())) {
+            $.notify("CMND/CCCD không đúng định dạng ", "danger");
+            return;
+        }
+        if ( $('#_input_ngay_sinh').val().length === 0) {
+            $.notify("Bạn phải nhập ngày sinh ", "danger");
+            return;
+        }
+
+        $.get(`${apiResource}them-nhan-vien`,{username: $('#_input_username').val().trim(),
+                                              password: $('#_input_password').val().trim(),
+            fullname: $('#_input_fullname').val().trim(),
+            sdt: $('#_input_sdt').val().trim(),
+            cmnd: $('#_input_cmnd').val().trim(),
+            ngaySinh: $('#_input_ngay_sinh').val().trim(),
+            gioiTinh: $("input[name='_radio_gioi_tinh']:checked").val().trim()},(res, status) => {
+            if (res === 0) {
+                $.notify("Mã nhân viên này đã tồn tại vui lnogf chọn mã nhân viên khác", "danger");
+            } else {
+                getNhanVien(res);
+            }
+        });
+    }
+
+    let _idUser;
+    function updateUser() {
+        if ( !reUN.test($('#_input_username').val())) {
+            $.notify("Mã nhân viên phải viết liền không dấu ", "danger");
+            return;
+        }
+
+        if ( !reNumber.test($('#_input_sdt').val())) {
+            $.notify("SDT không đúng định dạng ", "danger");
+            return;
+        }
+        if ( !reNumber.test($('#_input_cmnd').val())) {
+            $.notify("CMND/CCCD không đúng định dạng ", "danger");
+            return;
+        }
+        if ( $('#_input_ngay_sinh').val().length === 0) {
+            $.notify("Bạn phải nhập ngày sinh ", "danger");
+            return;
+        }
+
+        $.get(`${apiResource}update-nhan-vien${_idUser}`,{username: $('#_input_username').val().trim(),
+            password: $('#_input_password').val().trim(),
+            fullname: $('#_input_fullname').val().trim(),
+            sdt: $('#_input_sdt').val().trim(),
+            cmnd: $('#_input_cmnd').val().trim(),
+            ngaySinh: $('#_input_ngay_sinh').val().trim(),
+            gioiTinh: $("input[name='_radio_gioi_tinh']:checked").val().trim()},(res, status) => {
+            if (res === 0) {
+                $.notify("Mã nhân viên này đã tồn tại vui lnogf chọn mã nhân viên khác", "danger");
+            } else {
+                getNhanVien(res);
+            }
+        });
+
+
+
+    }
+    function getNhanVien(id) {
+        $.get(`${apiResource}get-nhan-vien/${id}`,(res, status) => {
+            _idUser = id;
+            $('#_input_password').val('');
+            $('#_input_username').val(res.username);
+            $('#_input_fullname').val(res.tenNhanVien);
+            $('#_input_sdt').val(res.soDienThoai);
+            $('#_input_cmnd').val(res.cmnd);
+            $('#_input_ngay_sinh').val(res.ngaySinh);
+            $("#_input_username").attr('disabled', 'true');
+            if(res.gioiTinh) $("#_input_gioi_tinh_nam").attr('checked', 'checked'); else
+            $("#_input_gioi_tinh_nu").attr('checked', 'checked');
+            showAndHide('_btn_update_00', '_btn_them_00');
+            console.log(res);
+        });
+    }
+</script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let isUpdate = /*[[${isUpdate}]]*/ 'Sebastian';
+    if (isUpdate) {
+        console.log(isUpdate);
+        getNhanVien(isUpdate);
+    }
+
+    /*]]>*/
+</script>
+</body>
+</html>

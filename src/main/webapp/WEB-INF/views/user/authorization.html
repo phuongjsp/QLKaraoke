@@ -23,7 +23,7 @@
     <tbody>
 
     <tr th:each="auth : ${authority}">
-        <td th:text="${auth.key}">John</td>
+        <td class="btn btn-warning w-100 text-left"><a class="w-100" th:href="@{'update-nv/'} + ${auth.key}" ><i class="fa fa-edit"></i><span th:text="${auth.key}"></span></a></td>
         <td >
             <input th:if="${auth.value.contains('ADMIN')}" type="checkbox"  th:name="${auth.key}" value="ADMIN" checked/>
             <input th:if="${!auth.value.contains('ADMIN')}" type="checkbox" th:name="${auth.key}"   value="ADMIN" />

@@ -2,8 +2,10 @@ package levantuan.quanlykaraoke.service.Impl;
 
 
 import levantuan.quanlykaraoke.entities.Authority;
+import levantuan.quanlykaraoke.entities.NhanVien;
 import levantuan.quanlykaraoke.entities.User;
 import levantuan.quanlykaraoke.repositories.AuthorityRepository;
+import levantuan.quanlykaraoke.repositories.NhanVienRepository;
 import levantuan.quanlykaraoke.repositories.UserRepository;
 import levantuan.quanlykaraoke.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +26,9 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     private UserRepository usersRepository;
     @Autowired
     private AuthorityRepository authorityRepository;
+
+    @Autowired
+    private NhanVienRepository nhanVienRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -93,5 +101,64 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
         user.setPassword(passwordEncoder.encode(newPassword));
         usersRepository.save(user);
         return true;
+    }
+
+    @Override
+    public Long newNhanVien(String username, String password, String fullname, String sdt, String cmnd, String ngaySinh, String gioiTinh) {
+        if (usersRepository.existsByUsername(username)) {
+            return 0L;
+        }
+        NhanVien nhanVien = new NhanVien();
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setEnabled(true);
+        nhanVien.setUsername(username);
+        nhanVien.setTenNhanVien(fullname);
+        nhanVien.setSoDienThoai(sdt);
+        nhanVien.setCmnd(cmnd);
+        nhanVien.setTinhTrang(true);
+        try {
+            nhanVien.setNgaySinh(new SimpleDateFormat("yyyy-MM-dd").parse(ngaySinh));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        nhanVien.setGioiTinh(gioiTinh.equals("nam"));
+        nhanVien = nhanVienRepository.save(nhanVien);
+        user.setNhanVien(nhanVien);
+        usersRepository.save(user);
+        return nhanVien.getId();
+    }
+
+    @Override
+    public boolean updateNhanVien(Long id,String password, String fullname, String sdt, String cmnd, String ngaySinh, String gioiTinh) {
+        Optional<NhanVien> nhanVienOptional = nhanVienRepository.findById(id);
+        if (!nhanVienOptional.isPresent()) return false;
+        NhanVien nhanVien =nhanVienOptional.get();
+        User user = usersRepository.findByUsername(nhanVien.getUsername());
+        user.setPassword(passwordEncoder.encode(password));
+        if (fullname != null && !fullname.equals("")) nhanVien.setTenNhanVien(fullname);
+        if (sdt != null && !sdt.equals("")) nhanVien.setSoDienThoai(sdt);
+        if (cmnd != null && !cmnd.equals("")) nhanVien.setCmnd(cmnd);
+        try {
+            nhanVien.setNgaySinh(new SimpleDateFormat("dd/MM/YYYY").parse(ngaySinh));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (gioiTinh != null && !gioiTinh.equals("")) nhanVien.setGioiTinh(gioiTinh.equals("nam"));
+        nhanVien = nhanVienRepository.save(nhanVien);
+        user.setNhanVien(nhanVien);
+        usersRepository.save(user);
+        return true;
+    }
+
+    @Override
+    public NhanVien getNhanVien(Long id) {
+        return nhanVienRepository.findById(id).orElse(new NhanVien());
+    }
+
+    @Override
+    public Long getIdByUserName(String username) {
+        return nhanVienRepository.findByUsername(username).getId();
     }
 }

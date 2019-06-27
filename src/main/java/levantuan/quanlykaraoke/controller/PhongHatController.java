@@ -108,4 +108,10 @@ public class PhongHatController {
         model.addAttribute("chitiet", nhapHangSerive.getChiTiet(id));
         return "hoa-don-nhap-hang";
     }
+
+    @Layout(value = "default", title = "Phong hat")
+    @GetMapping("danh-sach-hoa-don")
+    public String danhSachHoaDon() {
+        return "phongHat/danh-sach-hoa-don";
+    }
 }
