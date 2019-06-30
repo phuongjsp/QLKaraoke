@@ -2,6 +2,7 @@ package levantuan.quanlykaraoke.controller;
 
 import levantuan.quanlykaraoke.entities.User;
 import levantuan.quanlykaraoke.config.Layout;
+import levantuan.quanlykaraoke.repositories.NhanVienRepository;
 import levantuan.quanlykaraoke.service.AuthorityService;
 import levantuan.quanlykaraoke.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class UserController {
 
     @Autowired
     private AuthorityService authorityService;
+
+    @Autowired
+    private NhanVienRepository nhanVienRepository;
 
     @GetMapping("login")
     public String loginPage(){
@@ -93,13 +97,20 @@ public class UserController {
     @Layout(value = "default", title = "Thêm mới nhân viên")
     @GetMapping("new-nhan-vien")
     public String newNhanVien(){
-        return "new-nhan-vien";
+        return "user/new-nhan-vien";
     }
 
-    @Layout(value = "default", title = "Cập nhât  nhân viên")
+    @Layout(value = "default", title = "Cập nhât nhân viên")
     @GetMapping("update-nv/{name}")
     public String updateNhanVien(@PathVariable String name, Model model){
         model.addAttribute("isUpdate", myUserDetailsService.getIdByUserName(name));
-        return "new-nhan-vien";
+        return "user/new-nhan-vien";
+    }
+
+    @Layout(value = "default", title = "Danh sách nhân viên")
+    @GetMapping("list-user")
+    public String listUser(Model model) {
+        model.addAttribute("nhanVien", nhanVienRepository.findAll());
+        return "user/list-user";
     }
 }

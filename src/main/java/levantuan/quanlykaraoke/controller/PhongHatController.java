@@ -18,10 +18,10 @@ public class PhongHatController {
     @Autowired
     private PhongHatService phongHatService;
 
-        @Autowired
-        private HoaDonService hoaDonService;
-        @Autowired
-        private NhapHangSerive nhapHangSerive;
+    @Autowired
+    private HoaDonService hoaDonService;
+    @Autowired
+    private NhapHangSerive nhapHangSerive;
 
     @Layout(value = "default", title = "Phong hat")
     @GetMapping("phong-hat")
@@ -45,8 +45,10 @@ public class PhongHatController {
     }
 
     @Layout(value = "default", title = "Phong hat")
-    @GetMapping("vat-tu")
-    public String vatTuView() { return "phongHat/vatTu"; }
+    @GetMapping("danh-sach-vat-tu")
+    public String vatTuView() {
+        return "phongHat/vatTu";
+    }
 
     @Layout(value = "default", title = "Phong hat")
     @GetMapping("vip")
@@ -88,7 +90,7 @@ public class PhongHatController {
     @Layout(value = "default", title = "Phong hat")
     @GetMapping("show-hoa-don/{id}")
     public String showHoaDon(@PathVariable Long id,
-                                  Model model) {
+                             Model model) {
         HoaDon hoaDon = hoaDonService.getbyId(id);
         model.addAttribute("hoadon", hoaDon);
         model.addAttribute("chiTietHoaDon", hoaDonService.getChiTietHoaDon(hoaDon.getId()));
@@ -102,10 +104,12 @@ public class PhongHatController {
     }
 
     @Layout(value = "default", title = "Phong hat")
-    @GetMapping("nhap-hang/{id}")
-    public String hoaDonNhapHang(@PathVariable Long id, Model model) {
+    @GetMapping("nhap-hang/{type}/{id}")
+    public String hoaDonNhapHang(@PathVariable Integer type,
+                                 @PathVariable Long id, Model model) {
+        model.addAttribute("type", type);
         model.addAttribute("hoadon", nhapHangSerive.getById(id));
-        model.addAttribute("chitiet", nhapHangSerive.getChiTiet(id));
+        model.addAttribute("chitiet",type == 0 ? nhapHangSerive.getChiTiet(id) : nhapHangSerive.getChiTietVatTu(id));
         return "hoa-don-nhap-hang";
     }
 
@@ -114,4 +118,18 @@ public class PhongHatController {
     public String danhSachHoaDon() {
         return "phongHat/danh-sach-hoa-don";
     }
+
+    @Layout(value = "default", title = "Hóa đơn dich vụ")
+    @GetMapping("list-hoa-don/{type}")
+    public String hoaDonDichVu(@PathVariable Integer type, Model model) {
+        model.addAttribute("type", type);
+        return "hoa-don";
+    }
+
+    @Layout(value = "default", title = "Phong hat")
+    @GetMapping("nhap-vat-tu")
+    public String nhapVatTu() {
+        return "nhap-hang-vat-tu";
+    }
+
 }

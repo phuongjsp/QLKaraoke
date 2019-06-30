@@ -20,15 +20,15 @@ public class VatTuResource {
         return  vatTuService.getAllVatTu(pageNumber - 1, pageSize);
     }
 
-    @PostMapping("update-vat-tu")
+    @PostMapping("update-vat-tu/{id}")
     @ResponseBody
-    public VatTu updateVatTu(@RequestBody VatTu vatTu){
-        return vatTuService.updateVatTu(vatTu);
+    public VatTu updateVatTu(@PathVariable Long id ,@RequestParam String vatTu){
+        return vatTuService.updateVatTu(id, vatTu);
     }
 
     @PostMapping("vat-tu")
     @ResponseBody
-    public VatTu newVatTu(@RequestBody VatTu vatTu) {
+    public VatTu newVatTu(@RequestParam String vatTu) {
         return vatTuService.newVatTu(vatTu);
     }
 

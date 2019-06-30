@@ -36,6 +36,12 @@
                            type="text" placeholder="Nguyễn Văn A" value=""/>
                 </div>
                 <div class="form-group">
+                    <label for="_input_address">Địa chỉ</label>
+                    <input name="_input_address"
+                           class="form-control" id="_input_address"
+                           type="text" placeholder="Số 57, Ngõ 42, Phố Lâm Anh, Quận Nam Mộ Dung, Hà Nội" value=""/>
+                </div>
+                <div class="form-group">
                     <label for="_input_sdt">Số điện thoại</label>
                     <input name="_input_sdt"
                            class="form-control" id="_input_sdt" pattern="[0-9]+"
@@ -52,8 +58,8 @@
                 <div class="form-group">
                     <label >Ngày sinh</label>
                     <input name="_input_ngay_sinh"
-                           class="form-control" id="_input_ngay_sinh" pattern="[0-9]+"
-                           type="date" value=""/>
+                           class="form-control" id="_input_ngay_sinh"
+                           type="text" value=""/>
                 </div>
 
                 <div class="form-group">
@@ -77,16 +83,15 @@
                 </div>
                 <div class="col-6">
                     <button  class="btn btn-success w-100"  id="_btn_them_00" onclick="themUser()"> <i class="fa fa-save mr-4"></i>Thêm</button>
-                    <button  class="btn btn-success w-100 d-none" id="_btn_update_00" onclick="updateUser()"> <i class="fa fa-save mr-4"></i>Thêm</button>
+                    <button  class="btn btn-success w-100 d-none" id="_btn_update_00" onclick="updateUser()"> <i class="fa fa-save mr-4"></i>Cập nhật</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
-
+<script th:src="@{'/js/moment.js'}"></script>
+<script th:src="@{'/js/bootstrap-datetimepicker.min.js'}"></script>
 <script>
     let reUN = /^[a-zA-Z0-9_]+$/;
     let reNumber = /^[0-9]{7,15}$/;
@@ -96,7 +101,14 @@
             $.notify("Mã nhân viên phải viết liền không dấu ", "danger");
             return;
         }
-
+        if ($('#_input_fullname').val().length < 1) {
+            $.notify("Yêu cập nhập đúng tên nhân viên ", "danger");
+            return;
+        }
+        if ( $('#_input_address').val() < 1) {
+            $.notify("Yêu cầu nhập đúng địa chỉ nhân viên", "danger");
+            return;
+        }
         if ( !reNumber.test($('#_input_sdt').val())) {
             $.notify("SDT không đúng định dạng ", "danger");
             return;
@@ -113,6 +125,7 @@
         $.get(`${apiResource}them-nhan-vien`,{username: $('#_input_username').val().trim(),
                                               password: $('#_input_password').val().trim(),
             fullname: $('#_input_fullname').val().trim(),
+            address:  $('#_input_address').val().trim(),
             sdt: $('#_input_sdt').val().trim(),
             cmnd: $('#_input_cmnd').val().trim(),
             ngaySinh: $('#_input_ngay_sinh').val().trim(),
@@ -131,6 +144,14 @@
             $.notify("Mã nhân viên phải viết liền không dấu ", "danger");
             return;
         }
+        if ($('#_input_fullname').val().length < 1) {
+            $.notify("Yêu cập nhập đúng tên nhân viên ", "danger");
+            return;
+        }
+        if ( $('#_input_address').val() < 1) {
+            $.notify("Yêu cầu nhập đúng địa chỉ nhân viên", "danger");
+            return;
+        }
 
         if ( !reNumber.test($('#_input_sdt').val())) {
             $.notify("SDT không đúng định dạng ", "danger");
@@ -144,38 +165,71 @@
             $.notify("Bạn phải nhập ngày sinh ", "danger");
             return;
         }
-
-        $.get(`${apiResource}update-nhan-vien${_idUser}`,{username: $('#_input_username').val().trim(),
+        $.notify("Thông tin nhân viên đăng được cập nhật lại", "success");
+        $.get(`${apiResource}update-nhan-vien/${_idUser}`,{username: $('#_input_username').val().trim(),
             password: $('#_input_password').val().trim(),
+            address: $('#_input_address').val().trim(),
             fullname: $('#_input_fullname').val().trim(),
             sdt: $('#_input_sdt').val().trim(),
             cmnd: $('#_input_cmnd').val().trim(),
             ngaySinh: $('#_input_ngay_sinh').val().trim(),
             gioiTinh: $("input[name='_radio_gioi_tinh']:checked").val().trim()},(res, status) => {
             if (res === 0) {
-                $.notify("Mã nhân viên này đã tồn tại vui lnogf chọn mã nhân viên khác", "danger");
+                $.notify("Mã nhân viên này đã tồn tại vui lòng chọn mã nhân viên khác", "danger");
             } else {
                 getNhanVien(res);
+                $.notify("Cập nhật thông tin nhân viên thành công !", "info");
             }
         });
 
 
 
     }
+    function getDate(date) {
+        let today = new Date();
+        today.setTime(date);
+        let dd = today.getDate();
+
+        let mm = today.getMonth()+1;
+        let yyyy = today.getFullYear();
+        if(dd<10)
+        {
+            dd='0'+dd;
+        }
+
+        if(mm<10)
+        {
+            mm='0'+mm;
+        }
+        return  dd+'/'+mm+'/'+yyyy;
+    }
+    $('#_input_ngay_sinh').datetimepicker({
+        locale: 'vn',
+        icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-arrow-up",
+            down: "fa fa-arrow-down",
+            left: 'fa fa-arrow-left',
+            right: 'fa fa-arrow-right'
+        },
+        format : 'DD/MM/YYYY'
+    });
     function getNhanVien(id) {
         $.get(`${apiResource}get-nhan-vien/${id}`,(res, status) => {
             _idUser = id;
             $('#_input_password').val('');
             $('#_input_username').val(res.username);
             $('#_input_fullname').val(res.tenNhanVien);
+            $('#_input_address').val(res.diaChi);
             $('#_input_sdt').val(res.soDienThoai);
             $('#_input_cmnd').val(res.cmnd);
-            $('#_input_ngay_sinh').val(res.ngaySinh);
+            $('#_input_ngay_sinh').val(getDate(res.ngaySinh));
             $("#_input_username").attr('disabled', 'true');
             if(res.gioiTinh) $("#_input_gioi_tinh_nam").attr('checked', 'checked'); else
             $("#_input_gioi_tinh_nu").attr('checked', 'checked');
             showAndHide('_btn_update_00', '_btn_them_00');
-            console.log(res);
+
         });
     }
 </script>
@@ -183,8 +237,8 @@
     /*<![CDATA[*/
     let isUpdate = /*[[${isUpdate}]]*/ 'Sebastian';
     if (isUpdate) {
-        console.log(isUpdate);
         getNhanVien(isUpdate);
+        showAndHide('_btn_update_00', '_btn_them_00');
     }
 
     /*]]>*/

@@ -3,3 +3,17 @@ function showAndHide(show, hidden) {
     if (hidden !== null)  $(`#${hidden}`).addClass('d-none');
 }
 const apiResource = 'http://localhost:80/api/';
+
+function validOnlyNumber(button, ...input) {
+    let i = 0;
+    for (const value of input) {
+        i++;
+        $(`#${value}`).on('keypress keyup keydown change', (e) =>{
+            if (!/^\d+$/.test(e.target.value)) {
+                $(`#${button}`).attr('disabled', true);
+                return;
+            }
+            if (i === input.length) $(`#${button}`).attr('disabled', false);
+        });
+    }
+}

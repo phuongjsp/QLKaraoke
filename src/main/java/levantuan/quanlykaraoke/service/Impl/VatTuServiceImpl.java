@@ -1,5 +1,6 @@
 package levantuan.quanlykaraoke.service.Impl;
 
+import levantuan.quanlykaraoke.entities.Phong;
 import levantuan.quanlykaraoke.entities.VatTu;
 import levantuan.quanlykaraoke.repositories.VatTuRepository;
 import levantuan.quanlykaraoke.service.VatTuService;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VatTuServiceImpl implements VatTuService {
@@ -22,29 +24,33 @@ public class VatTuServiceImpl implements VatTuService {
     }
 
     @Override
-    public VatTu updateVatTu(VatTu vatTu) {
-
-        VatTu vt = vatTuRepository.getOne(vatTu.getId());
-        vt.setMaVatTu(vatTu.getMaVatTu());
-        vt.setTenVatTu(vatTu.getTenVatTu());
-        vt.setSoLuongVatTuCon(vatTu.getSoLuongVatTuCon());
-        vatTuRepository.save(vatTu);
-        return vatTu;
-
+    public VatTu updateVatTu(Long id, String ten) {
+        VatTu vt = vatTuRepository.getOne(id);
+        vt.setTenVatTu(ten);
+        return vatTuRepository.save(vt);
     }
 
     @Override
-    public VatTu newVatTu(VatTu vatTu) {
-
+    public VatTu newVatTu(String vatTu) {
+        String lastMaPhong = vatTuRepository.getLastMaPhong();
+        Integer maVT = 1;
+        //format MVT0x
+        if (lastMaPhong != null) {
+            maVT = Integer.valueOf(lastMaPhong.substring(4));
+            maVT++;
+        }
         VatTu vt = new VatTu();
-        vt.setTenVatTu((vatTu.getTenVatTu()));
-        vt.setMaVatTu(vatTu.getTenVatTu());
-        vt.setSoLuongVatTuCon(vatTu.getSoLuongVatTuCon());
+        vt.setTenVatTu((vatTu));
+        vt.setMaVatTu("MVT0" + maVT);
+        vt.setSoLuongVatTuCon(0);
         return vatTuRepository.save(vt);
     }
 
     @Override
     public boolean xoaVatTu(Long id) {
+        Optional<VatTu> vatTu = vatTuRepository.findById(id);
+        if (!vatTu.isPresent()) return false;
+        if (vatTu.get().getSoLuongVatTuCon() > 0) return false;
         try {
             vatTuRepository.deleteById(id);
             return true;

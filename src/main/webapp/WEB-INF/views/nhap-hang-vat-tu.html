@@ -7,48 +7,49 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-8 card ">
+        <div class="col-9 card ">
             <div class="row">
                 <div class="col-12 card-header">
                     <div class="alert alert-success text-center">
-                        Nhap hang
+                        Nhập hàng vật tư
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <div class="card-body">
                         <div >
-                            <label class="input-group-text" for="don_vi_doi_tac_07_02_">don vi doi tac</label>
+                            <label class="input-group-text" for="don_vi_doi_tac_07_02_">Đơn vị đối tác</label>
                             <input type="text" id="don_vi_doi_tac_07_02_" class="form-control">
                         </div>
 
                         <div class="mt-2">
-                            <label class="input-group-text" for="dia_chi_doi_tac_07_02">dia chi doi tac</label>
+                            <label class="input-group-text" for="dia_chi_doi_tac_07_02">Địa chỉ đối tác</label>
                             <input type="text" id="dia_chi_doi_tac_07_02" class="form-control">
                         </div>
 
                         <div class="mt-2">
-                            <label class="input-group-text" for="nguoi_dai_dien_07_02">nguoi dai dien</label>
+                            <label class="input-group-text" for="nguoi_dai_dien_07_02">Người đại diện</label>
                             <input type="text" id="nguoi_dai_dien_07_02" class="form-control">
                         </div>
 
                         <div class="mt-2">
-                            <label class="input-group-text" for="thong_tin_ndd_07_02">thong tin nguoi dai dien</label>
+                            <label class="input-group-text" for="thong_tin_ndd_07_02">Thông tin người đại diện</label>
                             <input type="text" id="thong_tin_ndd_07_02" class="form-control">
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-7">
                     <div class="card-body">
                         <div class="alert alert-warning text-center">
-                            danh sach dich vu
+                            Danh sách Vật tư nhập
                         </div>
                         <table class="mt-2 table table-sm">
                             <theader>
-                                <th>Dich vu</th>
-                                <th>don gia</th>
-                                <th>so luong</th>
-                                <th>don vi tinh</th>
-                                <th>thanh tien</th>
+                                <th>STT</th>
+                                <th>Mã Vật tư</th>
+                                <th>Tên vật tư</th>
+                                <th>Giá nhập/sp</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
                             </theader>
                             <tbody id="_danh_sach_dich_vu_da_them_07_02_">
                             </tbody>
@@ -60,36 +61,36 @@
                 </div>
                 <div class="col-12 text-center">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-5">
                             <button onclick="window.history.back();" class="btn btn-dark w-100 ml-2 mr-2">huy</button>
                         </div>
-                        <div class="col-6">
+                        <div class="col-7">
                             <button class="btn btn-success w-100  ml-2 mr-2" id="_btn_tao_phieu_nhap_hang_07_02_" onclick="taoPhieuNhapHang_07_02_()">Tao phieu Nhap hang</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-4 card" id="_danh_sach_vat_tu_07_0">
+        <div class="col-3 card" id="_danh_sach_vat_tu_07_0">
             <div class="card-header">
                 <div class="alert alert-success text-center alert-link w-100">
-                    <strong >Danh sach dich vu</strong>
+                    <strong >Danh sách vật tư</strong>
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <a href="/dich-vu" class="btn btn-danger w-100  ml-2 mr-2"  target="_blank">Them moi dich vu</a>
+                        <a href="/danh-sach-vat-tu" class="btn btn-danger w-100  ml-2 mr-2"  target="_blank">Thêm mới vật tư</a>
                     </div>
                     <div class="col-6">
-                        <button class=" btn btn-success w-100  ml-2 mr-2" onclick="loadDichVu_07_02_()"> <i class="fa fa-refresh"></i>reload</button>
+                        <button class=" btn btn-success w-100  ml-2 mr-2" onclick="loadDichVu_07_02_()"> <i class="fa fa-refresh mr-2"></i>reload</button>
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <table class="w-100 table table-sm  table-striped" >
                     <theader>
-                        <th>stt</th>
-                        <th>dich vu</th>
-                        <th>action</th>
+                        <th>STT</th>
+                        <th>Vật tư</th>
+                        <th>Action</th>
                     </theader>
                     <tbody id="data_dich_vu_07_02_"></tbody>
                 </table>
@@ -105,27 +106,30 @@
                 <div class="card" id="_have_dich_vu">
                     <div class="card-header">
                         <div class="alert alert-primary text-center" role="alert">
-                            <strong> So luong nhap</strong>
+                            <strong> Thông tin nhập</strong>
                         </div>
                     </div>
                     <div class="card-body">
-                        <input type="hidden" id="_id_them_dich_vu_07_02">
-                        <input type="hidden" id="_ten_them_dich_vu_07_02">
-                        <input type="hidden" id="_don_vi_tinh_them_dich_vu_07_02">
+                        <input type="hidden" id="_id_them_vat_tu_00_0">
+                        <input type="hidden" id="_ma_them_vat_tu_00_0">
                         <div>
-                            <label for="input_so_luong_dich_vu_them_07_02_">So luong</label>
+                            <label for="_ten_vat_tu_them_00_0">Vật tư</label>
+                            <input type="text"  class="form-control" disabled id="_ten_vat_tu_them_00_0">
+                        </div>
+                        <div>
+                            <label for="input_so_luong_dich_vu_them_07_02_">Số lượng</label>
                             <input id="input_so_luong_dich_vu_them_07_02_" class="form-control"  min="1" type="number" value="1"/>
                         </div>
                         <div class="mt-3">
-                            <label for="input_don_gia_dich_vu">don gia</label>
+                            <label for="input_don_gia_dich_vu">Giá nhập</label>
                             <input id="input_don_gia_dich_vu" class="form-control" pattern="[0-9]+" value="1"/>
                         </div>
 
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-success w-25" data-dismiss="modal" id="_btn_btn_themdichvu_00" disabled onclick="onThemDichVu_07_02()"> Save
+                        <button class="btn btn-success w-25" data-dismiss="modal" id="_btn_btn_themdichvu_00" disabled onclick="onThemDichVu_07_02()"> Lưu
                         </button>
-                        <button class="btn btn-danger w-25" data-dismiss="modal"> Huy</button>
+                        <button class="btn btn-danger w-25" data-dismiss="modal"> Hủy</button>
                     </div>
                 </div>
             </div>
@@ -134,37 +138,26 @@
 </div>
 
 <script>
-    $('#_date_now_03_').text(` Ngày ${formatDate()}`);
-    function formatDate() {
-        var d = new Date(),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
 
-        if (month.length < 2) month = '0' + month;
-        if (day.length < 2) day = '0' + day;
-
-        return [day, month, year].join('-');
-    }
     loadDichVu_07_02_();
     function loadDichVu_07_02_() {
         $('#pagination_dich_vu_07_02_').pagination({
-            dataSource: `${apiResource}dich-vu`,
+            dataSource: `${apiResource}vat-tu`,
             locator: 'content',
             totalNumberLocator: res =>  res.totalElements,
             pageSize: 5,
             callback: function(data, pagination) {
                 $('#data_dich_vu_07_02_').html('');
-                $.each(data, (index, dv) =>
+                $.each(data, (index, vt) =>
                     $('#data_dich_vu_07_02_').html($('#data_dich_vu_07_02_').html() + `
                         <tr>
                             <td width="5%">${(pagination.pageSize) * (pagination.pageNumber -1) + index +1}</td>
                             <td width="40%">
-                                <span class="ml-2">${dv.tenDichVu}</span>
+                                <span class="ml-2">${vt.tenVatTu}</span>
                             </td>
                             <td width="20%">
                                 <button class="btn btn-success w-100" data-target="#modal_them_dich_vu_04_01" data-toggle="modal"
-                                onclick="setThemDichVu_07_02_(${dv.id}, '${dv.tenDichVu}', '${dv.donViDo}')"><i class="fa fa-chevron-left"></i></button>
+                                onclick="setThemVatTu_00_0(${vt.id}, '${vt.tenVatTu}', '${vt.maVatTu}')"><i class="fa fa-chevron-left"></i></button>
                             </td>
                         </tr>
                     `)
@@ -172,30 +165,31 @@
             }
         });
     }
-    let list_dich_vu_07_02 = [];
+    let list_vat_tu_00_0_ = [];
     let tong_tien = 0;
-    function setThemDichVu_07_02_(id, ten, dvt) {
-        $('#_id_them_dich_vu_07_02').val(id);
-        $('#_ten_them_dich_vu_07_02').val(ten);
-        $('#_don_vi_tinh_them_dich_vu_07_02').val(dvt);
+    function setThemVatTu_00_0(id, ten, ma) {
+        $('#_id_them_vat_tu_00_0').val(id);
+        $('#_ten_vat_tu_them_00_0').val(ten);
+        $('#_ma_them_vat_tu_00_0').val(ma);
         $('#input_so_luong_dich_vu_them_07_02_').val(1);
         $('#input_don_gia_dich_vu').val('');
     }
     function onThemDichVu_07_02() {
         let donGia_ = parseInt(parseInt($('#input_don_gia_dich_vu').val()));
         let sl_ = parseInt($('#input_so_luong_dich_vu_them_07_02_').val());
-        list_dich_vu_07_02.push({
-            sanPhamId: $('#_id_them_dich_vu_07_02').val(),
+        list_vat_tu_00_0_.push({
+            sanPhamId: $('#_id_them_vat_tu_00_0').val(),
             sl: sl_,
             donGia: donGia_
         });
-        tong_tien +=parseInt(sl_ * donGia_);
+        tong_tien += parseInt(sl_ * donGia_);
         $('#_tong_rien_07_02_').text(tong_tien);
-    $('#_danh_sach_dich_vu_da_them_07_02_').append(`<tr>
-                                <td>${$('#_ten_them_dich_vu_07_02').val()}</td>
+        $('#_danh_sach_dich_vu_da_them_07_02_').append(`<tr>
+                                <td>${list_vat_tu_00_0_.length}</td>
+                                <td>${$('#_ma_them_vat_tu_00_0').val()}</td>
+                                <td>${$('#_ten_vat_tu_them_00_0').val()}</td>
                                 <td>${donGia_}</td>
                                 <td>${sl_}</td>
-                                <td>${$('#_don_vi_tinh_them_dich_vu_07_02').val()}</td>
                                 <td>${parseInt(sl_ * donGia_)}</td>
                             </tr>`);
     }
@@ -209,8 +203,8 @@
             $.notify("Vui lòng nhập đầy đủ thông tin đối tác", "danger");
             return;
         }
-        if (list_dich_vu_07_02.length === 0) {
-            $.notify("Vui lòng chọn ít nhất 1 dịch vụ", "danger");
+        if (list_vat_tu_00_0_.length === 0) {
+            $.notify("Vui lòng chọn ít nhất 1 vật tư", "danger");
             return;
         }
         $.notify("Đang tiến hành lập phiếu", "info");
@@ -220,16 +214,17 @@
             diaChiDoiTac: $('#dia_chi_doi_tac_07_02').val(),
             nguoiDaiDien: $('#nguoi_dai_dien_07_02').val(),
             thongTinNDD: $('#thong_tin_ndd_07_02').val(),
-            sanPhamDTOS: list_dich_vu_07_02
+            sanPhamDTOS: list_vat_tu_00_0_
         };
+        console.log(data);
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: `${apiResource}nhap-hang`,
+            url: `${apiResource}nhap-hang-vat-tu`,
             data: JSON.stringify(data),
             dataType: 'json',
             success: (res) => {
-                window.location.href = `${window.location.origin}/nhap-hang/${res}`;
+                window.location.href = `${window.location.origin}/nhap-hang-vat-tu/${res}`;
             }
         });
     }

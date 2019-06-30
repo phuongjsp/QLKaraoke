@@ -7,15 +7,15 @@
     <div class="row">
         <div class="col-8">
             <div class="alert alert-success">
-                <strong> <button type="button" onclick="insertNewDv_03_01()" class="btn btn-success">Thêm M?i</button></strong>
+                <strong> <button type="button" onclick="insertNewDv_03_01()" class="btn btn-success">Nhập hàng mới</button></strong>
             </div>
             <table class="table table-sm table-bordered table-striped">
                 <theader>
                     <tr>
                         <th>STT</th>
-                        <th>Tên Dich V?</th>
+                        <th>Tên Dich Vụ</th>
                         <th>Giá</th>
-                        <th>Ðon V? Ðo</th>
+                        <th>Ðon Vị Ðo</th>
                         <th>Options</th>
                     </tr>
                 </theader>
@@ -27,37 +27,37 @@
         <div class="col-4">
             <div class="card">
                 <div class="alert alert-primary text-center card-header">
-                    <span id="thongtin-dich-vu_03_01">Thêm D?ch V? </span>
+                    <span id="thongtin-dich-vu_03_01">Thêm Dịch Vụ </span>
                 </div>
                 <div class="card-body">
                     <input type="hidden" id="id-dich-vu_03_01">
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" >Tên D?ch V?</span>
+                            <span class="input-group-text" >Tên Dịch Vụ</span>
                         </div>
                         <input type="text" class="form-control" id="ten-dich-vu_03_01"  aria-label="Username" aria-describedby="basic-addon2">
                     </div>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" >Giá D?ch V?</span>
+                            <span class="input-group-text" >Giá Dịch Vụ</span>
                         </div>
                         <input type="text" class="form-control" id="gia-dich-vu_03_01" aria-label="Username" aria-describedby="basic-addon2">
                     </div>
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" >Ðon V? Ðo</span>
+                            <span class="input-group-text" >Ðon Vị Ðo</span>
                         </div>
                         <input type="text" class="form-control" id="don-vi-do_03_01" aria-label="Username" aria-describedby="basic-addon2">
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="button" onclick="sendDataToserve_03_01()" id="new-kh_03_01" class="btn btn-primary w-100">
+                    <button type="button" onclick="sendDataToserve_03_01()" id="new-kh_03_01" class="btn btn-primary w-100" disabled>
                         Thêm D?ch V?
                     </button>
-                    <button type="button"   onclick="updateDataToserve_03_01()" id="update-kh_03_01" class="btn btn-primary w-100 d-none">
+                    <button type="button"   onclick="updateDataToserve_03_01()" id="update-kh_03_01" class="btn btn-primary w-100 d-none" disabled>
                         C?p nh?t D?ch V?
                     </button>
 
@@ -67,6 +67,10 @@
     </div>
 </div>
 <script>
+
+    validOnlyNumber('new-kh_03_01', 'gia-dich-vu_03_01');
+    validOnlyNumber('update-kh_03_01', 'gia-dich-vu_03_01');
+
     getDichVu_03_01();
     function getDichVu_03_01() {
         $('#pagination-dich-vu_03_01').pagination({
@@ -107,11 +111,13 @@
 
     }
     function insertNewDv_03_01() {
-        $('#thongtin-dich-vu_03_01').text(`Thêm M?i D?ch V?`);
-        $('#ten-dich-vu_03_01').val('');
-        $('#gia-dich-vu_03_01').val('');
-        $('#don-vi-do_03_01').val('');
-        showAndHide('new-kh_03_01','update-kh_03_01' )
+
+        // $('#thongtin-dich-vu_03_01').text(`Thêm M?i D?ch V?`);
+        // $('#ten-dich-vu_03_01').val('');
+        // $('#gia-dich-vu_03_01').val('');
+        // $('#don-vi-do_03_01').val('');
+        // showAndHide('new-kh_03_01','update-kh_03_01' )
+        window.location.href = `${window.location.origin}/nhap-hang`;
     }
 
     function sendDataToserve_03_01() {

@@ -9,9 +9,9 @@ public interface VatTuService {
 
     Page<VatTu> getAllVatTu(Integer page, Integer size);
 
-    VatTu updateVatTu(VatTu vatTu);
+    VatTu updateVatTu(Long id, String ten);
 
-    VatTu newVatTu(VatTu vatTu);
+    VatTu newVatTu(String vatTu);
 
     boolean xoaVatTu(Long id);
 

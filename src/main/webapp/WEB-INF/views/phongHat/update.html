@@ -75,7 +75,7 @@
                         <button class="col-sm-6 btn btn-dark w-100" onclick="setFormShowVatTu()">
                             <i class="fa fa-backward"></i>  Back
                         </button>
-                        <button class="col-sm-6 btn btn-success"  data-toggle="modal" data-target="#modal_update_vat_tu_01_" onclick="newVatTu()">Thêm mới vật tư</button>
+                        <a class="col-sm-6 btn btn-success"  href="/nhap-vat-tu">Nhập vật tư</a>
                     </div>
 
                 </div>
@@ -93,9 +93,9 @@
                     <div class="alert alert-primary text-center" role="alert">
                         <strong>Danh sách vật tư </strong>
                     </div>
-                    <button class="btn btn-outline-info w-100" onclick="setFormNewVatTu()">
-                        Cap nhat vật tư
-                    </button>
+                    <a class="btn btn-outline-info w-100" href="/nhap-vat-tu">
+                        Nhập vật tư
+                    </a>
                 </div>
                 <div class="card-body">
                     <ul class="list-group" id="group-vat-tu">
@@ -387,7 +387,7 @@
         dataSource: `${apiResource}vat-tu`,// url?pageNumber=?&pageSize=?
         locator: 'content',
         totalNumberLocator: res => res.totalElements,
-        pageSize: 2,
+        pageSize: 10,
         callback: function (data, pagination) {
             vattu_01_ = data;
             $('#group-vat-tu_01').html('');

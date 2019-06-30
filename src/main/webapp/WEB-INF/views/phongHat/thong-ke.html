@@ -9,6 +9,7 @@
     <div class="col-7">
         <div class="card">
             <div class="card-body">
+                <h3>Thống kê Danh sách dịch vụ sử dụng</h3>
                 <div class="row">
                     <div class="col-3 mb-3">
                         <label for="_select_thang_06_">Thang</label>
@@ -43,36 +44,39 @@
     </div>
     <div class="col-5">
         <div class="card">
-            <div class="card-body row">
-                <div class="col-3">
-                    <label for="_select_thang_06_">Thang</label>
-                    <select class="form-control" name="" id="_select_thang_06_" onchange="showCharByThang(this.options[this.selectedIndex].value)">
-                        <option value="0">Chua chon</option>
-                        <option value="1">Thang 1</option>
-                        <option value="2">Thang 2</option>
-                        <option value="3">Thang 3</option>
-                        <option value="4">Thang 4</option>
-                        <option value="5">Thang 5</option>
-                        <option value="6">Thang 6</option>
-                        <option value="7">Thang 7</option>
-                        <option value="8">Thang 8</option>
-                        <option value="9">Thang 9</option>
-                        <option value="10">Thang 10</option>
-                        <option value="11">Thang 11</option>
-                        <option value="12">Thang 12</option>
-                    </select>
-                </div>
+            <div class="card-body">
+                <h3>Thống kê doanh thu</h3>
+                <div class="row">
+                    <div class="col-3">
+                        <label for="_select_thang_06_">Thang</label>
+                        <select class="form-control" name="" id="_select_thang_06_" onchange="showCharByThang(this.options[this.selectedIndex].value)">
+                            <option value="0">Chua chon</option>
+                            <option value="1">Thang 1</option>
+                            <option value="2">Thang 2</option>
+                            <option value="3">Thang 3</option>
+                            <option value="4">Thang 4</option>
+                            <option value="5">Thang 5</option>
+                            <option value="6">Thang 6</option>
+                            <option value="7">Thang 7</option>
+                            <option value="8">Thang 8</option>
+                            <option value="9">Thang 9</option>
+                            <option value="10">Thang 10</option>
+                            <option value="11">Thang 11</option>
+                            <option value="12">Thang 12</option>
+                        </select>
+                    </div>
 
-                <div class="col-3">
-                    <label for="_select_dich_vu_nam_06_">Nam</label>
-                    <select class="form-control" name="" id="_select_dt_nam_06_" onchange="showCharByNam(this.options[this.selectedIndex].value)">
-                        <option value="2017" >2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019" selected>2019</option>
-                    </select>
+                    <div class="col-3">
+                        <label for="_select_dich_vu_nam_06_">Nam</label>
+                        <select class="form-control" name="" id="_select_dt_nam_06_" onchange="showCharByNam(this.options[this.selectedIndex].value)">
+                            <option value="2017" >2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019" selected>2019</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <canvas id="_chart_thong_ke_07_0" width="800" height="450"></canvas>
+                <canvas id="_chart_thong_ke_07_0" width="800" height="450"></canvas>
+                </div>
         </div>
         <div class="card mt-5">
             <div class="card-header">

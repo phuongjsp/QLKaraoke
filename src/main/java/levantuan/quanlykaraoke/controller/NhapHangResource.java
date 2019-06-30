@@ -20,9 +20,14 @@ public class NhapHangResource {
     private NhapHangSerive nhapHangSerive;
 
     @PostMapping("nhap-hang")
-    public Long nhapHang(Model model, @RequestBody NhapHangDTO dichVus,
-                           Principal principal) {
+    public Long nhapHang(Model model, @RequestBody NhapHangDTO nhapHangDTO,
+                         Principal principal) {
+        return nhapHangSerive.nhapHang(nhapHangDTO, principal.getName());
+    }
 
-        return nhapHangSerive.nhapHang(dichVus, principal.getName()).getId();
+    @PostMapping("nhap-hang-vat-tu")
+    public Long nhapHangVatTu(Model model, @RequestBody NhapHangDTO nhapHangDTO,
+                         Principal principal) {
+        return nhapHangSerive.nhapHangVatTu(nhapHangDTO, principal.getName());
     }
 }

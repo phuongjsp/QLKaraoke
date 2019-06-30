@@ -104,7 +104,7 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     }
 
     @Override
-    public Long newNhanVien(String username, String password, String fullname, String sdt, String cmnd, String ngaySinh, String gioiTinh) {
+    public Long newNhanVien(String username, String password, String fullname, String address, String sdt, String cmnd, String ngaySinh, String gioiTinh) {
         if (usersRepository.existsByUsername(username)) {
             return 0L;
         }
@@ -115,6 +115,7 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
         user.setEnabled(true);
         nhanVien.setUsername(username);
         nhanVien.setTenNhanVien(fullname);
+        nhanVien.setDiaChi(address);
         nhanVien.setSoDienThoai(sdt);
         nhanVien.setCmnd(cmnd);
         nhanVien.setTinhTrang(true);
@@ -131,7 +132,7 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     }
 
     @Override
-    public boolean updateNhanVien(Long id,String password, String fullname, String sdt, String cmnd, String ngaySinh, String gioiTinh) {
+    public boolean updateNhanVien(Long id,String password, String fullname,String address, String sdt, String cmnd, String ngaySinh, String gioiTinh) {
         Optional<NhanVien> nhanVienOptional = nhanVienRepository.findById(id);
         if (!nhanVienOptional.isPresent()) return false;
         NhanVien nhanVien =nhanVienOptional.get();
@@ -140,8 +141,9 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
         if (fullname != null && !fullname.equals("")) nhanVien.setTenNhanVien(fullname);
         if (sdt != null && !sdt.equals("")) nhanVien.setSoDienThoai(sdt);
         if (cmnd != null && !cmnd.equals("")) nhanVien.setCmnd(cmnd);
+        if (address != null && !address.equals("")) nhanVien.setDiaChi(address);
         try {
-            nhanVien.setNgaySinh(new SimpleDateFormat("dd/MM/YYYY").parse(ngaySinh));
+            nhanVien.setNgaySinh(new SimpleDateFormat("dd/MM/yyyy").parse(ngaySinh));
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -39,4 +39,10 @@ public class PhieuNhapHang implements Serializable {
     @Column(name = "thong_tin_ndd")
     private String thongTinNDD;
 
+
+    @Column(name = "type")
+    private Integer type; // 0 : dich vu, 1: vat tu
+
+    @Column(name = "tong_tien")
+    private Integer tongTien;
 }

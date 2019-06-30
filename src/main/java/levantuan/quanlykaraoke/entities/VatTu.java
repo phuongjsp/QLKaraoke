@@ -18,10 +18,10 @@ public class VatTu implements Serializable {
     @Column(name = "ten_vat_tu",  nullable = false, length = 32)
     private String tenVatTu;
 
-    @Column(name = "ma_vat_tu", unique= true, nullable = false, length = 32)
+    @Column(name = "ma_vat_tu", unique= true, length = 32)
     private String maVatTu;
 
-    @Column(name = "so_luong_con", nullable = false, length = 11)
+    @Column(name = "so_luong_con", length = 11)
     private int soLuongVatTuCon;
 
 }

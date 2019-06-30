@@ -1,0 +1,20 @@
+alter table phieu_nhap_hang
+	add type int(1) null;
+
+	create table chi_tiet_phieu_nhap_vat_tu
+    (
+    	id int auto_increment,
+    	vat_tu int null,
+    	so_luong int null,
+    	don_gia int null,
+    	phieu_nhap_hang int null,
+    	constraint chi_tiet_phieu_nhap_vat_tu_pk
+    		primary key (id),
+    	constraint chi_tiet_phieu_nhap_vat_tu_phieu_nhap_hang_id_fk
+    		foreign key (phieu_nhap_hang) references phieu_nhap_hang (id),
+    	constraint chi_tiet_phieu_nhap_vat_tu_vat_tu_id_fk
+    		foreign key (vat_tu) references vat_tu (id)
+    );
+
+alter table phieu_nhap_hang
+	add tong_tien int null;

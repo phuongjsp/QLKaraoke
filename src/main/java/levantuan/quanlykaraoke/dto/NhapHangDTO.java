@@ -14,6 +14,6 @@ public class NhapHangDTO {
 
     private String thongTinNDD;
 
-    private List<DichVuDTO> dichVus;
+    private List<SanPhamDTO> sanPhamDTOS;
 
 }

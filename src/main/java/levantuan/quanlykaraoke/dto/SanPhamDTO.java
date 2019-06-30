@@ -3,8 +3,8 @@ package levantuan.quanlykaraoke.dto;
 import lombok.Data;
 
 @Data
-public class DichVuDTO {
-    private Long dichVuId;
+public class SanPhamDTO {
+    private Long sanPhamId;
 
     private Integer sl;
 

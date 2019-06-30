@@ -17,5 +17,6 @@ public interface VatTuRepository extends JpaRepository<VatTu,Long> {
             "where p.id = :id")
     List<VatTu> getAllByIdPhong(@Param("id") Long idPhong);
 
-
+    @Query(value = "select k.ma_vat_tu from vat_tu k order by id desc limit 0, 1", nativeQuery = true)
+    String getLastMaPhong();
 }

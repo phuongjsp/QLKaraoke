@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<table class="table table-sm">
+    <theader>
+        <th>Mã Nhân viên</th>
+        <th>Họ tên</th>
+        <th>Địa chỉ</th>
+        <th>SDT</th>
+        <th>CMND</th>
+        <th>Ngày sinh</th>
+        <th>Giới tính</th>
+        <th>Trạng thái</th>
+        <th>Cập nhật</th>
+    </theader>
+    <tbody>
+    <tr th:each="nv : ${nhanVien}">
+        <td th:text="${nv.username}"></td>
+        <td th:text="${nv.tenNhanVien}"></td>
+        <td th:text="${nv.diaChi}"></td>
+        <td th:text="${nv.soDienThoai}"></td>
+        <td th:text="${nv.Cmnd}"></td>
+        <td th:text="${#dates.format(nv.ngaySinh, 'dd-MM-yyyy')}"></td>
+        <td >
+            <span th:if="${nv.gioiTinh}">Nam</span>
+            <span th:if="${!nv.gioiTinh}">Nữ</span>
+        </td>
+        <td >
+            <span th:if="${nv.tinhTrang}">Hoạt động</span>
+            <span th:if="${!nv.tinhTrang}">Ngưng hoạt động</span>
+        </td>
+        <td>
+            <a th:href="@{'update-nv/'}+${nv.username}" class="btn btn-warning w-100"><i class="fa fa-edit"></i></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</html>

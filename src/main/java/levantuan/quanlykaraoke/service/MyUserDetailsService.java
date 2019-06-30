@@ -19,9 +19,9 @@ public interface MyUserDetailsService extends UserDetailsService {
 
     boolean updatePassword(String username, String oldPassword, String newPassword);
 
-    Long newNhanVien(String username, String password, String fullname, String sdt, String cmnd, String ngaySinh, String gioiTinh);
+    Long newNhanVien(String username, String password, String fullname, String address, String sdt, String cmnd, String ngaySinh, String gioiTinh);
 
-    boolean updateNhanVien(Long id, String password, String fullname, String sdt, String cmnd, String ngaySinh, String gioiTinh);
+    boolean updateNhanVien(Long id, String password, String fullname, String address, String sdt, String cmnd, String ngaySinh, String gioiTinh);
 
     NhanVien getNhanVien(Long id);
 
