@@ -21,7 +21,10 @@
             </div>
             <div class="d-flex justify-content-center">
                 <button id="_btn_vao_phong_03_0" class="btn btn-success ml-2 mr-2 d-none" onclick="vaoPhong()">Vào Phòng</button>
-                <button id="_btn_ra_phong_03_0" class="btn btn-info  ml-2 mr-2 d-none" onclick="raPhong()">Ra Phòng</button>
+                <div id="_btn_ra_phong_03_0" class="d-none">
+                    <button class="btn btn-info  ml-2 mr-2 " onclick="raPhong()">Ra Phòng</button>
+                    <button onclick="tinhTienPhong()" class="btn btn-warning ">Tính giờ</button>
+                </div>
                 <button id="_btn_show_them_dich_vu_03_0" class="btn btn-danger  ml-2 mr-2 d-none" onclick="showThemDichVu()">Them dich vu</button>
                 <button id="_btn_huy_phong_03_0" class="btn btn-danger  ml-2 mr-2 d-none" onclick="huyPhong()">Hủy Phòng</button>
                 <button id="_btn_in_hoa_don_03_0" class="btn btn-danger  ml-2 mr-2 d-none" onclick="inHoaDon()">In Hóa đơn</button>
@@ -216,7 +219,6 @@
     $('#_tien_coc_03_01_0').text(`${hoadon.tienCoc}`);
     $('#_don_gia_phong_03_01_0').text(`${parseInt(hoadon.phong.loaiPhong.tienPhongTrenGio)}`);
 
-
     function inHoaDon() {
         $('#_btn_in_hoa_don_03_0').addClass('d-none');
         $('._huy_dich_vu').addClass('d-none');
@@ -296,6 +298,7 @@
     }
 
     function raPhong() {
+        tinhTienPhong();
         $.get(`${apiResource}hoa-don/ra-phong/${hoadon.id}`,{tienPhong: parseInt($('#_don_gia_phong_03_01_0').text()),
             tienDichVu: parseInt($('#_tong_tien_dich_vu04_01').text())},(res, status) => {
             location.reload();
@@ -331,7 +334,7 @@
         $('#_btn_in_hoa_don_03_0').removeClass('d-none');
     }
     function tinhGio() {
-        var diff = Math.abs(new Date(hoadon.gioVao) - new Date(hoadon.gioRa));
+        var diff = Math.abs(new Date() - new Date(hoadon.gioVao));
         let m =  ((diff/1000) / 60);
         if (m < 60) {
             $('#_tong_gio_03_').text(`${parseInt(m)}'`);
@@ -352,10 +355,13 @@
             // Tính tiền . giờ
             let donGia = hoadon.phong.loaiPhong.tienPhongTrenGio * jsonTien.h;
             donGia += parseInt((hoadon.phong.loaiPhong.tienPhongTrenGio/60) * jsonTien.p);
-            $('#_thanh_tien_03_').text(donGia);
+            $('#_thanh_tien_03_').text(`${donGia}`);
         } else {
             $('#_thanh_tien_03_').text((hoadon.phong.loaiPhong.tienPhongTrenGio/60) * jsonTien.p);
         }
+        $('#_don_gia_phong_03_01_0').text(`${$('#_thanh_tien_03_').text()}`);
+        $('#_tong_tien_hoa_don_03_0').text(parseInt($('#_thanh_tien_03_').text()) + parseInt($('#_tong_tien_dich_vu04_01').text()));
+        $('#_thanh_toan_tien_03_0').text(`${parseInt($('#_thanh_tien_03_').text()) + parseInt($('#_tong_tien_dich_vu04_01').text()) - parseInt($('#_tien_coc_03_01_0').text())} vnđ`);
     }
     function formatDate() {
         var d = new Date(),

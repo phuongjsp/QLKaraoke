@@ -277,6 +277,7 @@
                 case  1 : imgUri = '/img/roomBusy.png'; break;
                 case  2 : imgUri = '/img/roomfree.png'; break;
                 case  3 : imgUri = '/img/dangDon.jpg'; break;
+                case  4 : imgUri = '/img/baohanh.jpg'; break;
             }
             dataHtml += `<div class="col-4 text-center" id="${item.id}">
                             <span  onclick="showDetailRoom(${item.id})">
@@ -300,7 +301,7 @@
         showAndHide('show-detail-room', 'show-loai-phong');
         $.get(`${apiResource}phong-hat/get/${id}`, res => {
 
-            if (res.tinhTrangPhong === 2) {
+            if (res.tinhTrangPhong === 2 || res.tinhTrangPhong === 4) {
                 $('#_show_hoa_don_phong').removeClass('d-none');
                 $('#_a_link_to_dat_phong').addClass('d-none');
                 $('#link-update-phong-hat').addClass('d-none');

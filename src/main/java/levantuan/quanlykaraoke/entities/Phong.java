@@ -23,6 +23,7 @@ public class Phong implements Serializable {
 //     1.đang trống
 ////            2. đã được đặt
 ////    3. đang dọn
+    /// 4.Khách đã vào phòng
 
 
     @ManyToOne
