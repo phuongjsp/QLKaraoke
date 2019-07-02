@@ -57,7 +57,7 @@ public class PhongHatController {
     }
 
     @Layout(value = "default", title = "Phong hat")
-    @GetMapping("khach-hang")
+    @GetMapping("danh-sach-khach-hang")
     public String khachhangView() {
         return "phongHat/khachhang";
     }
@@ -131,5 +131,11 @@ public class PhongHatController {
     public String nhapVatTu() {
         return "nhap-hang-vat-tu";
     }
+
+//    @Layout(value = "default", title = "Phong hat")
+//    @GetMapping("khach-hang")
+//    public String danhSachKH() {
+//        return "danh-sach-khach-hang";
+//    }
 
 }

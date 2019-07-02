@@ -1,15 +1,259 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-</head>
+<html lang="en">
 <body>
 <div class="container-fluid">
     <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="alert alert-info">Danh sác khách hàng</div>
+                    <div class="mt-2 mb-2 row">
+                        <div class="col-3">
+                            <label for="_input_fullname_kh_07_02">Họ tên KH</label>
+                            <input type="text" id="_input_fullname_kh_07_02" class="form-control" placeholder="Hoàng Thị Linh">
+                        </div>
+                        <div class="col-3">
+                            <label for="_input_ma_kh_07_02">Mã KH</label>
+                            <input type="text" id="_input_ma_kh_07_02" class="form-control" placeholder="KH034231">
+                        </div>
+                        <div class="col-3">
+                            <label for="_input_sdt_kh_07_02">SDT KH</label>
+                            <input type="text" id="_input_sdt_kh_07_02" class="form-control" placeholder="0984737667">
+                        </div>
+                        <div class="col-3">
+                            <label for="_input_sdt_kh_07_02">Vip</label>
+                            <table>
+                                <tr>
+                                    <td><input type="text" id="_input_vip_min_kh_07_02" class="form-control w-100" value="0"></td>
+                                    <td>đến</td>
+                                    <td><input type="text" id="_input_vip_max_kh_07_02" class="form-control w-100" value="160"></td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="mb-4 text-center">
+                        <button class="btn btn-info"><i class="fa fa-search mr-2"></i>Search</button>
+                        <button class="btn btn-success ml-3" onclick="insertNewKh_02_0()"><i class="fa fa-plus"></i> Thêm mới khách hàng</button>
+                    </div>
+                    <table class="table table-sm">
+                        <theader>
+                            <th>STT</th>
+                            <th>Mã KH</th>
+                            <th>Tên KH</th>
+                            <th>SDT</th>
+                            <th>CMND</th>
+                            <th>Giới tính</th>
+                            <th onclick="sortByVip()" class="btn btn-warning w-100">
+                                Vip
+                                <i class="fa fa-arrow-up" id="_fa_thumbs_up_00"></i>
+                            </th>
+                            <th>Action</th>
+                        </theader>
+                        <tbody id="data-container_02_0">
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        </tbody>
+                    </table>
+                    <div id="pagination-khach-hang_02_0"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="" id="_danh_sach_vip_00">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="alert alert-info">Thông tin Vip</h3>
+                        <div style="background-color: #dc593c">
+                            <h4>Diamond</h4>
+                            <ul>
+                                <li>KH đã sử dụng phòng, dịch vụ của quá trị giá trên 20 triệu vnđ</li>
+                                <li>Được ưu đã 25% phí dịch vụ và 30% phí phòng cho các lần sau đến quán</li>
+                                <li>KH được phép đặt phòng trước tối đa 180 phút (Trong đó 120 mặc định + thêm số điểm vip - 100, tối đa 180 phút)</li>
+                            </ul>
+                        </div>
+                        <div style="background-color: #4dda42">
+                            <h4>Platinum</h4>
+                            <ul>
+                                <li>KH đã sử dụng phòng, dịch vụ của quá trị giá từ 12 triệu vnđ vnđ đến dưới 20 triệu vnđ</li>
+                                <li>Được ưu đã 25% phí dịch vụ và 20% phí phòng cho các lần sau đến quán</li>
+                                <li>KH được phép đặt phòng trước tối đa 120 phút</li>
+                            </ul>
+                        </div>
+                        <div style="background-color: goldenrod">
+                            <h4>Gold</h4>
+                            <ul>
+                                <li>KH đã sử dụng phòng, dịch vụ của quá trị giá từ 6 triệu vnđ vnđ đến dưới 12 triệu vnđ</li>
+                                <li>Được ưu đã 20% phí dịch vụ và 15% phí phòng cho các lần sau đến quán</li>
+                                <li>KH được phép đặt phòng trước tối đa 90 phút</li>
+                            </ul>
+                        </div>
+                        <div style="background-color: #4282cc">
+                        <h4>Silver</h4>
+                        <ul>
+                            <li>KH đã sử dụng phòng, dịch vụ của quá trị giá từ 2 triệu vnđ vnđ đến dưới 6 triệu vnđ</li>
+                            <li>Được ưu đã 15% phí dịch vụ và 10% phí phòng cho các lần sau đến quán</li>
+                            <li>KH được phép đặt phòng trước tối đa 50 phút</li>
+                        </ul>
+                        </div>
+
+                        <div style="background-color: #f4e098">
+                            <h4>Bronze</h4>
+                            <ul>
+                                <li>KH đã sử dụng phòng, dịch vụ của quá trị giá từ 200 trăm nghìn vnđ đến dưới 2 triệu vnđ</li>
+                                <li>Được ưu đã 10% phí dịch vụ cho các lần sau đến quán</li>
+                                <li>KH được phép đặt phòng trước tối đa 20 phút</li>
+                            </ul>
+                        </div>
 
 
+                    </div>
+                </div>
+            </div>
+            <div id="form_edit_update_02_0" class="d-none">
+                <div class="card">
+                    <div class="alert alert-primary text-center card-header">
+                        <span id="thongtin-nhan-vien_02_0">Thêm Khách Hàng </span>
+                    </div>
+                    <div class="card-body">
+                        <input type="hidden" id="id-khach-hang_02_0">
+                        <input type="hidden" id="ma-khach-hang_02_0">
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label for="ten-khach-hang_02_0" class="input-group-text" >Tên Khách Hàng</label>
+                            </div>
+                            <input type="text" class="form-control" required="required" pattern="[A-Za-z\sÀ-ỹ]{1,30}" id="ten-khach-hang_02_0" value="Lê Văn Tuấn " aria-label="Username" aria-describedby="basic-addon2">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label for="sdt-khach-hang_02_0" class="input-group-text" >SĐT</label>
+                            </div>
+                            <input type='tel' pattern='[0-9\s.-]{9,13}' required="required"  class="form-control" id="sdt-khach-hang_02_0" placeholder="0986488737" aria-label="Username" aria-describedby="basic-addon2">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="cmnd-khach-hang_02_0">CMND</label>
+                            </div>
+                            <input type="text" pattern="[0-9\s.-]{9,13}" required="required" class="form-control" id="cmnd-khach-hang_02_0" placeholder="18771684" aria-label="Username" aria-describedby="basic-addon2">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="gioi-tinh-khach-hang_02_0">Giới Tính</label>
+                            </div>
+                            <select name="gioi-tinh-khach-hang_02_0" id="gioi-tinh-khach-hang_02_0">
+                                <option value="nam">nam</option>
+                                <option value="nu">nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-5">
+                                <button class="btn btn-dark w-100" onclick="onBackAction()">
+                                    <i class="fa fa-backward"></i>Back
+                                </button>
+                            </div>
+                            <div class="col-7">
+                                <button type="button" onclick="sendDataToserve_02_0()" id="new-kh_02_0" class="btn btn-primary w-100">
+                                    Thêm khách hàng
+                                </button>
+                                <button type="button" onclick="updateDataToserve_02_0()" id="update-kh_02_0" class="btn btn-primary w-100 d-none">
+                                    Cập nhật khách hàng
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<script>
+    function onBackAction() {
+        showAndHide('_danh_sach_vip_00', 'form_edit_update_02_0');
+    }
+
+    function updateTTKH_02_0(id, maKh, tenKh, sdt,cmnd, gioiTinh) {
+        showAndHide('form_edit_update_02_0', '_danh_sach_vip_00');
+        $('#thongtin-nhan-vien_02_0').text(`Thông Tin Khách Hàng ${maKh}`);
+        $('#id-khach-hang_02_0').val(id);
+        $('#ma-khach-hang_02_0').val(maKh);
+        $('#ten-khach-hang_02_0').val(tenKh);
+        $('#sdt-khach-hang_02_0').val(sdt);
+        $('#cmnd-khach-hang_02_0').val(cmnd);
+        $("#gioi-tinh-khach-hang_02_0").val(gioiTinh).change();
+        showAndHide('update-kh_02_0', 'new-kh_02_0');
+    }
+    function insertNewKh_02_0() {
+        showAndHide('form_edit_update_02_0', '_danh_sach_vip_00');
+        $('#thongtin-nhan-vien_02_0').text(`Thêm Mới Khách Hàng`);
+        $('#ten-khach-hang_02_0').val('');
+        $('#sdt-khach-hang_02_0').val('');
+        $('#cmnd-khach-hang_02_0').val('');
+        $("#gioi-tinh-khach-hang_02_0").val('nam').change();
+        showAndHide('new-kh_02_0', 'update-kh_02_0');
+    }
+    function xoaKhachHang_02_0(id) {
+        $.get(`${apiResource}xoa-khach-hang/${id}`,(res, status) => {
+            $(`#id-khach-hang_02_0`).remove();
+            getKhachHang_02_0();
+
+        });
+    }
+    function showVip(x) {
+        return x >= 100 ? 'Diamond' : x >= 60 ? 'count' : x >= 30 ? 'Gold' :  x>= 10 ? 'Silver' : 'Bronze';
+    }
+    function insertKhachHang( stt, id, makh, tenkh, sdt, cmnd, gioiTinh, vip) {
+        $('#data-container_02_0').html($('#data-container_02_0').html() +`
+                    <tr >
+                        <td>${stt}</td>
+                        <td>${makh}</td>
+                        <td>${tenkh}</td>
+                        <td>${sdt}</td>
+                        <td>${cmnd}</td>
+                        <td>${gioiTinh}</td>
+                        <td >${showVip(vip)} : ${vip}</td>
+                        <td class="row">
+                            <div class="col-6">
+                            <button type="button" class="ml-1 mr-1 btn btn-info w-100" onclick="updateTTKH_02_0(${id}, '${makh}', '${tenkh}', '${sdt}', '${cmnd}', '${gioiTinh}')">Edit</button>
+</div>
+                            <div class="col-6">
+                            <button type="button" class="ml-1 mr-1 btn btn-danger w-100" onclick="xoaKhachHang_02_0(${id})">Delete</button>
+</div>
+                        </td>
+                    </tr>
+            `);
+    }
+    getKhachHang_02_0();
+    function getKhachHang_02_0() {
+        $('#pagination-khach-hang_02_0').pagination({
+            dataSource: `${apiResource}khach-hang`,
+            locator: 'content',
+            totalNumberLocator: res =>  res.totalElements,
+            pageSize: 10,
+            callback: function(data, pagination) {
+                $('#data-container_02_0').html('');
+                $.each(data, (index, kh) =>
+                    insertKhachHang((pagination.pageSize) * (pagination.pageNumber -1) + index +1, kh.id, kh.maKhachhang,
+                        kh.tenKhachHang, kh.soDienThoai, kh.cmnd, kh.gioiTinh ? 'nam' : 'nu', kh.vipCount)
+                )
+            }
+        });
+    }
+    function sortByVip() {
+        $('#_fa_thumbs_up_00').removeClass('fa-arrow-up');
+        $('#_fa_thumbs_up_00').addClass('fa-arrow-down');
+    }
+</script>
 </body>
 </html>
-
